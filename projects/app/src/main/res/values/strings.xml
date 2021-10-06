@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">SEGProject</string>
+    <string name="username">Username or Email</string>
+    <string name="password">Password</string>
+
+    <string name="username_hint">Please enter your username or Email</string>
+    <string name="password_hint">Please enter your password</string>
+
+    <string name="signup_button">Not a member? Click here to sign up!</string>
+    <string name="login">Log in to Byblos!</string>
+    <string name="login_button">Log in!</string>
+
+    <string name="welcome">Welcome </string>
+
+
+    //strings for sign up page//
+    <string name="signup_username_hint">Username</string>
+    <string name="signup_email_hint">Email</string>
+    <string name="signup_password_hint">Password</string>
+    <string name="signup_role">Role</string>
+
+    //roles//
+    <string name="customer_role">Customer</string>
+    <string name="employee_role">Employee</string>
+    <string name="admin_role">Admin</string>
+
+    //sign up //
+    <string name="signup">Register!</string>
+<!--    <string name=""></string>-->
+</resources>

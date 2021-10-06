@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "650691448769",
+    "project_id": "babylos-90d91",
+    "storage_bucket": "babylos-90d91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650691448769:android:aee9a7233e56e23e0e6940",
+        "android_client_info": {
+          "package_name": "com.example.segproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "650691448769-kkohbs199u7sbckro620vtqciu4shjmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUtsl_XnOjtMOOVKJmUXm_x5Y3QbY9ueo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "650691448769-kkohbs199u7sbckro620vtqciu4shjmt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
