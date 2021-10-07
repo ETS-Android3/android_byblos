@@ -13,6 +13,19 @@
 
         <Space
             android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <TextView
+            android:id="@+id/createAccountText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/createAccount"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
             android:layout_height="30dp" />
 
         <EditText
@@ -22,7 +35,8 @@
             android:ems="10"
             android:hint="@string/signup_username_hint"
             android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
 
         <Space
             android:layout_width="match_parent"
@@ -34,7 +48,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/signup_email_hint"
-            android:inputType="textPersonName"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
             android:minHeight="48dp" />
 
         <Space
@@ -48,7 +63,8 @@
             android:ems="10"
             android:hint="@string/signup_password_hint"
             android:inputType="textPassword"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:importantForAutofill="no" />
 
         <Space
             android:layout_width="match_parent"
@@ -84,7 +100,8 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:onClick="validateInput"
-            android:text="@string/signup" />
+            android:text="@string/signup"
+            android:focusable="true" />
     </LinearLayout>
 
 </RelativeLayout>

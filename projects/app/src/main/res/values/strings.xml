@@ -26,5 +26,8 @@
 
     //sign up //
     <string name="signup">Register!</string>
-<!--    <string name=""></string>-->
+    <string name="createAccount">Create an account!</string>
+    <string name="welcomeMessage">Welcome firstname!</string>
+    <string name="welcomeMessage2">You are logged in as \"role\".</string>
+    <!--    <string name=""></string>-->
 </resources>

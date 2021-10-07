@@ -77,7 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (radioRoleCustomer.isChecked()){
             role = "customer";
             return;
-        }//and here
+        }
         if(!radioRoleCustomer.isChecked() && !radioRoleEmployee.isChecked()){
             radioRoleCustomer.setError("please select a role");
             return;
