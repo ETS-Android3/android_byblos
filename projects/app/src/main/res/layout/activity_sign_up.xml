@@ -99,9 +99,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:onClick="validateInput"
-            android:text="@string/signup"
-            android:focusable="true" />
+            android:focusable="true"
+            android:onClick="registerUser"
+            android:text="@string/signup" />
     </LinearLayout>
 
 </RelativeLayout>
