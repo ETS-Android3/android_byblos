@@ -79,10 +79,11 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#604CAF50"
             android:clickable="true"
+            android:focusable="true"
             android:onClick="onLoginButton"
-            android:text="@string/login_button"
-            android:focusable="true" />
+            android:text="@string/login_button" />
 
         <Space
             android:layout_width="match_parent"
@@ -92,10 +93,11 @@
             android:id="@+id/signUpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#51009688"
             android:clickable="true"
+            android:focusable="true"
             android:onClick="onSignUpButton"
-            android:text="@string/signup_button"
-            android:focusable="true" />
+            android:text="@string/signup_button" />
 
     </LinearLayout>
 </RelativeLayout>

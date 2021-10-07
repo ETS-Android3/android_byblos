@@ -7,6 +7,9 @@
     android:layout_centerInParent="true"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
+    android:background="#A85EAF4C"
+    android:backgroundTint="#604CAF50"
+    android:backgroundTintMode="screen"
     android:gravity="center_horizontal"
     tools:context=".WelcomeActivity">
 
@@ -19,31 +22,40 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="250dp" />
+            android:layout_height="250dp"
+            android:backgroundTint="#604CAF50" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
+            android:backgroundTint="#604CAF50"
             android:ems="10"
             android:gravity="center|center_horizontal|center_vertical"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/welcomeMessage"
             android:textAlignment="center"
-            android:textSize="28sp" />
+            android:textColor="#A1FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editTextTextPersonName2"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
+            android:backgroundTint="#604CAF50"
             android:ems="10"
             android:gravity="center|center_horizontal|center_vertical"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="@string/welcomeMessage2" />
+            android:text="@string/welcomeMessage2"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic" />
 
     </LinearLayout>
 
