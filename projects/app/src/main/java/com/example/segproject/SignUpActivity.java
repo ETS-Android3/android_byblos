@@ -1,9 +1,12 @@
 package com.example.segproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.renderscript.Sampler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -12,13 +15,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
+//    private FirebaseAuth mAuth;
+//    private DatabaseReference mUsers;
 
     private EditText eTUsername, eTEmail, eTPassword;
     private RadioButton radioRoleCustomer;
@@ -31,9 +37,9 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+//        mAuth = FirebaseAuth.getInstance();
+//
+//        mUsers = FirebaseDatabase.getInstance().getReference().child("users");
 
         eTUsername = (EditText) findViewById(R.id.signupUsernameField);
         eTEmail = (EditText) findViewById(R.id.signupEmailField);
@@ -42,12 +48,10 @@ public class SignUpActivity extends AppCompatActivity {
         radioRoleEmployee = (RadioButton) findViewById(R.id.roleEmployee);
     }
 
-
-    public Boolean validateSignupInput(View view) { // method to validate sign up info
+    public Boolean validateSignupInput() { // method to validate sign up info
         email = eTEmail.getText().toString().trim();
         username = eTUsername.getText().toString().trim();
         password = eTPassword.getText().toString().trim();
-
 
 
         if (username.isEmpty()) {
@@ -55,17 +59,12 @@ public class SignUpActivity extends AppCompatActivity {
             eTUsername.requestFocus();
             return false;
         }
-//        if (mDatabase.child("users").child(username).get().toString() == username) {
-//            eTUsername.setError("Username taken");
-//            eTUsername.requestFocus();
-//            return false;
-//        }
         if (email.isEmpty()) {
             eTEmail.setError("Please enter an Email");
             eTEmail.requestFocus();
             return false;
         }
-        if (!email.contains("@") || !email.contains(".com") || !email.contains(".ca")){ // we could be more stringent but should be fine for our usage.
+        if (!email.contains("@") || !email.contains(".com") && !email.contains(".ca")){ // we could be more stringent but should be fine for our usage.
             eTEmail.setError("Please enter a valid Email");
             eTEmail.requestFocus();
             return false;
@@ -90,8 +89,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void registerUser(View view){
-        if (validateSignupInput(view)){
-            Toast.makeText(getApplicationContext(), "VALID", Toast.LENGTH_SHORT).show();
+        if (validateSignupInput()){
+//            Toast.makeText(getApplicationContext(), "VALID", Toast.LENGTH_SHORT).show();
 
             // now that we verified that a role exists we can set role to customer or employee.
             if (radioRoleCustomer.isChecked()){
@@ -103,6 +102,7 @@ public class SignUpActivity extends AppCompatActivity {
             User user = new User (username, email, password, role);
 
             FirebaseDatabase database = FirebaseDatabase.getInstance();
+
             DatabaseReference newUserRole = database.getReference("users/"+username+"/role");
             DatabaseReference newUserEmail = database.getReference("users/"+username+"/email");
             DatabaseReference newUserPassword = database.getReference("users/"+username+"/password");
@@ -112,6 +112,10 @@ public class SignUpActivity extends AppCompatActivity {
             newUserPassword.setValue(password);
 
             // once registered we can send to welcome page.
+            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+            startActivityForResult (intent,0);
+            Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+
         }
         else{
             Toast.makeText(getApplicationContext(), "INVALID", Toast.LENGTH_SHORT).show();
