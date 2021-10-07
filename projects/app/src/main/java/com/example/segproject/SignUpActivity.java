@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.renderscript.Sampler;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -23,8 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SignUpActivity extends AppCompatActivity {
 
-//    private FirebaseAuth mAuth;
-//    private DatabaseReference mUsers;
+    private DatabaseReference mDatabase;
 
     private EditText eTUsername, eTEmail, eTPassword;
     private RadioButton radioRoleCustomer;
@@ -36,10 +36,6 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
-//        mAuth = FirebaseAuth.getInstance();
-//
-//        mUsers = FirebaseDatabase.getInstance().getReference().child("users");
 
         eTUsername = (EditText) findViewById(R.id.signupUsernameField);
         eTEmail = (EditText) findViewById(R.id.signupEmailField);
@@ -59,12 +55,19 @@ public class SignUpActivity extends AppCompatActivity {
             eTUsername.requestFocus();
             return false;
         }
+
+//        if (mAuth.getUid().equals(username)){
+//            eTUsername.setError("Username taken");
+//            eTUsername.requestFocus();
+//            return false;
+//        }
+
         if (email.isEmpty()) {
             eTEmail.setError("Please enter an Email");
             eTEmail.requestFocus();
             return false;
         }
-        if (!email.contains("@") || !email.contains(".com") && !email.contains(".ca")){ // we could be more stringent but should be fine for our usage.
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             eTEmail.setError("Please enter a valid Email");
             eTEmail.requestFocus();
             return false;
@@ -99,19 +102,8 @@ public class SignUpActivity extends AppCompatActivity {
                 role = "Employee";
             }
 
-            User user = new User (username, email, password, role);
+            createNewUser(username,email, password,role);
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-            DatabaseReference newUserRole = database.getReference("users/"+username+"/role");
-            DatabaseReference newUserEmail = database.getReference("users/"+username+"/email");
-            DatabaseReference newUserPassword = database.getReference("users/"+username+"/password");
-
-            newUserRole.setValue(role);
-            newUserEmail.setValue(email);
-            newUserPassword.setValue(password);
-
-            // once registered we can send to welcome page.
             Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             startActivityForResult (intent,0);
             Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
@@ -120,5 +112,12 @@ public class SignUpActivity extends AppCompatActivity {
         else{
             Toast.makeText(getApplicationContext(), "INVALID", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void createNewUser(String username, String email, String password, String role){
+        User user = new User(email, password, role);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("users").child(username).setValue(user);
     }
 }
