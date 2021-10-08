@@ -26,7 +26,7 @@
             android:backgroundTint="#604CAF50" />
 
         <EditText
-            android:id="@+id/textName"
+            android:id="@+id/nameTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"

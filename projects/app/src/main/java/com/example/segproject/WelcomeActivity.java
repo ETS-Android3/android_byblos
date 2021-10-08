@@ -24,7 +24,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference ref;
 
-    private String userID;
+    private String userId;
 
 
     @Override
@@ -33,14 +33,17 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
 
+//        FirebaseDatabase.getInstance().getReference("users").child(username).
+
         user = FirebaseAuth.getInstance().getCurrentUser();
         ref = FirebaseDatabase.getInstance().getReference("users");
-        userID = user.getUid();
+        userId = user.getUid();
 
         final TextView roleTextView = (TextView) findViewById(R.id.roleTextView);
-        final TextView nameTextView = (TextView) findViewById(R.id.textName);
+        final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
 
-        ref.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+
+        ref.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);

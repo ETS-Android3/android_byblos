@@ -62,11 +62,6 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
         }
 
-//        if (mAuth.getUid().equals(username)){
-//            eTUsername.setError("Username taken");
-//            eTUsername.requestFocus();
-//            return false;
-//        }
 
         if (email.isEmpty()) {
             eTEmail.setError("Please enter an Email");
@@ -99,7 +94,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void registerUser(View view){
         if (validateSignupInput()){
-//            Toast.makeText(getApplicationContext(), "VALID", Toast.LENGTH_SHORT).show();
 
             // now that we verified that a role exists we can set role to customer or employee.
             if (radioRoleCustomer.isChecked()){
@@ -108,7 +102,6 @@ public class SignUpActivity extends AppCompatActivity {
                 role = "Employee";
             }
 
-
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                 @Override
@@ -116,24 +109,23 @@ public class SignUpActivity extends AppCompatActivity {
                     if (task.isSuccessful()){
                     User user = new User(username, email, password, role);
 
-                    FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() { // add user to database.
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(getApplicationContext(), "User has been registered.", Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if able to sign in send to welcome page.
+                                startActivityForResult (intent,0);
+                                Toast.makeText(getApplicationContext(), "Authenticated User Created." , Toast.LENGTH_LONG).show();
                             }
                             else{
                                 Toast.makeText(getApplicationContext(), "User not registered", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+//
 
-//                    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-//                    mDatabase.child("users").child(username).setValue(user);
-//                    FirebaseUser curr = mAuth.getCurrentUser();
-                        Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if able to sign in send to welcome page.
-                        startActivityForResult (intent,0);
-                        Toast.makeText(getApplicationContext(), "Authenticated User Created." , Toast.LENGTH_LONG).show();
 
                     }
                     else{

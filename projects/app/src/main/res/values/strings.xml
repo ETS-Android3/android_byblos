@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">SEGProject</string>
-    <string name="username">Username or Email</string>
+    <string name="username">Email</string>
     <string name="password">Password</string>
 
-    <string name="username_hint">Please enter your Username</string>
+    <string name="username_hint">Please enter your Email</string>
     <string name="password_hint">Please enter your password</string>
 
     <string name="signup_button">Not a member? Click here to sign up!</string>
@@ -27,10 +27,12 @@
     //sign up //
     <string name="signup">Register!</string>
     <string name="createAccount">Create an account!</string>
-    <string name="welcomeMessage">Welcome firstname!</string>
+    <string name="welcomeMessage">Welcome </string>
     <string name="welcomeMessage2">Role: </string>
 
     <string name="logout_button">LOGOUT</string>
+
+    <string name="admin_text">Welcome Admin</string>
 
     <!--    <string name=""></string>-->
 </resources>
