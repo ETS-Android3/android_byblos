@@ -30,7 +30,7 @@ import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase;
+    //private DatabaseReference mDatabase;
 
     private EditText eTUsername, eTEmail, eTPassword;
     private RadioButton radioRoleCustomer;
@@ -135,9 +135,6 @@ public class SignUpActivity extends AppCompatActivity {
             });
 
 
-
-
-
             //
 //            User user = new User(email, password, role);
 //            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -188,7 +185,5 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 }

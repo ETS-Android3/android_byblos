@@ -1,7 +1,7 @@
 package com.example.segproject;
 
 public class User {
-    public String username, email, password, role;
+    protected String username, email, password, role;
 
     public User (){
     }
