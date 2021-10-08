@@ -38,6 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
         userID = user.getUid();
 
         final TextView roleTextView = (TextView) findViewById(R.id.roleTextView);
+        final TextView nameTextView = (TextView) findViewById(R.id.textName);
 
         ref.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -45,9 +46,13 @@ public class WelcomeActivity extends AppCompatActivity {
                 User userProfile = snapshot.getValue(User.class);
 
                 if (userProfile != null){
+                    String name = userProfile.username;
+                    nameTextView.setText("Welcome, " + name + "!");
                     String role = userProfile.role;
-                    roleTextView.setText("Role: " + role);
+                    roleTextView.setText("Your role is " + role);
                 }
+
+
             }
 
             @Override
