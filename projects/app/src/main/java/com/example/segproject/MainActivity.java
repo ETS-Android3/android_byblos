@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         eTUsername = (EditText) findViewById(R.id.loginUsernameField);
         eTPassword = (EditText) findViewById(R.id.loginPasswordField);
-
     }
 
 // method to log in (go to welcome page activity).
@@ -88,11 +87,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Welcome Admin", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), AdminActivity.class); // if successful go to welcome page.
             startActivityForResult (intent,0);
-
         }
 
-        //figure out later.
-
+        //figure out how to sign in with username later.
+//
 //        else{ // login if username by getting email associated with the username.
 //
 ////            FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener
@@ -102,21 +100,25 @@ public class MainActivity extends AppCompatActivity {
 ////            ref = FirebaseDatabase.getInstance().getReference("users");
 ////            userId = user.getUid();
 //
-//            FirebaseDatabase.getInstance().getReference("users")
-//            mDatabase.child("users").child(usernameOrEmail).child("email").addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) { // get email associated with user
-//                    User user = snapshot.getValue(User.class);
-//                    String userEmail = user.email;
-//                    Toast.makeText(getApplicationContext(), "userEmail: "+ userEmail, Toast.LENGTH_SHORT).show();
-//                    login(userEmail, password); // recurse back to method now that we have email.
-//                }
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//                }
-//            });
+//
+//            String usernameTest = FirebaseDatabase.getInstance().getReference("users").exists();
+//            Toast.makeText(getApplicationContext(), "userEmail: "+ usernameTest, Toast.LENGTH_SHORT).show();
+//
+////            mDatabase.child("users").child(usernameOrEmail).child("email").addListenerForSingleValueEvent(new ValueEventListener() {
+////                @Override
+////                public void onDataChange(@NonNull DataSnapshot snapshot) { // get email associated with user
+////                    User user = snapshot.getValue(User.class);
+////                    String userEmail = user.email;
+////                    Toast.makeText(getApplicationContext(), "userEmail: "+ userEmail, Toast.LENGTH_SHORT).show();
+////                    login(userEmail, password); // recurse back to method now that we have email.
+////                }
+////                @Override
+////                public void onCancelled(@NonNull DatabaseError error) {
+////                }
+////            });
 //        }
     }
+
 
 
     // method to go to sign up activity.

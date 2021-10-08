@@ -54,8 +54,6 @@ public class WelcomeActivity extends AppCompatActivity {
                     String role = userProfile.role;
                     roleTextView.setText("Your role is " + role);
                 }
-
-
             }
 
             @Override
