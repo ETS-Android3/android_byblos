@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        //figure out later.
+
 //        else{ // login if username by getting email associated with the username.
 //
 ////            FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener

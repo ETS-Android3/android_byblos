@@ -60,7 +60,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), "WTF", Toast.LENGTH_SHORT).show();
             }
         });
 
