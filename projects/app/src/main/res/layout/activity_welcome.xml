@@ -43,7 +43,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/roleTextView"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -56,6 +56,13 @@
             android:text="@string/welcomeMessage2"
             android:textColor="#FFFFFF"
             android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="logout"
+            android:text="@string/logout_button" />
 
     </LinearLayout>
 

@@ -15,12 +15,18 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -102,11 +108,52 @@ public class SignUpActivity extends AppCompatActivity {
                 role = "Employee";
             }
 
-            createNewUser(username,email, password,role);
 
-            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
-            startActivityForResult (intent,0);
-            Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                    User user = new User(username, email, password, role);
+
+                    FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(), "User has been registered.", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "User not registered", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+//                    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+//                    mDatabase.child("users").child(username).setValue(user);
+//                    FirebaseUser curr = mAuth.getCurrentUser();
+                        Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if able to sign in send to welcome page.
+                        startActivityForResult (intent,0);
+                        Toast.makeText(getApplicationContext(), "Authenticated User Created." , Toast.LENGTH_LONG).show();
+
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "User not created.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+
+
+
+
+            //
+//            User user = new User(email, password, role);
+//            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+//            mDatabase.child("users").child(username).setValue(user);
+            //
+//            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+//            startActivityForResult (intent,0);
+//            Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
 
         }
         else{
@@ -115,9 +162,41 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void createNewUser(String username, String email, String password, String role){
-        User user = new User(email, password, role);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("users").child(username).setValue(user);
+//        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                if (task.isSuccessful()){
+//                    Toast.makeText(getApplicationContext(), "User Created success.", Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+//                    Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+
+//        mAuth.
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+//                    User user = new User(email, password, role);
+//                    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+//                    mDatabase.child("users").child(username).setValue(user);
+//                    FirebaseUser curr = mAuth.getCurrentUser();
+                    Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if able to sign in send to welcome page.
+                    startActivityForResult (intent,0);
+                    Toast.makeText(getApplicationContext(), "Authenticated User Created." , Toast.LENGTH_LONG).show();
+
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "User not created.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
     }
 }

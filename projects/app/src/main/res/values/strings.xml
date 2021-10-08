@@ -28,6 +28,9 @@
     <string name="signup">Register!</string>
     <string name="createAccount">Create an account!</string>
     <string name="welcomeMessage">Welcome firstname!</string>
-    <string name="welcomeMessage2">You are logged in as \"role\".</string>
+    <string name="welcomeMessage2">Role: </string>
+
+    <string name="logout_button">LOGOUT</string>
+
     <!--    <string name=""></string>-->
 </resources>

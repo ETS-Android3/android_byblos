@@ -28,7 +28,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     private EditText eTUsername, eTPassword;
-    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         eTUsername = (EditText) findViewById(R.id.loginUsernameField);
         eTPassword = (EditText) findViewById(R.id.loginPasswordField);
-//
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if (currentUser!= null){
-//            reload();
-//        }
+
     }
 
 // method to log in (go to welcome page activity).
@@ -52,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         // else go to customer welcome page.
         String username = eTUsername.getText().toString().trim(); // username or email
         String password = eTPassword.getText().toString().trim();
+
+
 
         if (username.isEmpty()) {
             eTUsername.setError("Please enter a username");
@@ -68,10 +66,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(String usernameOrEmail, String password){
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         if (Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()){ // login if email
-            mAuth.signInWithEmailAndPassword(usernameOrEmail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+            mAuth.signInWithEmailAndPassword(usernameOrEmail,password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
