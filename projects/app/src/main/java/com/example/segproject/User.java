@@ -11,4 +11,14 @@ public class User {
         this.password = password;
         this.role = role;
     }
+    //getters
+    public String getUsername(){
+        return username;
+    }
+    public String getEmail(){
+        return email;
+    }
+    public String getRole(){
+        return role;
+    }
 }

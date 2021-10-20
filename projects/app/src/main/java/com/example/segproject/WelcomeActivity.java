@@ -20,8 +20,11 @@ import com.google.firebase.database.ValueEventListener;
 public class WelcomeActivity extends AppCompatActivity {
 
 
-    private FirebaseUser user;
+    private FirebaseUser user; // current user.
     private DatabaseReference ref;
+
+//    private FirebaseAuth mAut;
+
 
     private String userId;
 
@@ -32,11 +35,10 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
 
-//        FirebaseDatabase.getInstance().getReference("users").child(username).
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         ref = FirebaseDatabase.getInstance().getReference("users");
         userId = user.getUid();
+
 
         final TextView roleTextView = (TextView) findViewById(R.id.roleTextView);
         final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
@@ -47,11 +49,16 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);
 
+
+
                 if (userProfile != null){
                     String name = userProfile.username;
                     nameTextView.setText("Welcome, " + name + "!");
                     String role = userProfile.role;
                     roleTextView.setText("Your role is " + role);
+                }
+                else{
+//                    Toast.makeText(getApplicationContext(), "test: "  , Toast.LENGTH_LONG).show();
                 }
             }
 

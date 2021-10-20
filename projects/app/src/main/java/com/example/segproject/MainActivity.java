@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText eTUsername, eTPassword;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
         eTUsername = (EditText) findViewById(R.id.loginUsernameField);
         eTPassword = (EditText) findViewById(R.id.loginPasswordField);
+
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        if (FirebaseAuth.getInstance().getCurrentUser() != null){
+            FirebaseAuth.getInstance().signOut();
+        }
     }
 
 // method to log in (go to welcome page activity).
@@ -48,78 +57,70 @@ public class MainActivity extends AppCompatActivity {
         String username = eTUsername.getText().toString().trim(); // username or email
         String password = eTPassword.getText().toString().trim();
 
-
+        if (username.equals("admin") && password.equals("admin")){ //case that admin is logging in.
+            Toast.makeText(getApplicationContext(), "Welcome Admin", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), AdminActivity.class); // if successful go to admin page.
+            startActivityForResult (intent,0);
+            return;
+        }
 
         if (username.isEmpty()) {
             eTUsername.setError("Please enter a username");
             eTUsername.requestFocus();
             return;
         }
-        if (password.isEmpty()) {
+        if (password.isEmpty() ) {
             eTPassword.setError("Please enter a password");
             eTPassword.requestFocus();
             return;
         }
-        login (username,password);
+        if (password.length() < 6 ){
+            eTPassword.setError("Password must be at least 6 characters long");
+            eTPassword.requestFocus();
+            return ;
+        }
+        login (username,password); //if we get here then user is not an admin and fields are valid. we can attempt to log in the user.
     }
 
     private void login(String usernameOrEmail, String password){
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        if (Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()){ // login if email
-
-            mAuth.signInWithEmailAndPassword(usernameOrEmail,password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+        if (Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()) { // case where its an email.
+            mAuth.signInWithEmailAndPassword(usernameOrEmail, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
 
                         Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if successful go to welcome page.
-                        startActivityForResult (intent,0);
-                    }
-                    else{
+                        startActivityForResult(intent, 0);
+                    } else {
                         Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-        }
-        else if (usernameOrEmail.equals("admin") && password.equals("admin")){ // case that admin is logging in.
-            Toast.makeText(getApplicationContext(), "Welcome Admin", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), AdminActivity.class); // if successful go to welcome page.
-            startActivityForResult (intent,0);
-        }
+        }else{
+            // case that its a username.
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
 
-        //figure out how to sign in with username later.
-//
-//        else{ // login if username by getting email associated with the username.
-//
-////            FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener
-//            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-////            FirebaseDatabase.getInstance().getReference("users").child();
-////
-////            ref = FirebaseDatabase.getInstance().getReference("users");
-////            userId = user.getUid();
-//
-//
-//            String usernameTest = FirebaseDatabase.getInstance().getReference("users").exists();
-//            Toast.makeText(getApplicationContext(), "userEmail: "+ usernameTest, Toast.LENGTH_SHORT).show();
-//
-////            mDatabase.child("users").child(usernameOrEmail).child("email").addListenerForSingleValueEvent(new ValueEventListener() {
-////                @Override
-////                public void onDataChange(@NonNull DataSnapshot snapshot) { // get email associated with user
-////                    User user = snapshot.getValue(User.class);
-////                    String userEmail = user.email;
-////                    Toast.makeText(getApplicationContext(), "userEmail: "+ userEmail, Toast.LENGTH_SHORT).show();
-////                    login(userEmail, password); // recurse back to method now that we have email.
-////                }
-////                @Override
-////                public void onCancelled(@NonNull DatabaseError error) {
-////                }
-////            });
-//        }
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot info : snapshot.getChildren()){ //index through all the children
+                        if((info.child("username").getValue().equals(usernameOrEmail) && info.child("password").getValue().equals(password))){  // if both username and pass match try to sign in
+                            login(info.child("email").getValue(String.class), password);
+                            return;
+                        }
+
+                    }
+                    Toast.makeText(getApplicationContext(), "Login Failed.", Toast.LENGTH_SHORT).show(); // could not find username.
+                    return;
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
     }
-
-
 
     // method to go to sign up activity.
     public void onSignUpButton(View view) {
