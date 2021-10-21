@@ -23,8 +23,6 @@ public class WelcomeActivity extends AppCompatActivity {
     private FirebaseUser user; // current user.
     private DatabaseReference ref;
 
-//    private FirebaseAuth mAut;
-
 
     private String userId;
 
@@ -34,22 +32,17 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         ref = FirebaseDatabase.getInstance().getReference("users");
         userId = user.getUid();
 
-
         final TextView roleTextView = (TextView) findViewById(R.id.roleTextView);
         final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
-
 
         ref.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);
-
-
 
                 if (userProfile != null){
                     String name = userProfile.username;
@@ -66,7 +59,6 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
 
     }
     public void logout(View view){

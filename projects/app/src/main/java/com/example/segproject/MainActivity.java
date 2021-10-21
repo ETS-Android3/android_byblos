@@ -34,13 +34,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         eTUsername = (EditText) findViewById(R.id.loginUsernameField);
         eTPassword = (EditText) findViewById(R.id.loginPasswordField);
-
     }
+
     @Override
-    protected void onStart(){
+    protected void onStart(){ // logout if there's someone already logged in.
         super.onStart();
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
             FirebaseAuth.getInstance().signOut();
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-
                         Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if successful go to welcome page.
                         startActivityForResult(intent, 0);
@@ -100,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
             });
         }else{
             // case that its a username.
+            // first check all users and see if a username and password matches the credentials give. then grab their email and call login again.
             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
-
             userRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -110,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
                             login(info.child("email").getValue(String.class), password);
                             return;
                         }
-
                     }
                     Toast.makeText(getApplicationContext(), "Login Failed.", Toast.LENGTH_SHORT).show(); // could not find username.
                     return;
