@@ -20,11 +20,15 @@ import com.google.firebase.database.ValueEventListener;
 public class WelcomeActivity extends AppCompatActivity {
 
 
-    private FirebaseUser user; // current user.
-    private DatabaseReference ref;
+    String id;
+    DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
 
 
-    private String userId;
+//    private FirebaseUser user; // current user.
+//    private DatabaseReference ref;
+
+
+//    private String userId;
 
 
     @Override
@@ -32,37 +36,64 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        ref = FirebaseDatabase.getInstance().getReference("users");
-        userId = user.getUid();
+        id = getIntent().getStringExtra("id");
 
         final TextView roleTextView = (TextView) findViewById(R.id.roleTextView);
         final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
 
-        ref.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+//        Toast.makeText(getApplicationContext(), "welcome ." + id , Toast.LENGTH_SHORT).show();
+
+
+        dbUser.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);
-
                 if (userProfile != null){
                     String name = userProfile.username;
                     nameTextView.setText("Welcome, " + name + "!");
                     String role = userProfile.role;
                     roleTextView.setText("Your role is " + role);
                 }
-                else{
-//                    Toast.makeText(getApplicationContext(), "test: "  , Toast.LENGTH_LONG).show();
-                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+//
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//        ref = FirebaseDatabase.getInstance().getReference("users");
+//        userId = user.getUid();
+//
+//        final TextView roleTextView = (TextView) findViewById(R.id.roleTextView);
+//        final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
+//
+//        ref.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                User userProfile = snapshot.getValue(User.class);
+//
+//                if (userProfile != null){
+//                    String name = userProfile.username;
+//                    nameTextView.setText("Welcome, " + name + "!");
+//                    String role = userProfile.role;
+//                    roleTextView.setText("Your role is " + role);
+//                }
+//                else{
+////                    Toast.makeText(getApplicationContext(), "test: "  , Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//            }
+//        });
 
     }
     public void logout(View view){
-        FirebaseAuth.getInstance().signOut();
+//        FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
         Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
     }

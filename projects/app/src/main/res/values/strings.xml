@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">SEGProject</string>
-    <string name="username">Email</string>
+    <string name="username">Username</string>
     <string name="password">Password</string>
+<!--    <string name="password">Email</string>-->
 
     <string name="username_hint">Please enter your Username or Email</string>
     <string name="password_hint">Please enter your password</string>
@@ -34,5 +35,39 @@
 
     <string name="admin_text">Welcome Admin</string>
 
+    //admin only info//
+    <string name="numEmployees">Number of Employees:</string>
+    <string name="numCustomers">Number of Customers:</string>
+    <string name="numServices">Number of Services:</string>
+
+    //admin only button//
+    <string name="edit_accounts_button">Edit Accounts</string>
+    <string name="edit_services_button">Edit Services</string>
+    <string name="admin_logout_button">Admin Logout</string>
+
+    <string name="delete_text">Select an Account to Update/Delete</string>
+    <string name="customer_text">Customers</string>
+    <string name="employee_text">Employees</string>
+
+    <string name="account_delete">Delete Account!</string>
+
+    //delete account textviews
+    <string name="username_delete_text">Username:</string>
+    <string name="email_delete_text">Email:</string>
+
+    //update user info//
+    <string name="update_username_hint">Enter New Username</string>
+    <string name="update_email_hint">Enter New Email</string>
+    <string name="update_password_hint">Enter New password</string>
+
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+
+    <string name="servicesText">Services</string>
+
+    <string name="create_truckrental_text">New Truck Rental</string>
+    <string name="create_carrental_text">New Car Rental</string>
+    <string name="create_moving_text">New Moving Assistance</string>
+<!--    <string name="numEmployees">Number of Employees:</string>-->
     <!--    <string name=""></string>-->
 </resources>

@@ -29,21 +29,17 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText eTUsername, eTPassword;
 
+    DatabaseReference dbUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         eTUsername = (EditText) findViewById(R.id.loginUsernameField);
         eTPassword = (EditText) findViewById(R.id.loginPasswordField);
-    }
 
-    @Override
-    protected void onStart(){ // logout if there's someone already logged in.
-        super.onStart();
-        if (FirebaseAuth.getInstance().getCurrentUser() != null){
-            FirebaseAuth.getInstance().signOut();
-        }
+        dbUser = FirebaseDatabase.getInstance().getReference("users");
     }
 
 // method to log in (go to welcome page activity).
@@ -59,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         if (username.equals("admin") && password.equals("admin")){ //case that admin is logging in.
             Toast.makeText(getApplicationContext(), "Welcome Admin", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), AdminActivity.class); // if successful go to admin page.
-            startActivityForResult (intent,0);
+            startActivity(intent);
             return;
         }
 
@@ -82,47 +78,147 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(String usernameOrEmail, String password){
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        if (Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()) { // case where its an email.
-            mAuth.signInWithEmailAndPassword(usernameOrEmail, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
+        //check username or email matches one in db
+        dbUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot info : snapshot.getChildren()) { //index through all the children
+                    if ( (info.child("email").getValue().equals(usernameOrEmail) && info.child("password").getValue().equals(password) )
+                            || (info.child("username").getValue().equals(usernameOrEmail) && info.child("password").getValue().equals(password)) ) {
                         Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if successful go to welcome page.
-                        startActivityForResult(intent, 0);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        intent.putExtra("id", info.child("userID").getValue().toString());
+                        startActivity(intent);
+                        return;
                     }
                 }
-            });
-        }else{
-            // case that its a username.
-            // first check all users and see if a username and password matches the credentials give. then grab their email and call login again.
-            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
-            userRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot info : snapshot.getChildren()){ //index through all the children
-                        if((info.child("username").getValue().equals(usernameOrEmail) && info.child("password").getValue().equals(password))){  // if both username and pass match try to sign in
-                            login(info.child("email").getValue(String.class), password);
-                            return;
-                        }
-                    }
-                    Toast.makeText(getApplicationContext(), "Login Failed.", Toast.LENGTH_SHORT).show(); // could not find username.
-                    return;
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-        }
+                Toast.makeText(getApplicationContext(), "Incorrect Credentials", Toast.LENGTH_SHORT).show(); // reached end of db and did not find user
+                return;
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+//        if (Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()){//logging in with email.
+//            dbUser.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    for (DataSnapshot info : snapshot.getChildren()) { //index through all the children
+//                        if (info.child("email").getValue().equals(usernameOrEmail) && info.child("password").getValue().equals(password)) {// username matches a password in db
+//
+//                            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+//
+//                            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if successful go to welcome page.
+//                            intent.putExtra("id", info.child("userID").getValue().toString());
+//                            startActivity(intent);
+//                            return;
+//                        }
+//                    }
+//                    Toast.makeText(getApplicationContext(), "Incorrect Credentials", Toast.LENGTH_SHORT).show(); // reached end of db and did not find user
+//                    return;
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+//
+//        }else{ //logging in with username
+//            dbUser.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    for (DataSnapshot info : snapshot.getChildren()){ //index through all the children
+//                        if(info.child("username").getValue().equals(usernameOrEmail) && info.child("password").getValue().equals(password)) {// username matches a password in db
+//
+//                            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+//                            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if successful go to welcome page.
+//                            intent.putExtra("id", info.child("userID").getValue().toString());
+//                            startActivity(intent);
+//                            return;
+//                        }
+//                    }
+//                    Toast.makeText(getApplicationContext(), "Incorrect Credentials", Toast.LENGTH_SHORT).show(); // reached end of db and did not find user
+//                    return;
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+
+//        }
+
+
+//
+//                dbUser.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                canSignUp = true;
+//                for (DataSnapshot info : snapshot.getChildren()){ //index through all the children
+//                    if(info.child("username").getValue().equals(username)) {  //if username entered matches one in db can't sign up.
+//                        eTUsername.setError("Username Taken");
+//                        eTUsername.requestFocus();
+//                        canSignUp = false;
+//                        return;
+//                    }if(info.child("email").getValue().equals(email)) {  //if username entered matches one in db can't sign up.
+//                        eTEmail.setError("Email Taken");
+//                        eTEmail.requestFocus();
+//                        canSignUp = false;
+//                        return;
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//            }
+//        });
+//
+//
+//
+//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//        if (Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()) { // case where its an email.
+//            mAuth.signInWithEmailAndPassword(usernameOrEmail, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+//                @Override
+//                public void onComplete(@NonNull Task<AuthResult> task) {
+//                    if (task.isSuccessful()) {
+//                        Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if successful go to welcome page.
+//                        startActivityForResult(intent, 0);
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//        }else{
+//            // case that its a username.
+//            // first check all users and see if a username and password matches the credentials give. then grab their email and call login again.
+//            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+//            userRef.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    for (DataSnapshot info : snapshot.getChildren()){ //index through all the children
+//                        if((info.child("username").getValue().equals(usernameOrEmail) && info.child("password").getValue().equals(password))){  // if both username and pass match try to sign in
+//                            login(info.child("email").getValue(String.class), password);
+//                            return;
+//                        }
+//                    }
+//                    Toast.makeText(getApplicationContext(), "Login Failed.", Toast.LENGTH_SHORT).show(); // could not find username.
+//                    return;
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                }
+//            });
+//        }
     }
 
     // method to go to sign up activity.
     public void onSignUpButton(View view) {
         Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-        startActivityForResult (intent,0);
+        startActivity (intent);
     }
 
 }

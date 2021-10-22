@@ -1,12 +1,14 @@
 package com.example.segproject;
 
-public class BranchAddress {
+public class Address {
     String postalCode;
-    String streetName;
     int streetNumber;
+    String streetName;
     String city;
     String country;
 
+    //branch constructor
+    public Address(){}
 
 
 }

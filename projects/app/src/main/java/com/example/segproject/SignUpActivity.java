@@ -37,6 +37,9 @@ public class SignUpActivity extends AppCompatActivity {
     private RadioButton radioRoleEmployee;
 
     private String email, username, password, role;
+    boolean canSignUp = false;
+
+    DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,44 +63,61 @@ public class SignUpActivity extends AppCompatActivity {
                 role = "Employee";
             }
 
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                    User user = new User(username, email, password, role);
 
-                    FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() { // add user by uIDto database.
+            String id = dbUser.push().getKey(); //
+            User newUser = new User(username, email, password, role, id);
+            dbUser.child(id).setValue(newUser);
+            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if able to sign in send to welcome page.
+            intent.putExtra("id", id);
+            startActivity(intent);
+//            startActivityForResult (intent,0);
+            Toast.makeText(getApplicationContext(), "Signed Up!. ", Toast.LENGTH_SHORT).show();
+
 //
-//                        FirebaseDatabase.getInstance().getReference("users").(username).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>(){ // add user to database sorted by username.
-//                    FirebaseDatabase.getInstance().getReference("users").child(username).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>(){ // add user to database sorted by username.
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-//                                FirebaseDatabase.getInstance().getReference("users").child(username).
-
-                                Toast.makeText(getApplicationContext(), "User has been registered.", Toast.LENGTH_SHORT).show();
-
-                                Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if able to sign in send to welcome page.
-                                startActivityForResult (intent,0);
-                                Toast.makeText(getApplicationContext(), "Authenticated User Created." , Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(), "User not registered", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Unable to create user ", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-
-        }
-        else{
-            Toast.makeText(getApplicationContext(), "INVALID", Toast.LENGTH_SHORT).show();
+//            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+//                @Override
+//                public void onComplete(@NonNull Task<AuthResult> task) {
+//                    if (task.isSuccessful()){
+//                        DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
+//
+////                    User user = new User(id, username, email, password, role);
+//                        User user = new User(username, email, password, role, id );
+//                        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//                        user.setUserID(userID);
+//
+//                    FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() { // add user by uIDto database.
+////
+////                        FirebaseDatabase.getInstance().getReference("users").(username).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>(){ // add user to database sorted by username.
+////                    FirebaseDatabase.getInstance().getReference("users").child(username).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>(){ // add user to database sorted by username.
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if (task.isSuccessful()){
+////                                FirebaseDatabase.getInstance().getReference("users").child(username).
+//
+//
+//                                Toast.makeText(getApplicationContext(), "User has been registered.", Toast.LENGTH_SHORT).show();
+//
+//                                Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if able to sign in send to welcome page.
+//                                startActivityForResult (intent,0);
+//                                Toast.makeText(getApplicationContext(), "Authenticated User Created." , Toast.LENGTH_SHORT).show();
+//                            }
+//                            else{
+//                                Toast.makeText(getApplicationContext(), "User not registered", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//
+//                    }
+//                    else{
+//                        Toast.makeText(getApplicationContext(), "Unable to create user ", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//            });
+//
+//        }
+//        else{
+//            Toast.makeText(getApplicationContext(), "INVALID", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -106,40 +126,67 @@ public class SignUpActivity extends AppCompatActivity {
         email = eTEmail.getText().toString().trim();
         username = eTUsername.getText().toString().trim();
         password = eTPassword.getText().toString().trim();
-
+        canSignUp = true;
 
         if (username.isEmpty()) {
             eTUsername.setError("Please enter a username");
             eTUsername.requestFocus();
-            return false;
+            canSignUp = false;
+            return canSignUp;
         }
 
         if (email.isEmpty()) {
             eTEmail.setError("Please enter an Email");
             eTEmail.requestFocus();
-            return false;
+            canSignUp = false;
+            return canSignUp;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             eTEmail.setError("Please enter a valid Email");
             eTEmail.requestFocus();
-            return false;
+            canSignUp = false;
+            return canSignUp;
         }
         if (password.isEmpty()) {
             eTPassword.setError("Please enter a password");
             eTPassword.requestFocus();
-            return false;
+            canSignUp = false;
+            return canSignUp;
         }
         if (password.length() < 6){
             eTPassword.setError("Password must be at least 6 characters long");
             eTPassword.requestFocus();
-            return false;
+            canSignUp = false;
+            return canSignUp;
         }
         if (!(radioRoleEmployee.isChecked()) && !(radioRoleCustomer.isChecked())){
             Toast.makeText(getApplicationContext(), "Please select a role", Toast.LENGTH_SHORT).show();
-            return false;
+            canSignUp = false;
+            return canSignUp;
         }
 
+        dbUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                canSignUp = true; // set to true. before. if either username or email
+                for (DataSnapshot info : snapshot.getChildren()){ //index through all the children
+                    if(info.child("username").getValue().equals(username) ) {  //if username entered matches one in db can't sign up.
+                        eTUsername.setError("Username Taken");
+                        eTUsername.requestFocus();
+                        canSignUp = false;
+                    }
+                    if(info.child("email").getValue().equals(email)) {  //if username entered matches one in db can't sign up.
+                        eTEmail.setError("Email Taken");
+                        eTEmail.requestFocus();
+                        canSignUp = false;
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
         // can also check if the email and username already exists in database.
-        return true; // if we reach here that means that the input is fine.
+        return canSignUp; // if we reach here that means that the input is fine.
     }
 }

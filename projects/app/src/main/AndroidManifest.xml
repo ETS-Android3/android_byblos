@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SEGProject">
         <activity
+            android:name=".EditService"
+            android:exported="true" />
+        <activity
+            android:name=".DeleteAccount"
+            android:exported="true" />
+        <activity
             android:name=".AdminActivity"
             android:exported="true" />
         <activity

@@ -15,6 +15,75 @@
             android:id="@+id/adminBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/admin_text" />
+            android:gravity="center"
+            android:text="@string/admin_text"
+            android:textSize="30sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <Button
+            android:id="@+id/adminLogoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="logoutAdmin"
+            android:text="@string/admin_logout_button" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/numEmployeesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/numEmployees"
+            android:textSize="24sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/numCustomersTestView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/numCustomers"
+            android:textSize="24sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/deleteAccountButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="deleteAccountsOnClick"
+            android:text="@string/edit_accounts_button" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="45dp" />
+
+        <TextView
+            android:id="@+id/numServicesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/numServices"
+            android:textSize="24sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/editServicesButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="editServicesOnClick"
+            android:text="@string/edit_services_button" />
+
     </LinearLayout>
 </RelativeLayout>
