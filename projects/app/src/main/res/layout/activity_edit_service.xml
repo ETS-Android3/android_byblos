@@ -18,27 +18,20 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/newCarRentalBTN"
+                android:id="@+id/addServiceBTN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="createCarRental"
-                android:text="@string/create_carrental_text" />
+                android:onClick="@string/addService"
+                android:text="@string/add_service_text" />
 
             <Button
-                android:id="@+id/newTruckRentalBTN"
+                android:id="@+id/editServiceBTN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="createTruckRental"
-                android:text="@string/create_truckrental_text" />
-
-            <Button
-                android:id="@+id/newMovingBTN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/create_moving_text" />
+                android:onClick="@string/editService"
+                android:text="@string/edit_service_text" />
 
         </LinearLayout>
 

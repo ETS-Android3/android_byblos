@@ -8,7 +8,11 @@ public class Address {
     String country;
 
     //branch constructor
-    public Address(){}
-
-
+    public Address(String postalCode, int streetNumber, String streetName, String city, String country){
+        this.postalCode = postalCode;
+        this.streetNumber = streetNumber;
+        this.streetName = streetName;
+        this.city = city;
+        this.country = country;
+    }
 }

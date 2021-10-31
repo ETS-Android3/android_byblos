@@ -68,6 +68,11 @@
     <string name="create_truckrental_text">New Truck Rental</string>
     <string name="create_carrental_text">New Car Rental</string>
     <string name="create_moving_text">New Moving Assistance</string>
+    <string name="addService">Add service</string>
+    <string name="add_service_text">Add service</string>
+    <string name="editService">Edit service</string>
+    <string name="edit_service_text">Edit service</string>
+    <string name="delete_service_text">Delete service</string>
     <!--    <string name="numEmployees">Number of Employees:</string>-->
     <!--    <string name=""></string>-->
 </resources>
