@@ -1,4 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/newServiceBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add a new service"
+            android:minHeight="48dp"
+            android:textSize="50sp"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <EditText
+            android:id="@+id/newServiceName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="New service name"
+            android:inputType="textPersonName"
+            android:minHeight="30dp"
+            android:textSize="20sp"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/newServiceHourlyRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Hourly Rate"
+            android:inputType="textPersonName"
+            android:minHeight="30dp"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/submitNewService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
