@@ -83,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="editServicesOnClick"
-            android:text="@string/edit_services_button" />
+            android:text="@string/services_button" />
 
     </LinearLayout>
 </RelativeLayout>

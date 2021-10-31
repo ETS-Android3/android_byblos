@@ -20,7 +20,7 @@
             <Button
                 android:id="@+id/addServiceBTN"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:onClick="@string/addService"
                 android:text="@string/add_service_text" />

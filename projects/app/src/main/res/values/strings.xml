@@ -42,7 +42,7 @@
 
     //admin only button//
     <string name="edit_accounts_button">Edit Accounts</string>
-    <string name="edit_services_button">Edit Services</string>
+    <string name="services_button">Services</string>
     <string name="admin_logout_button">Admin Logout</string>
 
     <string name="delete_text">Select an Account to Update/Delete</string>
