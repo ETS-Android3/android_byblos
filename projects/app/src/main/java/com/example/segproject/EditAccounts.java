@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditAccounts extends AppCompatActivity {
-// here admin will be able to delete accounts. customer and employee.
+    // here admin will be able to delete accounts. customer and employee.
     List<User> customers;
     List<User> employees;
 
@@ -48,7 +48,9 @@ public class EditAccounts extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_delete_account);
+
 
         listViewCustomers = (ListView) findViewById(R.id.CustomerListView);
         listviewEmployees = (ListView) findViewById(R.id.EmployeeListView);
@@ -69,6 +71,7 @@ public class EditAccounts extends AppCompatActivity {
                 return false;
             }
         });
+
         //listen for employee long press.
         listviewEmployees.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

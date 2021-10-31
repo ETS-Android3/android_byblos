@@ -87,14 +87,17 @@ public class AdminActivity extends AppCompatActivity {
         });
     }
 
-    public void logoutAdmin(View view){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(AdminActivity.this, MainActivity.class));
-        Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
+    public void editAccountsOnClick(View view){
+
+        startActivity(new Intent(AdminActivity.this, EditAccounts.class));
+        Toast.makeText(getApplicationContext(), "Edit Accounts", Toast.LENGTH_SHORT).show();
     }
 
-    public void deleteAccountsOnClick(View view){
-        startActivity(new Intent(AdminActivity.this, EditService.class));
+
+    public void logoutAdmin(View view){
+//        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(AdminActivity.this, MainActivity.class));
+        Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
     }
 
     public void editServicesOnClick(View view){

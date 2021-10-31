@@ -2,7 +2,7 @@
     <string name="app_name">SEGProject</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-<!--    <string name="password">Email</string>-->
+    <!--    <string name="password">Email</string>-->
 
     <string name="username_hint">Please enter your Username or Email</string>
     <string name="password_hint">Please enter your password</string>
@@ -68,6 +68,6 @@
     <string name="create_truckrental_text">New Truck Rental</string>
     <string name="create_carrental_text">New Car Rental</string>
     <string name="create_moving_text">New Moving Assistance</string>
-<!--    <string name="numEmployees">Number of Employees:</string>-->
+    <!--    <string name="numEmployees">Number of Employees:</string>-->
     <!--    <string name=""></string>-->
 </resources>
