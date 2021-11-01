@@ -78,83 +78,83 @@ public class AddGlobalService extends AppCompatActivity {
                 }
 
                 if(cblastName.isChecked()){
-                    ns.setFirstName("lastname");
+                    ns.setLastName("lastname");
                 }
 
                 if(cbdob.isChecked()){
-                    ns.setFirstName("dob");
+                    ns.setDob("dob");
                 }
 
                 if(cbaddress.isChecked()){
-                    ns.setFirstName("address");
+                    ns.setAddress("address");
                 }
 
                 if(cbemail.isChecked()){
-                    ns.setFirstName("email");
+                    ns.setEmail("email");
                 }
 
                 if(cbG1.isChecked()){
-                    ns.setFirstName("g1");
+                    ns.setG1("g1");
                 }
 
                 if(cbG2.isChecked()){
-                    ns.setFirstName("g2");
+                    ns.setG2("g2");
                 }
 
                 if(cbG3.isChecked()){
-                    ns.setFirstName("g3");
+                    ns.setG3("g3");
                 }
 
                 if(cbcompact.isChecked()){
-                    ns.setFirstName("compact");
+                    ns.setCompact("compact");
                 }
 
                 if(cbintermediate.isChecked()){
-                    ns.setFirstName("intermediate");
+                    ns.setIntermediate("intermediate");
                 }
 
                 if(cbSUV.isChecked()){
-                    ns.setFirstName("suv");
+                    ns.setSUV("suv");
                 }
 
                 if(cbpickupdate.isChecked()){
-                    ns.setFirstName("pickupdate");
+                    ns.setPickupdate("pickupdate");
                 }
 
                 if(cbpickuptime.isChecked()){
-                    ns.setFirstName("pickuptime");
+                    ns.setPickuptime("pickuptime");
                 }
 
                 if(cbreturndate.isChecked()){
-                    ns.setFirstName("returndate");
+                    ns.setReturndate("returndate");
                 }
 
                 if(cbreturntime.isChecked()){
-                    ns.setFirstName("returntime");
+                    ns.setReturntime("returntime");
                 }
 
                 if(cbmovingstartlocation.isChecked()){
-                    ns.setFirstName("movingstartlocation");
+                    ns.setMovingstartlocation("movingstartlocation");
                 }
 
                 if(cbmovingendlocation.isChecked()){
-                    ns.setFirstName("movingendlocation");
+                    ns.setMovingendlocation("movingendlocation");
                 }
 
                 if(cbarea.isChecked()){
-                    ns.setFirstName("area");
+                    ns.setArea("area");
                 }
 
                 if(cbkmdriven.isChecked()){
-                    ns.setFirstName("kmdriven");
+                    ns.setKmdriven("kmdriven");
                 }
 
                 if(cbnumberofmovers.isChecked()){
-                    ns.setFirstName("numberofmovers");
+                    ns.setNumberofmovers("numberofmovers");
                 }
 
                 if(cbnumberofboxes.isChecked()){
-                    ns.setFirstName("numberofboxes");
+                    ns.setNumberofboxes("numberofboxes");
                 }
 
             }
