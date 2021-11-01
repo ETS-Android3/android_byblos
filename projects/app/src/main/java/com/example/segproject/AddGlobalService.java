@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,6 +22,12 @@ public class AddGlobalService extends AppCompatActivity {
     EditText etname;
     EditText etrate;
     Button btcreate;
+    CheckBox cbfirstName, cblastName, cbdob, cbaddress, cbemail, cbG1, cbG2, cbG3, cbcompact,
+    cbintermediate, cbSUV, cbpickupdate, cbpickuptime, cbreturndate, cbreturntime, cbmovingstartlocation,
+            cbmovingendlocation, cbarea, cbkmdriven, cbnumberofmovers, cbnumberofboxes;
+
+
+    NewService ns;
 
 
     @Override
@@ -31,27 +38,142 @@ public class AddGlobalService extends AppCompatActivity {
         etname = findViewById(R.id.newServiceName);
         etrate = findViewById(R.id.newServiceHourlyRate);
         btcreate = findViewById(R.id.submitNewService);
+        cbfirstName = findViewById(R.id.firstName);
+        cblastName =  findViewById(R.id.lastName);
+        cbdob = findViewById(R.id.dob);
+        cbaddress  = findViewById(R.id.address);
+        cbemail = findViewById(R.id.email);
+        cbG1 = findViewById(R.id.G1);
+        cbG2 = findViewById(R.id.G2);
+        cbG3 = findViewById(R.id.G3);
+        cbcompact = findViewById(R.id.compact);
+        cbintermediate = findViewById(R.id.intermediate);
+        cbSUV = findViewById(R.id.SUV);
+        cbpickupdate = findViewById(R.id.pickupdate);
+        cbpickuptime = findViewById(R.id.pickuptime);
+        cbreturndate = findViewById(R.id.returndate);
+        cbreturntime = findViewById(R.id.returntime);
+        cbmovingstartlocation = findViewById(R.id.movingstartlocation);
+        cbmovingendlocation = findViewById(R.id.movingendlocation);
+        cbarea = findViewById(R.id.area);
+        cbkmdriven = findViewById(R.id.kmdriven);
+        cbnumberofmovers = findViewById(R.id.numberofmovers);
+        cbnumberofboxes = findViewById(R.id.numberofboxes);
+
         dbServices = FirebaseDatabase.getInstance().getReference().child("Service");
+        ns = new NewService();
 
         btcreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createNewService();
+                String name = etname.getText().toString();
+                int rate = Integer.parseInt(etrate.getText().toString());
+
+                ns.setName(name);
+                ns.setRate(rate);
+
+                if(cbfirstName.isChecked()){
+                    ns.setFirstName("firstname");
+
+                }
+
+                if(cblastName.isChecked()){
+                    ns.setFirstName("lastname");
+                }
+
+                if(cbdob.isChecked()){
+                    ns.setFirstName("dob");
+                }
+
+                if(cbaddress.isChecked()){
+                    ns.setFirstName("address");
+                }
+
+                if(cbemail.isChecked()){
+                    ns.setFirstName("email");
+                }
+
+                if(cbG1.isChecked()){
+                    ns.setFirstName("g1");
+                }
+
+                if(cbG2.isChecked()){
+                    ns.setFirstName("g2");
+                }
+
+                if(cbG3.isChecked()){
+                    ns.setFirstName("g3");
+                }
+
+                if(cbcompact.isChecked()){
+                    ns.setFirstName("compact");
+                }
+
+                if(cbintermediate.isChecked()){
+                    ns.setFirstName("intermediate");
+                }
+
+                if(cbSUV.isChecked()){
+                    ns.setFirstName("suv");
+                }
+
+                if(cbpickupdate.isChecked()){
+                    ns.setFirstName("pickupdate");
+                }
+
+                if(cbpickuptime.isChecked()){
+                    ns.setFirstName("pickuptime");
+                }
+
+                if(cbreturndate.isChecked()){
+                    ns.setFirstName("returndate");
+                }
+
+                if(cbreturntime.isChecked()){
+                    ns.setFirstName("returntime");
+                }
+
+                if(cbmovingstartlocation.isChecked()){
+                    ns.setFirstName("movingstartlocation");
+                }
+
+                if(cbmovingendlocation.isChecked()){
+                    ns.setFirstName("movingendlocation");
+                }
+
+                if(cbarea.isChecked()){
+                    ns.setFirstName("area");
+                }
+
+                if(cbkmdriven.isChecked()){
+                    ns.setFirstName("kmdriven");
+                }
+
+                if(cbnumberofmovers.isChecked()){
+                    ns.setFirstName("numberofmovers");
+                }
+
+                if(cbnumberofboxes.isChecked()){
+                    ns.setFirstName("numberofboxes");
+                }
+
             }
         });
-
-
-    }
-
-    private void createNewService(){
-        String name = etname.getText().toString();
-        int rate = Integer.parseInt(etrate.getText().toString());
-        NewService ns = new NewService(name,rate);
 
         dbServices.push().setValue(ns);
         Toast.makeText(this,"New service created", Toast.LENGTH_SHORT).show();
 
+
     }
+
+
+
+
+
+
+
+
+
 
 
 }
