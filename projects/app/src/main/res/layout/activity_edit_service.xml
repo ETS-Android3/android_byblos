@@ -25,14 +25,6 @@
                 android:onClick="@string/addService"
                 android:text="@string/add_service_text" />
 
-            <Button
-                android:id="@+id/editServiceBTN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="@string/editService"
-                android:text="@string/edit_service_text" />
-
         </LinearLayout>
 
         <LinearLayout
