@@ -90,6 +90,8 @@ public class AddGlobalService extends AppCompatActivity {
         btcreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 createNewService();
             }
         });
@@ -106,7 +108,7 @@ public class AddGlobalService extends AppCompatActivity {
                 etname.requestFocus();
                 return;
             }
-            if (etrate.getText().toString().isEmpty()){
+            if ((etrate.getText().toString()).isEmpty()){
                 etrate.setError("Please enter a rate!");
                 etrate.requestFocus();
                 return;

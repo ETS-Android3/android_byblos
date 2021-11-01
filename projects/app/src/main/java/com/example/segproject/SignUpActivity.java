@@ -73,52 +73,6 @@ public class SignUpActivity extends AppCompatActivity {
             startActivity(intent);
 //            startActivityForResult (intent,0);
             Toast.makeText(getApplicationContext(), "Signed Up!. ", Toast.LENGTH_SHORT).show();
-
-//
-//            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-//                @Override
-//                public void onComplete(@NonNull Task<AuthResult> task) {
-//                    if (task.isSuccessful()){
-//                        DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
-//
-////                    User user = new User(id, username, email, password, role);
-//                        User user = new User(username, email, password, role, id );
-//                        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                        user.setUserID(userID);
-//
-//                    FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() { // add user by uIDto database.
-////
-////                        FirebaseDatabase.getInstance().getReference("users").(username).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>(){ // add user to database sorted by username.
-////                    FirebaseDatabase.getInstance().getReference("users").child(username).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>(){ // add user to database sorted by username.
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if (task.isSuccessful()){
-////                                FirebaseDatabase.getInstance().getReference("users").child(username).
-//
-//
-//                                Toast.makeText(getApplicationContext(), "User has been registered.", Toast.LENGTH_SHORT).show();
-//
-//                                Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if able to sign in send to welcome page.
-//                                startActivityForResult (intent,0);
-//                                Toast.makeText(getApplicationContext(), "Authenticated User Created." , Toast.LENGTH_SHORT).show();
-//                            }
-//                            else{
-//                                Toast.makeText(getApplicationContext(), "User not registered", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//
-//                    }
-//                    else{
-//                        Toast.makeText(getApplicationContext(), "Unable to create user ", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//            });
-//
-//        }
-//        else{
-//            Toast.makeText(getApplicationContext(), "INVALID", Toast.LENGTH_SHORT).show();
         }
     }
 
