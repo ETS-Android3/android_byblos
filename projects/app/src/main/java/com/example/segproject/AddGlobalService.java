@@ -27,6 +27,29 @@ public class AddGlobalService extends AppCompatActivity {
             cbmovingendlocation, cbarea, cbkmdriven, cbnumberofmovers, cbnumberofboxes;
 
 
+    boolean firstName;
+    boolean lastName;
+    boolean dob;
+    boolean address;
+    boolean email;
+    boolean G1;
+    boolean G2;
+    boolean G3;
+    boolean compact;
+    boolean intermediate;
+    boolean SUV;
+    boolean pickupdate;
+    boolean pickuptime;
+    boolean returndate;
+    boolean returntime;
+    boolean movingstartlocation;
+    boolean movingendlocation;
+    boolean area;
+    boolean kmdriven;
+    boolean numberofmovers;
+    boolean numberofboxes;
+
+
     NewService ns;
 
 
@@ -39,9 +62,9 @@ public class AddGlobalService extends AppCompatActivity {
         etrate = findViewById(R.id.newServiceHourlyRate);
         btcreate = findViewById(R.id.submitNewService);
         cbfirstName = findViewById(R.id.firstName);
-        cblastName =  findViewById(R.id.lastName);
+        cblastName = findViewById(R.id.lastName);
         cbdob = findViewById(R.id.dob);
-        cbaddress  = findViewById(R.id.address);
+        cbaddress = findViewById(R.id.address);
         cbemail = findViewById(R.id.email);
         cbG1 = findViewById(R.id.G1);
         cbG2 = findViewById(R.id.G2);
@@ -61,107 +84,154 @@ public class AddGlobalService extends AppCompatActivity {
         cbnumberofboxes = findViewById(R.id.numberofboxes);
 
         dbServices = FirebaseDatabase.getInstance().getReference().child("Service");
-        ns = new NewService();
 
         btcreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = etname.getText().toString();
-                int rate = Integer.parseInt(etrate.getText().toString());
-
-                ns.setName(name);
-                ns.setRate(rate);
-
-                if(cbfirstName.isChecked()){
-                    ns.setFirstName("firstname");
-
-                }
-
-                if(cblastName.isChecked()){
-                    ns.setLastName("lastname");
-                }
-
-                if(cbdob.isChecked()){
-                    ns.setDob("dob");
-                }
-
-                if(cbaddress.isChecked()){
-                    ns.setAddress("address");
-                }
-
-                if(cbemail.isChecked()){
-                    ns.setEmail("email");
-                }
-
-                if(cbG1.isChecked()){
-                    ns.setG1("g1");
-                }
-
-                if(cbG2.isChecked()){
-                    ns.setG2("g2");
-                }
-
-                if(cbG3.isChecked()){
-                    ns.setG3("g3");
-                }
-
-                if(cbcompact.isChecked()){
-                    ns.setCompact("compact");
-                }
-
-                if(cbintermediate.isChecked()){
-                    ns.setIntermediate("intermediate");
-                }
-
-                if(cbSUV.isChecked()){
-                    ns.setSUV("suv");
-                }
-
-                if(cbpickupdate.isChecked()){
-                    ns.setPickupdate("pickupdate");
-                }
-
-                if(cbpickuptime.isChecked()){
-                    ns.setPickuptime("pickuptime");
-                }
-
-                if(cbreturndate.isChecked()){
-                    ns.setReturndate("returndate");
-                }
-
-                if(cbreturntime.isChecked()){
-                    ns.setReturntime("returntime");
-                }
-
-                if(cbmovingstartlocation.isChecked()){
-                    ns.setMovingstartlocation("movingstartlocation");
-                }
-
-                if(cbmovingendlocation.isChecked()){
-                    ns.setMovingendlocation("movingendlocation");
-                }
-
-                if(cbarea.isChecked()){
-                    ns.setArea("area");
-                }
-
-                if(cbkmdriven.isChecked()){
-                    ns.setKmdriven("kmdriven");
-                }
-
-                if(cbnumberofmovers.isChecked()){
-                    ns.setNumberofmovers("numberofmovers");
-                }
-
-                if(cbnumberofboxes.isChecked()){
-                    ns.setNumberofboxes("numberofboxes");
-                }
-
+                createNewService();
             }
         });
+    }
 
-        dbServices.push().setValue(ns);
-        Toast.makeText(this,"New service created", Toast.LENGTH_SHORT).show();
+        private void createNewService(){
+            String name = etname.getText().toString();
+            int rate = Integer.parseInt(etrate.getText().toString());
+
+
+            if(cbfirstName.isChecked()){
+                firstName = true;
+            }else{
+                firstName = false;
+            }
+
+            if(cblastName.isChecked()){
+                lastName = true;
+            }else{
+                lastName = false;
+            }
+
+            if(cbdob.isChecked()){
+                dob = true;
+            }else{
+                dob = false;
+            }
+
+            if(cbaddress.isChecked()){
+                address = true;
+            }else{
+                address = false;
+            }
+
+            if(cbemail.isChecked()){
+                email = true;
+            }else{
+                email = false;
+            }
+
+            if(cbG1.isChecked()){
+                G1 = true;
+            }else{
+                G1 = false;
+            }
+
+            if(cbG2.isChecked()){
+                G2 = true;
+            }else{
+                G2 = false;
+            }
+
+            if(cbG3.isChecked()){
+                G3 = true;
+            }else{
+                G3 = false;
+            }
+
+            if(cbcompact.isChecked()){
+                compact = true;
+            }else{
+                compact = false;
+            }
+
+            if(cbintermediate.isChecked()){
+                intermediate = true;
+            }else{
+                intermediate = false;
+            }
+
+            if(cbSUV.isChecked()){
+                SUV = true;
+            }else{
+                SUV = false;
+            }
+
+            if(cbpickupdate.isChecked()){
+                pickupdate = true;
+            }else{
+                pickupdate = false;
+            }
+
+            if(cbpickuptime.isChecked()){
+                pickuptime = true;
+            }else{
+                pickuptime = false;
+            }
+
+            if(cbreturndate.isChecked()){
+                returndate = true;
+            }else{
+                returndate = false;
+            }
+
+            if(cbreturntime.isChecked()){
+                returntime = true;
+            }else{
+                returntime = false;
+            }
+
+            if(cbmovingstartlocation.isChecked()){
+                movingstartlocation = true;
+            }else{
+                movingstartlocation = false;
+            }
+
+            if(cbmovingendlocation.isChecked()){
+                movingendlocation = true;
+            }else{
+                movingendlocation = false;
+            }
+
+            if(cbarea.isChecked()){
+                area = true;
+            }else{
+                area = false;
+            }
+
+            if(cbkmdriven.isChecked()){
+                kmdriven = true;
+            }else{
+                kmdriven = false;
+            }
+
+            if(cbnumberofmovers.isChecked()){
+                numberofmovers = true;
+            }else{
+                numberofmovers = false;
+            }
+
+            if(cbnumberofboxes.isChecked()){
+                numberofboxes = true;
+            }else{
+                numberofboxes = false;
+            }
+
+            NewService ns = new NewService(name, rate,firstName,lastName,
+                    dob, address, email, G1, G2, G3, compact, intermediate, SUV, pickupdate,
+                    pickuptime, returndate, returntime, movingstartlocation, movingendlocation,
+                    area, kmdriven, numberofmovers,numberofboxes);
+            dbServices.push().setValue(ns);
+            Toast.makeText(this,"New service created", Toast.LENGTH_SHORT).show();
+        }
+
 
 
     }
@@ -176,4 +246,4 @@ public class AddGlobalService extends AppCompatActivity {
 
 
 
-}
+
