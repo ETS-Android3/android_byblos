@@ -91,8 +91,20 @@ public class AddGlobalService extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                boolean valid = true;
+                if (etname.getText().toString().isEmpty()){
+                    etname.setError("Please enter a name!");
+                    etname.requestFocus();
+                    valid = false;
+                }if (etrate.getText().toString().isEmpty()){
+                    etrate.setError("Please enter a rate");
+                    etname.requestFocus();
+                    valid = false;
+                }
+                if (valid){
+                    createNewService();
+                }
 
-                createNewService();
             }
         });
     }
@@ -102,17 +114,6 @@ public class AddGlobalService extends AppCompatActivity {
         private void createNewService(){
             String name = etname.getText().toString();
             double rate = Double.parseDouble(etrate.getText().toString());
-
-            if (name.isEmpty() ){
-                etname.setError("Please enter a name!");
-                etname.requestFocus();
-                return;
-            }
-            if ((etrate.getText().toString()).isEmpty()){
-                etrate.setError("Please enter a rate!");
-                etrate.requestFocus();
-                return;
-            }
 
 
             if(cbfirstName.isChecked()){
