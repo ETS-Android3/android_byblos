@@ -32,7 +32,7 @@ public class NewServiceList extends ArrayAdapter<NewService> {
         NewService ns = services.get(position);
 
         textViewName.setText(ns.getName());
-        textViewRate.setText((int)ns.getRate());
+        //t//
 
         return convertView;
     }
