@@ -40,8 +40,8 @@ public class EditService extends AppCompatActivity {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String value = dataSnapshot.getValue(Service.class).toString();
-                arrayList.add(value);
+                String username = (String) dataSnapshot.child("name").getValue();
+                arrayList.add(username);
                 arrayAdapter.notifyDataSetChanged();
             }
 
