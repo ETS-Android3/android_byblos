@@ -2,6 +2,7 @@ package com.example.segproject;
 
 public class NewService {
 
+    String serviceID;
     String name;
     int rate;
     boolean firstName;
@@ -34,7 +35,7 @@ public class NewService {
                       boolean intermediate, boolean kmdriven, boolean lastName, boolean movingendlocation,
                       boolean movingstartlocation, String name, boolean numberofboxes,boolean numberofmovers,
                       boolean pickupdate, boolean pickuptime,int rate,boolean returndate, boolean returntime,
-                      boolean SUV) {
+                      boolean SUV, String serviceID) {
         this.name = name;
         this.rate = rate;
         this.firstName = firstName;
@@ -58,7 +59,10 @@ public class NewService {
         this.kmdriven = kmdriven;
         this.numberofmovers = numberofmovers;
         this.numberofboxes = numberofboxes;
+        this.serviceID = serviceID;
     }
+
+    public String getServiceID(){return serviceID;}
 
     public String getName() {
         return name;

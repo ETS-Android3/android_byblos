@@ -5,11 +5,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +15,6 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -94,7 +90,7 @@ public class EditAccounts extends AppCompatActivity {
         editTextEmail  = (EditText) dialogView.findViewById(R.id.emailUpdateEditText);
         editTextPassword = (EditText) dialogView.findViewById(R.id.passwordUpdateEditText);
 
-        final Button buttonUpdate = (Button) dialogView.findViewById(R.id.updateUserButton);
+        final Button buttonUpdate = (Button) dialogView.findViewById(R.id.updateServiceButton);
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.deleteUserButton);
 
         dialogBuilder.setTitle(username);
