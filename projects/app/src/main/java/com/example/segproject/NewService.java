@@ -27,7 +27,6 @@ public class NewService {
     boolean numberofboxes;
 
     public NewService(){
-
     }
 
     public NewService(boolean address, boolean area, boolean compact, boolean dob,

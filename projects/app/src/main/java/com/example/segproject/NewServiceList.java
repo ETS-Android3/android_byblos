@@ -23,17 +23,17 @@ public class NewServiceList extends ArrayAdapter<NewService> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        LayoutInflater inflater = context.getLayoutInflater();
-        View listViewNs = inflater.inflate(R.layout.layout_services_list, null, true);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        convertView = inflater.inflate(R.layout.layout_services_list, null, true);
 
-        TextView textViewName = (TextView) listViewNs.findViewById(R.id.nameDeleteLayoutTextView);
-        TextView textViewRate = (TextView) listViewNs.findViewById(R.id.rateDeleteLayoutTextView);
+        TextView textViewName = (TextView) convertView.findViewById(R.id.nameDeleteLayoutTextView);
+        TextView textViewRate = (TextView) convertView.findViewById(R.id.rateDeleteLayoutTextView);
 
         NewService ns = services.get(position);
 
         textViewName.setText(ns.getName());
         textViewRate.setText((int)ns.getRate());
 
-        return listViewNs;
+        return convertView;
     }
 }
