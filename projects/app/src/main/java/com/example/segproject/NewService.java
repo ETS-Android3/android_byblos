@@ -3,9 +3,9 @@ package com.example.segproject;
 public class NewService {
 
     String name;
-    String rate;
+    int rate;
 
-    public NewService(String name, String rate) {
+    public NewService(String name, int rate) {
         this.name = name;
         this.rate = rate;
     }
@@ -14,7 +14,7 @@ public class NewService {
         return name;
     }
 
-    public String getRate() {
+    public int getRate() {
         return rate;
     }
 

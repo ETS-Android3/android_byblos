@@ -12,7 +12,8 @@ public class Service {
 
     int rate;
 
-    public Service (String id, String serviceType, int rate, String firstName, String lastName, String dateOfBirth, Address address, String email){
+    public Service (String id, String serviceType, int rate, String firstName,
+                    String lastName, String dateOfBirth, Address address, String email){
         this.id = id;
         this.serviceType = serviceType;
         this.rate = rate;

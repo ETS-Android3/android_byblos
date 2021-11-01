@@ -45,7 +45,7 @@ public class AddGlobalService extends AppCompatActivity {
 
     private void createNewService(){
         String name = etname.getText().toString();
-        String rate = etrate.getText().toString();
+        int rate = Integer.parseInt(etrate.getText().toString());
         NewService ns = new NewService(name,rate);
 
         dbServices.push().setValue(ns);
