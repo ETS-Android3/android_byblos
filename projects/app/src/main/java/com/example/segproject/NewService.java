@@ -4,7 +4,8 @@ public class NewService {
 
     String serviceID;
     String name;
-    int rate;
+    boolean isOffered;
+    double rate;
     boolean firstName;
     boolean lastName;
     boolean dob;
@@ -34,8 +35,8 @@ public class NewService {
                       boolean email, boolean firstName, boolean g1, boolean g2, boolean g3,
                       boolean intermediate, boolean kmdriven, boolean lastName, boolean movingendlocation,
                       boolean movingstartlocation, String name, boolean numberofboxes,boolean numberofmovers,
-                      boolean pickupdate, boolean pickuptime,int rate,boolean returndate, boolean returntime,
-                      boolean SUV, String serviceID) {
+                      boolean pickupdate, boolean pickuptime,double rate,boolean returndate, boolean returntime,
+                      boolean SUV, boolean isOffered,  String serviceID) {
         this.name = name;
         this.rate = rate;
         this.firstName = firstName;
@@ -68,7 +69,7 @@ public class NewService {
         return name;
     }
 
-    public int getRate() {
+    public double getRate() {
         return rate;
     }
 

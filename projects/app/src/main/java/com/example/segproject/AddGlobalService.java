@@ -2,6 +2,7 @@ package com.example.segproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,9 +25,9 @@ public class AddGlobalService extends AppCompatActivity {
     Button btcreate;
     CheckBox cbfirstName, cblastName, cbdob, cbaddress, cbemail, cbG1, cbG2, cbG3, cbcompact,
     cbintermediate, cbSUV, cbpickupdate, cbpickuptime, cbreturndate, cbreturntime, cbmovingstartlocation,
-            cbmovingendlocation, cbarea, cbkmdriven, cbnumberofmovers, cbnumberofboxes;
+            cbmovingendlocation, cbarea, cbkmdriven, cbnumberofmovers, cbnumberofboxes, cbisoffered;
 
-
+    boolean isOffered;
     boolean firstName;
     boolean lastName;
     boolean dob;
@@ -58,6 +59,7 @@ public class AddGlobalService extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_global_service);
 
+        cbisoffered = findViewById(R.id.isOffered);
         etname = findViewById(R.id.newServiceName);
         etrate = findViewById(R.id.newServiceHourlyRate);
         btcreate = findViewById(R.id.submitNewService);
@@ -93,9 +95,22 @@ public class AddGlobalService extends AppCompatActivity {
         });
     }
 
+
+
         private void createNewService(){
             String name = etname.getText().toString();
-            int rate = Integer.parseInt(etrate.getText().toString());
+            double rate = Double.parseDouble(etrate.getText().toString());
+
+            if (name.isEmpty() ){
+                etname.setError("Please enter a name!");
+                etname.requestFocus();
+                return;
+            }
+            if (etrate.getText().toString().isEmpty()){
+                etrate.setError("Please enter a rate!");
+                etrate.requestFocus();
+                return;
+            }
 
 
             if(cbfirstName.isChecked()){
@@ -223,15 +238,25 @@ public class AddGlobalService extends AppCompatActivity {
             }else{
                 numberofboxes = false;
             }
+            if (cbisoffered.isChecked()){
+                isOffered = true;
+            }else{
+                isOffered = false;
+            }
+
+
+
+            String servID = dbServices.push().getKey(); // get unique service id.
 
             NewService ns = new NewService(address, area,compact,dob, email, firstName,
                     G1, G2, G3, intermediate, kmdriven, lastName, movingendlocation,
                     movingstartlocation, name,  numberofboxes,numberofmovers,
                     pickupdate, pickuptime,rate,returndate, returntime,
-                    SUV);
+                    SUV, isOffered, servID);
 
+            dbServices.child(servID).setValue(ns); // create service sorted by id.
 
-            dbServices.push().setValue(ns);
+            startActivity(new Intent(AddGlobalService.this, EditService.class));
             Toast.makeText(this,"New service created", Toast.LENGTH_SHORT).show();
         }
 

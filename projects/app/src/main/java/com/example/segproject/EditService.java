@@ -38,8 +38,9 @@ public class EditService extends AppCompatActivity {
 
     CheckBox cbfirstName, cblastName, cbdob, cbaddress, cbemail, cbG1, cbG2, cbG3, cbcompact,
             cbintermediate, cbSUV, cbpickupdate, cbpickuptime, cbreturndate, cbreturntime, cbmovingstartlocation,
-            cbmovingendlocation, cbarea, cbkmdriven, cbnumberofmovers, cbnumberofboxes;
+            cbmovingendlocation, cbarea, cbkmdriven, cbnumberofmovers, cbnumberofboxes, cbisoffered;
 
+    boolean isOffered;
     boolean firstName;
     boolean lastName;
     boolean dob;
@@ -87,14 +88,14 @@ public class EditService extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 NewService serv = arrayList.get(position);
 
-                deleteServiceDialog(serv.getName(), serv.getRate());
+                deleteServiceDialog(serv.getName(), serv.getRate(), serv.getServiceID());
                 return false;
             }
         });
 
     }
 
-    private void deleteServiceDialog(final String name, int rate){
+    private void deleteServiceDialog(final String name, double rate, String servID){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.update_delete_service, null);
@@ -115,7 +116,40 @@ public class EditService extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = editTextName.getText().toString().trim();
-                int rate = Integer.parseInt(editTextRate.getText().toString());
+                double rate = Double.parseDouble(editTextRate.getText().toString());
+
+                if (name.isEmpty() ){
+                    editTextName.setError("Please enter a name!");
+                    editTextName.requestFocus();
+                }
+                if (editTextRate.getText().toString().isEmpty()){
+                    editTextRate.setError("Please enter a rate!");
+                    editTextRate.requestFocus();
+                }
+
+                cbisoffered = dialogView.findViewById(R.id.isOfferedUpdate);
+                cbfirstName = dialogView.findViewById(R.id.firstName);
+                cblastName = dialogView.findViewById(R.id.lastName);
+                cbdob = dialogView.findViewById(R.id.dob);
+                cbaddress = dialogView.findViewById(R.id.address);
+                cbemail = dialogView.findViewById(R.id.email);
+                cbG1 = dialogView.findViewById(R.id.G1);
+                cbG2 = dialogView.findViewById(R.id.G2);
+                cbG3 = dialogView.findViewById(R.id.G3);
+                cbcompact = dialogView.findViewById(R.id.compact);
+                cbintermediate = dialogView.findViewById(R.id.intermediate);
+                cbSUV = dialogView.findViewById(R.id.SUV);
+                cbpickupdate = dialogView.findViewById(R.id.pickupdate);
+                cbpickuptime = dialogView.findViewById(R.id.pickuptime);
+                cbreturndate = dialogView.findViewById(R.id.returndate);
+                cbreturntime = dialogView.findViewById(R.id.returntime);
+                cbmovingstartlocation = dialogView.findViewById(R.id.movingstartlocation);
+                cbmovingendlocation = dialogView.findViewById(R.id.movingendlocation);
+                cbarea = dialogView.findViewById(R.id.area);
+                cbkmdriven = dialogView.findViewById(R.id.kmdriven);
+                cbnumberofmovers = dialogView.findViewById(R.id.numberofmovers);
+                cbnumberofboxes = dialogView.findViewById(R.id.numberofboxes);
+
 
                 if(cbfirstName.isChecked()){
                     firstName = true;
@@ -242,12 +276,17 @@ public class EditService extends AppCompatActivity {
                 }else{
                     numberofboxes = false;
                 }
+                if (cbisoffered.isChecked()){
+                    isOffered = true;
+                }else{
+                    isOffered = false;
+                }
 
                 updateService(address, area,compact,dob, email, firstName,
                         G1, G2, G3, intermediate, kmdriven, lastName, movingendlocation,
                         movingstartlocation, name,  numberofboxes,numberofmovers,
                         pickupdate, pickuptime,rate,returndate, returntime,
-                        SUV);
+                        SUV, servID);
                 b.dismiss();
             }
         });
@@ -255,15 +294,16 @@ public class EditService extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteService(name);
+                deleteService(servID);
                 b.dismiss();
             }
         });
     }
 
 
-    public void deleteService(String name){ //this does not delete service from authenticated database. but does delete from realtime.
-        dbRef.child(name).removeValue();
+
+    public void deleteService(String servID){ //this does not delete service from authenticated database. but does delete from realtime.
+        dbRef.child(servID).removeValue();
         Toast.makeText(getApplicationContext(), "Service deleted", Toast.LENGTH_LONG).show();
 
     }
@@ -272,15 +312,16 @@ public class EditService extends AppCompatActivity {
                               boolean email, boolean firstName, boolean G1, boolean G2, boolean G3,
                               boolean intermediate, boolean kmdriven, boolean lastName, boolean movingendlocation,
                               boolean movingstartlocation, String name, boolean numberofboxes,boolean numberofmovers,
-                              boolean pickupdate, boolean pickuptime,int rate,boolean returndate, boolean returntime,
-                              boolean SUV){
+                              boolean pickupdate, boolean pickuptime,double rate,boolean returndate, boolean returntime,
+                              boolean SUV,String servID){
 
         NewService serv = new NewService(address, area,compact,dob, email, firstName,
                 G1, G2, G3, intermediate, kmdriven, lastName, movingendlocation,
                 movingstartlocation, name,  numberofboxes,numberofmovers,
                 pickupdate, pickuptime,rate,returndate, returntime,
-                SUV);
-        dbRef.child(name).setValue(serv);
+                SUV,isOffered, servID);
+
+        dbRef.child(servID).setValue(serv);
         Toast.makeText(getApplicationContext(), "Service Updated", Toast.LENGTH_LONG).show();
     }
 

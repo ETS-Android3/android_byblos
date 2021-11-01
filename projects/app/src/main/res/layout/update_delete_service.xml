@@ -219,6 +219,16 @@
                 android:layout_height="wrap_content"
                 android:text="Number of Boxes" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/isOfferedUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Offered?" />
+
         </LinearLayout>
     </ScrollView>
 
