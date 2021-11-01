@@ -224,10 +224,13 @@ public class AddGlobalService extends AppCompatActivity {
                 numberofboxes = false;
             }
 
-            NewService ns = new NewService(name, rate,firstName,lastName,
-                    dob, address, email, G1, G2, G3, compact, intermediate, SUV, pickupdate,
-                    pickuptime, returndate, returntime, movingstartlocation, movingendlocation,
-                    area, kmdriven, numberofmovers,numberofboxes);
+            NewService ns = new NewService(address, area,compact,dob, email, firstName,
+                    G1, G2, G3, intermediate, kmdriven, lastName, movingendlocation,
+                    movingstartlocation, name,  numberofboxes,numberofmovers,
+                    pickupdate, pickuptime,rate,returndate, returntime,
+                    SUV);
+
+
             dbServices.push().setValue(ns);
             Toast.makeText(this,"New service created", Toast.LENGTH_SHORT).show();
         }

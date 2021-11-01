@@ -16,9 +16,6 @@
             android:name=".EditService"
             android:exported="true" />
         <activity
-            android:name=".DeleteAccount"
-            android:exported="true" />
-        <activity
             android:name=".AdminActivity"
             android:exported="true" />
         <activity
@@ -29,6 +26,7 @@
             android:exported="true" />
         <activity android:name=".AddGlobalService"
             android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

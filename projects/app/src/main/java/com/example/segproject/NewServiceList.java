@@ -1,0 +1,39 @@
+package com.example.segproject;
+
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
+
+public class NewServiceList extends ArrayAdapter<NewService> {
+    private Activity context;
+    List<NewService> services;
+
+    public NewServiceList (Activity context, List<NewService> services){
+        super(context, R.layout.layout_services_list, services);
+        this.context = context;
+        this.services = services;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent){
+        LayoutInflater inflater = context.getLayoutInflater();
+        View listViewNs = inflater.inflate(R.layout.layout_services_list, null, true);
+
+        TextView textViewName = (TextView) listViewNs.findViewById(R.id.nameDeleteLayoutTextView);
+        TextView textViewRate = (TextView) listViewNs.findViewById(R.id.rateDeleteLayoutTextView);
+
+        NewService ns = services.get(position);
+
+        textViewName.setText(ns.getName());
+        textViewRate.setText((int)ns.getRate());
+
+        return listViewNs;
+    }
+}
