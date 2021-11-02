@@ -37,6 +37,8 @@ public class NewService {
                       boolean movingstartlocation, String name, boolean numberofboxes,boolean numberofmovers,
                       boolean pickupdate, boolean pickuptime,double rate,boolean returndate, boolean returntime,
                       boolean SUV, boolean isOffered,  String serviceID) {
+
+        this.isOffered = isOffered;
         this.name = name;
         this.rate = rate;
         this.firstName = firstName;
@@ -44,9 +46,9 @@ public class NewService {
         this.dob = dob;
         this.address = address;
         this.email = email;
-        G1 = g1;
-        G2 = g2;
-        G3 = g3;
+        this.G1 = g1;
+        this.G2 = g2;
+        this.G3 = g3;
         this.compact = compact;
         this.intermediate = intermediate;
         this.SUV = SUV;
@@ -62,6 +64,8 @@ public class NewService {
         this.numberofboxes = numberofboxes;
         this.serviceID = serviceID;
     }
+
+    public boolean isOffered(){return isOffered;}
 
     public String getServiceID(){return serviceID;}
 

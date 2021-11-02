@@ -50,9 +50,7 @@ public class AddGlobalService extends AppCompatActivity {
     boolean numberofmovers;
     boolean numberofboxes;
 
-
     NewService ns;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +86,7 @@ public class AddGlobalService extends AppCompatActivity {
         dbServices = FirebaseDatabase.getInstance().getReference().child("Service");
 
         btcreate.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
@@ -101,20 +100,22 @@ public class AddGlobalService extends AppCompatActivity {
                     etname.requestFocus();
                     valid = false;
                 }
+                if (!etrate.getText().toString().trim().matches("^[0-9]*$")){
+                    etrate.setError("Rate must be a number!");
+                    etrate.requestFocus();
+                    valid = false;
+                }
+
                 if (valid){
                     createNewService();
                 }
-
             }
         });
     }
 
-
-
         private void createNewService(){
             String name = etname.getText().toString();
             double rate = Double.parseDouble(etrate.getText().toString());
-
 
             if(cbfirstName.isChecked()){
                 firstName = true;
