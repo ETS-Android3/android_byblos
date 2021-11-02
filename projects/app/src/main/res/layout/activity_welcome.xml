@@ -8,8 +8,7 @@
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
     android:background="#38684E"
-    android:backgroundTint="#618162"
-    android:backgroundTintMode="#618162"
+    android:backgroundTint="#4B7A5C"
     android:gravity="center_horizontal"
     tools:context=".WelcomeActivity">
 
