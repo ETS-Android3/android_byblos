@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#9EC5C1"
         android:orientation="vertical">
 
         <Space
@@ -21,6 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/createAccount"
             android:textAlignment="center"
+            android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -34,9 +36,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/signup_username_hint"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:importantForAutofill="no" />
+            android:minHeight="48dp" />
 
         <Space
             android:layout_width="match_parent"
@@ -62,9 +64,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/signup_password_hint"
+            android:importantForAutofill="no"
             android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:importantForAutofill="no" />
+            android:minHeight="48dp" />
 
         <Space
             android:layout_width="match_parent"
@@ -99,7 +101,7 @@
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#51009688"
+            android:backgroundTint="#689F82"
             android:clickable="true"
             android:focusable="true"
             android:onClick="registerUser"

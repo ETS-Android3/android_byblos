@@ -9,7 +9,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#4A916B"
+        android:backgroundTint="#50835F"
         android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="70dp" />
 
         <TextView
             android:id="@+id/adminBanner"
@@ -17,18 +23,21 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/admin_text"
+            android:textColor="#E1DFDF"
             android:textSize="30sp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="25dp" />
+            android:layout_height="50dp" />
 
         <Button
             android:id="@+id/adminLogoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#7DAAA3"
             android:onClick="logoutAdmin"
-            android:text="@string/admin_logout_button" />
+            android:text="@string/admin_logout_button"
+            android:textColor="#454343" />
 
         <Space
             android:layout_width="match_parent"
@@ -39,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/numEmployees"
+            android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
         <Space
@@ -50,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/numCustomers"
+            android:textColor="#FFFEFE"
             android:textSize="24sp" />
 
         <Space
@@ -60,8 +71,10 @@
             android:id="@+id/editAccountButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#84B591"
             android:onClick="editAccountsOnClick"
-            android:text="@string/edit_accounts_button" />
+            android:text="@string/edit_accounts_button"
+            android:textColor="#434242" />
 
         <Space
             android:layout_width="match_parent"
@@ -72,6 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/numServices"
+            android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
         <Space
@@ -82,8 +96,10 @@
             android:id="@+id/editServicesButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#84B58F"
             android:onClick="editServicesOnClick"
-            android:text="@string/services_button" />
+            android:text="@string/services_button"
+            android:textColor="#333333" />
 
     </LinearLayout>
 </RelativeLayout>

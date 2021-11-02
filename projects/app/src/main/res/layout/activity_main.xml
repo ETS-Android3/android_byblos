@@ -9,6 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#9EC5C1"
+        android:backgroundTint="#9EC5C1"
         android:orientation="vertical">
 
         <Space
@@ -21,6 +23,7 @@
             android:layout_height="wrap_content"
             android:text="@string/login"
             android:textAlignment="center"
+            android:textColor="#FFFDFD"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -35,13 +38,13 @@
             android:layout_gravity="center"
             android:clickable="true"
             android:ems="10"
+            android:focusable="true"
             android:gravity="center"
             android:hint="@string/username_hint"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            tools:ignore="TextContrastCheck"
-            android:importantForAutofill="no"
-            android:focusable="true" />
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/usernameTitle"
@@ -60,10 +63,10 @@
             android:ems="10"
             android:gravity="center"
             android:hint="@string/password_hint"
+            android:importantForAutofill="no"
             android:inputType="textPassword"
             android:minHeight="48dp"
-            tools:ignore="TextContrastCheck,TextContrastCheck"
-            android:importantForAutofill="no" />
+            tools:ignore="TextContrastCheck,TextContrastCheck" />
 
         <TextView
             android:id="@+id/passwordTitle"
@@ -79,7 +82,7 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#604CAF50"
+            android:backgroundTint="#8AAE8B"
             android:clickable="true"
             android:focusable="true"
             android:onClick="onLoginButton"
@@ -93,7 +96,7 @@
             android:id="@+id/signUpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#51009688"
+            android:backgroundTint="#639A84"
             android:clickable="true"
             android:focusable="true"
             android:onClick="onSignUpButton"
