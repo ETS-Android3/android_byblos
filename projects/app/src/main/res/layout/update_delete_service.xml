@@ -236,12 +236,14 @@
         android:id="@+id/updateServiceButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#84B58F"
         android:text="Update" />
 
     <Button
         android:id="@+id/deleteServiceButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#50805B"
         android:text="Delete" />
 
 </LinearLayout>
