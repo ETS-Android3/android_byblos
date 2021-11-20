@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,8 +22,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
     String id;
+    String role;
     DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
-
+    Button btnProfile;
 
 //    private FirebaseUser user; // current user.
 //    private DatabaseReference ref;
@@ -35,7 +37,7 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
+        btnProfile = findViewById(R.id.profileButton);
         id = getIntent().getStringExtra("id");
 
         final TextView roleTextView = (TextView) findViewById(R.id.roleTextView);
@@ -52,7 +54,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 if (userProfile != null){
                     String name = userProfile.username;
                     nameTextView.setText("Welcome, " + name + "!");
-                    String role = userProfile.role;
+                    role = userProfile.role;
                     roleTextView.setText("Your role is " + role);
                 }
             }
@@ -62,6 +64,18 @@ public class WelcomeActivity extends AppCompatActivity {
 
             }
         });
+
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                if(role.equals("Employee")) {
+                    profile();
+                }
+            }
+        });
+
+
 //
 //        user = FirebaseAuth.getInstance().getCurrentUser();
 //        ref = FirebaseDatabase.getInstance().getReference("users");
@@ -98,4 +112,8 @@ public class WelcomeActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
     }
 
+    public void profile(){
+        startActivity(new Intent(WelcomeActivity.this, EmployeeActivity.class));
+        Toast.makeText(getApplicationContext(), "Redirecting to profile", Toast.LENGTH_SHORT).show();
+    }
 }

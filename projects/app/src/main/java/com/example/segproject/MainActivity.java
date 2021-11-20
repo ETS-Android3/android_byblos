@@ -59,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        if (username.equals("employee") && password.equals("employee")){ //case that employee is logging in.
+            Toast.makeText(getApplicationContext(), "Welcome Employee", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class); // if successful go to admin page.
+            startActivity(intent);
+            return;
+        }
+
         if (username.isEmpty()) {
             eTUsername.setError("Please enter a username");
             eTUsername.requestFocus();

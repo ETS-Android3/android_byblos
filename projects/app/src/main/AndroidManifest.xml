@@ -24,9 +24,15 @@
         <activity
             android:name=".SignUpActivity"
             android:exported="true" />
-        <activity android:name=".AddGlobalService"
+        <activity
+            android:name=".AddGlobalService"
             android:exported="true" />
-
+        <activity
+            android:name=".EmployeeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".EmployeeProfile"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
