@@ -78,5 +78,6 @@
 
 
     // employee activity
-    <string name="display_employee_name">Name: </string>
+    <string name="display_employee_address">Address: </string>
+    <string name="display_employee_phoneNum">Phone Number: </string>
 </resources>

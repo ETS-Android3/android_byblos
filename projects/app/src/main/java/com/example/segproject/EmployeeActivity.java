@@ -73,15 +73,15 @@ public class EmployeeActivity extends AppCompatActivity {
         String street = eTstreetAddressEmployee.getText().toString();
         String phoneNum = eTPhoneNumber.getText().toString();
 
-        String id = dbEmployeeUser.push().getKey(); //
+        String branchid = dbEmployeeUser.push().getKey(); //
 
-        ProfileInfo pi = new ProfileInfo(num,street,phoneNum, id);
-        dbEmployeeUser.push().setValue(pi);
+        ProfileInfo pi = new ProfileInfo(num,street,phoneNum,branchid);
+        dbEmployeeUser.child(branchid).setValue(pi);
 
 
 
         Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class);
-        intent.putExtra("branchID",id);
+        intent.putExtra("branchID",branchid);
         startActivity(intent);
         Toast.makeText(this,"Profile Completed!", Toast.LENGTH_SHORT).show();
     }

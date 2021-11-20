@@ -26,12 +26,6 @@ public class WelcomeActivity extends AppCompatActivity {
     DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
     Button btnProfile;
 
-//    private FirebaseUser user; // current user.
-//    private DatabaseReference ref;
-
-
-//    private String userId;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

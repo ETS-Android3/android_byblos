@@ -24,46 +24,55 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 public class EmployeeProfile extends AppCompatActivity {
 
-
+    String uid;
+    String addressName;
+    String phoneNumber;
     Button addService;
     Button deleteService;
     ListView branchService;
-    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("branch");;
+    DatabaseReference dbref;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_profile);
-        String id = getIntent().getStringExtra("branchID");
-        //Toast.makeText(getApplicationContext(), "welcome ." + id , Toast.LENGTH_SHORT).show();
 
-        final TextView addressEmployeeBanner = (TextView) findViewById(R.id.addressEmployeeBanner);
-        final TextView phoneNumberEmployeeBanner = (TextView) findViewById(R.id.phoneNumberEmployeeBanner);
-//        addService = findViewById(R.id.add);
-//        deleteService = findViewById(R.id.delete);
-//        branchService = findViewById(R.id.branchServiceListView);
+        dbref = FirebaseDatabase.getInstance().getReference("branch");
+        uid = getIntent().getStringExtra("branchID");
+        Toast.makeText(getApplicationContext(), "welcome ." + uid , Toast.LENGTH_SHORT).show();
 
-        dbref.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+        final TextView addressEBanner = (TextView) findViewById(R.id.addressEmployeeBanner);
+        final TextView phoneNumberEBanner = (TextView) findViewById(R.id.phoneNumberEmployeeBanner);
+        addService = findViewById(R.id.add);
+        deleteService = findViewById(R.id.delete);
+        branchService = findViewById(R.id.branchServiceListView);
+
+        dbref.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ProfileInfo profile = snapshot.getValue(ProfileInfo.class);
 
                 if(profile != null){
-                    //int addressNum = profile.locationNum;
-                    String addressName = " " + profile.locationStreet;
-                    String phoneNumber = profile.locationPhoneNum;
-                    addressEmployeeBanner.setText("Address: " + addressName);
-                    phoneNumberEmployeeBanner.setText("Phone number: " + phoneNumber);
-                }
 
+                    int addressNum = profile.streetNum;
+                    addressName = " " + profile.streetName;
+                    phoneNumber = profile.phoneNum;
+                    addressEBanner.setText("Address: " + addressNum + " " + addressName);
+                    phoneNumberEBanner.setText("Phone number: " + phoneNumber);
+
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-               // Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+               Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
     }
