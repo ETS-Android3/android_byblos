@@ -74,8 +74,9 @@ public class EmployeeActivity extends AppCompatActivity {
         String phoneNum = eTPhoneNumber.getText().toString();
 
         String branchid = dbEmployeeUser.push().getKey(); //
+        String services = "";
 
-        ProfileInfo pi = new ProfileInfo(num,street,phoneNum,branchid);
+        ProfileInfo pi = new ProfileInfo(num,street,phoneNum,branchid,services);
         dbEmployeeUser.child(branchid).setValue(pi);
 
 
