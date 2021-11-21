@@ -33,14 +33,22 @@ public class EmployeeProfile extends AppCompatActivity {
     String uid;
     String addressName;
     String phoneNumber;
+    String city;
+    String state;
+    String country;
+    String zip;
     Button addService;
     Button deleteService;
     ListView branchServiceListView;
     List<NewService> branchServiceList;
     DatabaseReference dbref;
+    DatabaseReference dbserv;
+    DatabaseReference dbbranchserv;
     String services;
     String[] individualServices;
     String[] individualServicesRefined;
+    String userID;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +56,14 @@ public class EmployeeProfile extends AppCompatActivity {
         setContentView(R.layout.activity_employee_profile);
 
         dbref = FirebaseDatabase.getInstance().getReference("branch");
-        uid = getIntent().getStringExtra("branchID");
+        dbserv = FirebaseDatabase.getInstance().getReference("Service");
+        dbbranchserv = FirebaseDatabase.getInstance().getReference("branchServiceList");
 
+
+        uid = getIntent().getStringExtra("branchID");
 
         final TextView addressEBanner = (TextView) findViewById(R.id.addressEmployeeBanner);
         final TextView phoneNumberEBanner = (TextView) findViewById(R.id.phoneNumberEmployeeBanner);
-
 
         dbref.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -62,19 +72,26 @@ public class EmployeeProfile extends AppCompatActivity {
 
                 if(profile != null){
                     int addressNum = profile.streetNum;
-                    addressName = " " + profile.streetName;
+                    addressName = profile.streetName;
+                    city = profile.city;
+                    state = profile.state;
+                    country = profile.country;
+                    zip = profile.zip;
                     phoneNumber = profile.phoneNum;
-                    services = profile.services;
-                    addressEBanner.setText("Address: " + addressNum + " " + addressName);
-                    phoneNumberEBanner.setText("Phone number: " + phoneNumber);
-                    individualServices = services.split(",");
-                    individualServicesRefined = new String[individualServices.length-1];
-                    for (int i = 1; i < individualServices.length; i++) {
-                        for(int j = 0; j < individualServicesRefined.length;j++){
-                            individualServicesRefined[j] = individualServices[i];
-                        }
 
-                    }
+//                    services = profile.services;
+                    addressEBanner.setText("Address: " + addressNum + " " + addressName + ", " +
+                            city + ", " + state + ", " + country + ", " +zip);
+                    phoneNumberEBanner.setText("Phone number: " + phoneNumber);
+//                    individualServices = services.split(",");
+//                    individualServicesRefined = new String[individualServices.length-1];
+//                    for (int i = 1; i < individualServices.length; i++) {
+//                        for(int j = 0; j < individualServicesRefined.length;j++){
+//                            individualServicesRefined[j] = individualServices[i];
+//                            System.out.println(individualServicesRefined[j]);
+//                        }
+//
+//                    }
 
                 }
 
@@ -87,11 +104,8 @@ public class EmployeeProfile extends AppCompatActivity {
         });
 
         addService = findViewById(R.id.add);
-        deleteService = findViewById(R.id.delete);
         branchServiceListView = findViewById(R.id.branchServiceListView);
         branchServiceList = new ArrayList<>();
-
-
 
         addService.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,41 +115,45 @@ public class EmployeeProfile extends AppCompatActivity {
         });
     }
 
-    protected void onStart(){//have list of all services
-        super.onStart();
-        dbref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                branchServiceList.clear();
-
-                for (String individualService : individualServicesRefined) {
-                    for (DataSnapshot info : snapshot.getChildren()) {
-                        NewService ns = info.getValue(NewService.class);
-                        if(ns != null) {
-                            if (individualService.equals(ns.serviceID)) {
-                                branchServiceList.add(ns);
-                            }
-                        }
-                    }
-                    NewServiceList branchServiceAdapter = new NewServiceList(EmployeeProfile.this, branchServiceList);
-                    branchServiceListView.setAdapter(branchServiceAdapter);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
     public void openAddBranchService(){
 
         Intent intent = new Intent(this,AddBranchService.class);
-        intent.putExtra("id",uid);
+        intent.putExtra("branchID",uid);
         startActivity(intent);
 
     }
+
+//    protected void onStart(){//have list of all services
+//        super.onStart();
+//        dbbranchserv.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                branchServiceList.clear();
+//
+//                    for (DataSnapshot info : snapshot.getChildren()) {
+//                        NewService ns = info.getValue(NewService.class);
+//
+//                        if(ns != null){
+//                            if (individualService.equals(ns.serviceID)) {
+//                                branchServiceList.add(ns);
+//                            }
+//                        }
+//
+//
+//                    }
+//                    NewServiceList branchServiceAdapter = new NewServiceList(EmployeeProfile.this, branchServiceList);
+//                    branchServiceListView.setAdapter(branchServiceAdapter);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
+
+
 
 }

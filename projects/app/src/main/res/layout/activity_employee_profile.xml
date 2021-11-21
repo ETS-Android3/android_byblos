@@ -60,13 +60,6 @@
             android:backgroundTint="#689F82"
             android:text="Add service" />
 
-        <Button
-            android:id="@+id/delete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#689F82"
-            android:text="Delete service" />
-
         <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />

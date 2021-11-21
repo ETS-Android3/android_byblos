@@ -29,67 +29,113 @@
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 
-        <TextView
-            android:id="@+id/addressBanner"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Address information: "
-            android:textColor="#E1DFDF"
-            android:textSize="20sp" />
+            android:layout_height="match_parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/numAddressEmployee"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Number: "
-            android:textColor="#E1DFDF"
-            android:inputType="textPersonName"
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/addressBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address information: "
+                    android:textColor="#E1DFDF"
+                    android:textSize="20sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
+                <EditText
+                    android:id="@+id/numAddressEmployee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="House/Unit Number "
+                    android:inputType="textPersonName"
+                    android:textColor="#E1DFDF"
+                    android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/streetAddressEmployee"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Street name: "
-            android:textColor="#E1DFDF"
-            android:inputType="textPersonName"
-            android:textSize="20sp" />
+                <EditText
+                    android:id="@+id/streetAddressEmployee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Street Name "
+                    android:inputType="textPersonName"
+                    android:textColor="#E1DFDF"
+                    android:textSize="20sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
+                <EditText
+                    android:id="@+id/city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="City "
+                    android:inputType="textPersonName"
+                    android:textColor="#E1DFDF"
+                    android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/phoneBanner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Phone information: "
-            android:textColor="#E1DFDF"
-            android:textSize="20sp" />
+                <EditText
+                    android:id="@+id/stateProvinceRegion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="State/Province/Region"
+                    android:inputType="textPersonName"
+                    android:textColor="#E1DFDF"
+                    android:textSize="20sp" />
 
+                <EditText
+                    android:id="@+id/zipCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="ZIP/Postal Code"
+                    android:inputType="textPersonName"
+                    android:textColor="#E1DFDF"
+                    android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/phoneEmployee"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Phone Number: "
-            android:textColor="#E1DFDF"
-            android:textSize="20sp" />
+                <EditText
+                    android:id="@+id/country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Country"
+                    android:inputType="textPersonName"
+                    android:textColor="#E1DFDF"
+                    android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/completeButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#689F82"
-            android:text="Submit"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:id="@+id/phoneBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Phone information: "
+                    android:textColor="#E1DFDF"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/phoneEmployee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Phone Number: "
+                    android:textColor="#E1DFDF"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/completeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#689F82"
+                    android:text="Submit" />
+            </LinearLayout>
+        </ScrollView>
+
 
     </LinearLayout>
 
