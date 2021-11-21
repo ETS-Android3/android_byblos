@@ -2,20 +2,19 @@ package com.example.segproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class BranchServiceList extends AppCompatActivity {
-    boolean truck;
-    boolean car;
-    boolean movingAssistance;
-    boolean bike;
-    boolean boat;
-    String branchServiceListUID;
-    String branchID;
+public class BranchServiceList {
+    public boolean truck;
+    public boolean car;
+    public boolean movingAssistance;
+    public boolean bike;
+    public boolean boat;
+    public String branchServiceListUID;
+    public String branchID;
 
     public BranchServiceList(){}
 
     public BranchServiceList(boolean truck, boolean car, boolean moving,
-                             boolean bike, boolean boat, String branchServiceListUID,
-                             String branchID){
+                             boolean bike, boolean boat, String branchServiceListUID, String branchID){
         this.truck = truck;
         this.car = car;
         this.movingAssistance = moving;

@@ -42,7 +42,7 @@ public class AddBranchService extends AppCompatActivity {
         setContentView(R.layout.activity_add_branch_services);
 
         branchID = getIntent().getStringExtra("branchID");
-        //Toast.makeText(this,branchID, Toast.LENGTH_SHORT).show();
+//        //Toast.makeText(this,branchID, Toast.LENGTH_SHORT).show();
         cbTruck = findViewById(R.id.checkBoxTruck);
         cbCar = findViewById(R.id.checkBoxCar);
         cbMovingAssistance = findViewById(R.id.checkBoxMovingAssistance);
@@ -95,13 +95,12 @@ public class AddBranchService extends AppCompatActivity {
 
         branchServiceListUID = dbbranchServiceList.push().getKey();
         //Toast.makeText(this,branchServiceListUID, Toast.LENGTH_SHORT).show();
-        BranchServiceList bsl = new BranchServiceList(truck, car, movingAssistance,bike,
-                boat, branchServiceListUID, branchID);
+        BranchServiceList bsl = new BranchServiceList(truck, car, movingAssistance,bike, boat, branchServiceListUID, branchID);
         dbbranchServiceList.child(branchServiceListUID).setValue(bsl);
-//        Intent intent = new Intent(this,EmployeeProfile.class);
-//        intent.putExtra("branchID",uid);
-//        startActivity(intent);
-        //Toast.makeText(this,"Branch Services Added", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,EmployeeProfile.class);
+        intent.putExtra("branchID",branchID);
+        startActivity(intent);
+        Toast.makeText(this,"Branch Services Added", Toast.LENGTH_SHORT).show();
     }
 
 
