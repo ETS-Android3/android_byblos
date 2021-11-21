@@ -5,22 +5,42 @@ public class ProfileInfo {
     public String streetName;
     public String phoneNum;
     public String employeeID;
-    public String services;
+    public String city;
+    public String state;
+    public String country;
+    public String zip;
 
     public ProfileInfo() {
     }
 
-    public ProfileInfo(int num, String street, String phoneNum, String id, String services){
+    public ProfileInfo(int num, String street, String phoneNum, String id, String city,
+                       String state, String country, String zip){
         this.streetNum = num;
         this.streetName = street;
         this.phoneNum = phoneNum;
         this.employeeID = id;
-        this.services = services;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.zip = zip;
     }
 
-    public String getServices() {
-        return services;
+    public String getCity() {
+        return city;
     }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
 
     public int getStreetNum() {
         return streetNum;
