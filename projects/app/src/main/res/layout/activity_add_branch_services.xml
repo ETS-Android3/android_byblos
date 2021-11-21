@@ -14,65 +14,20 @@
             android:id="@+id/allServicesBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#84B58F"
             android:gravity="center"
-            android:text="Services to add"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:background="#84B58F"
+            android:textStyle="bold"
+            android:text="Services to add" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="30dp" />
 
-        <CheckBox
-            android:id="@+id/checkBoxTruck"
+
+        <ListView
+            android:id="@+id/addServiceOptionsListView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Truck Rental" />
-
-        <CheckBox
-            android:id="@+id/checkBoxCar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Car Rental" />
-
-        <CheckBox
-            android:id="@+id/checkBoxMovingAssistance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Moving Assistance" />
-
-        <CheckBox
-            android:id="@+id/checkBoxBike"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Bike Rental" />
-
-        <CheckBox
-            android:id="@+id/checkBoxBoat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Boat Rental" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/addButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#84B58F"
-            android:text="Add" />
-
-
-        <!--        <ListView-->
-        <!--            android:id="@+id/addServiceOptionsListView"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent" >-->
-
-        <!--        </ListView>-->
-
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 </RelativeLayout>

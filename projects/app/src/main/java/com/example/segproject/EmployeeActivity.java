@@ -100,9 +100,10 @@ public class EmployeeActivity extends AppCompatActivity {
         String zip = eTZip.getText().toString();
 
         String branchid = dbEmployeeUser.push().getKey(); //
+        String services = "";
 
 
-        ProfileInfo pi = new ProfileInfo(num,street,phoneNum,branchid,city, state, country, zip);
+        ProfileInfo pi = new ProfileInfo(num,street,phoneNum,branchid,city, state, country, zip,services);
         dbEmployeeUser.child(branchid).setValue(pi);
 
 

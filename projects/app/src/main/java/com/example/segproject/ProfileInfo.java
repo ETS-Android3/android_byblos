@@ -9,12 +9,13 @@ public class ProfileInfo {
     public String state;
     public String country;
     public String zip;
+    public String services;
 
     public ProfileInfo() {
     }
 
     public ProfileInfo(int num, String street, String phoneNum, String id, String city,
-                       String state, String country, String zip){
+                       String state, String country, String zip, String services){
         this.streetNum = num;
         this.streetName = street;
         this.phoneNum = phoneNum;
@@ -23,6 +24,7 @@ public class ProfileInfo {
         this.state = state;
         this.country = country;
         this.zip = zip;
+        this.services = services;
     }
 
     public String getCity() {

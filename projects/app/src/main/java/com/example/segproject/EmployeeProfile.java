@@ -70,7 +70,7 @@ public class EmployeeProfile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ProfileInfo profile = snapshot.getValue(ProfileInfo.class);
 
-                if(profile != null){
+                if (profile != null) {
                     int addressNum = profile.streetNum;
                     addressName = profile.streetName;
                     city = profile.city;
@@ -79,19 +79,19 @@ public class EmployeeProfile extends AppCompatActivity {
                     zip = profile.zip;
                     phoneNumber = profile.phoneNum;
 
-//                    services = profile.services;
+                    services = profile.services;
                     addressEBanner.setText("Address: " + addressNum + " " + addressName + ", " +
-                            city + ", " + state + ", " + country + ", " +zip);
+                            city + ", " + state + ", " + country + ", " + zip);
                     phoneNumberEBanner.setText("Phone number: " + phoneNumber);
-//                    individualServices = services.split(",");
-//                    individualServicesRefined = new String[individualServices.length-1];
-//                    for (int i = 1; i < individualServices.length; i++) {
-//                        for(int j = 0; j < individualServicesRefined.length;j++){
-//                            individualServicesRefined[j] = individualServices[i];
-//                            System.out.println(individualServicesRefined[j]);
-//                        }
-//
-//                    }
+                    individualServices = services.split(",");
+                    individualServicesRefined = new String[individualServices.length - 1];
+                    for (int i = 1; i < individualServices.length; i++) {
+                        for (int j = 0; j < individualServicesRefined.length; j++) {
+                            individualServicesRefined[j] = individualServices[i];
+                            System.out.println(individualServicesRefined[j]);
+                        }
+
+                    }
 
                 }
 
@@ -99,7 +99,7 @@ public class EmployeeProfile extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-               Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+                Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -115,6 +115,37 @@ public class EmployeeProfile extends AppCompatActivity {
         });
     }
 
+
+    protected void onStart() {//have list of all services
+        super.onStart();
+        dbbranchserv.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                branchServiceList.clear();
+
+                for (DataSnapshot info : snapshot.getChildren()) {
+                    NewService ns = info.getValue(NewService.class);
+
+                    if (ns != null) {
+                        if (individualServices.equals(ns.serviceID)) {
+                            branchServiceList.add(ns);
+                        }
+                    }
+
+
+                }
+                NewServiceList branchServiceAdapter = new NewServiceList(EmployeeProfile.this, branchServiceList);
+                branchServiceListView.setAdapter(branchServiceAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
     public void openAddBranchService(){
 
         Intent intent = new Intent(this,AddBranchService.class);
@@ -122,37 +153,6 @@ public class EmployeeProfile extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-//    protected void onStart(){//have list of all services
-//        super.onStart();
-//        dbbranchserv.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                branchServiceList.clear();
-//
-//                    for (DataSnapshot info : snapshot.getChildren()) {
-//                        NewService ns = info.getValue(NewService.class);
-//
-//                        if(ns != null){
-//                            if (individualService.equals(ns.serviceID)) {
-//                                branchServiceList.add(ns);
-//                            }
-//                        }
-//
-//
-//                    }
-//                    NewServiceList branchServiceAdapter = new NewServiceList(EmployeeProfile.this, branchServiceList);
-//                    branchServiceListView.setAdapter(branchServiceAdapter);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
 
 
 
