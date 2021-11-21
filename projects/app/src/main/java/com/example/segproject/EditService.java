@@ -282,100 +282,105 @@ public class EditService extends AppCompatActivity {
     public void updateService(String servID){
 
         if (cbisoffered.isChecked()){
-            dbRef.child(servID).child("offered").setValue(true);
+            isOffered = true;
         }else{
-            dbRef.child(servID).child("offered").setValue(false);
+            isOffered = false;
         }if (cbfirstName.isChecked()){
-            dbRef.child(servID).child("firstName").setValue(true);
+            firstName = true;
         }else{
-            dbRef.child(servID).child("firstName").setValue(false);
+            firstName = false;
         }if (cblastName.isChecked()){
-            dbRef.child(servID).child("lastName").setValue(true);
+            lastName = true;
         }else{
-            dbRef.child(servID).child("lastName").setValue(false);
+            lastName = false;
         }if (cbdob.isChecked()){
-            dbRef.child(servID).child("dob").setValue(true);
+            dob = true;
         }else{
-            dbRef.child(servID).child("dob").setValue(false);
+            dob = false;
         }if (cbaddress.isChecked()){
-            dbRef.child(servID).child("address").setValue(true);
+            address = true;
         }else{
-            dbRef.child(servID).child("address").setValue(false);
+            address = false;
         }if (cbemail.isChecked()){
-            dbRef.child(servID).child("email").setValue(true);
+            email = true;
         }else{
-            dbRef.child(servID).child("email").setValue(false);
+            email = false;
         }if (cbG1.isChecked()){
-            dbRef.child(servID).child("g1").setValue(true);
+            G1 = true;
         }else{
-            dbRef.child(servID).child("g1").setValue(false);
+            G1 = false;
         }if (cbG2.isChecked()){
-            dbRef.child(servID).child("g2").setValue(true);
+            G2 = true;
         }else{
-            dbRef.child(servID).child("g2").setValue(false);
+            G2 = false;
         }if (cbG3.isChecked()){
-            dbRef.child(servID).child("g3").setValue(true);
+            G3 = true;
         }else{
-            dbRef.child(servID).child("g3").setValue(false);
+            G3 = false;
         }if (cbcompact.isChecked()){
-            dbRef.child(servID).child("compact").setValue(true);
+            compact = true;
         }else{
-            dbRef.child(servID).child("compact").setValue(false);
+            compact = false;
         }if (cbintermediate.isChecked()){
-            dbRef.child(servID).child("intermediate").setValue(true);
+            intermediate = true;
         }else{
-            dbRef.child(servID).child("intermediate").setValue(false);
+            intermediate = false;
         }if (cbSUV.isChecked()){
-            dbRef.child(servID).child("suv").setValue(true);
+            SUV = true;
         }else{
-            dbRef.child(servID).child("suv").setValue(false);
+            SUV = false;
         }if (cbpickupdate.isChecked()){
-            dbRef.child(servID).child("pickupdate").setValue(true);
+            pickupdate = true;
         }else{
-            dbRef.child(servID).child("pickupdate").setValue(false);
+            pickupdate = false;
         }if (cbpickuptime.isChecked()){
-            dbRef.child(servID).child("pickuptime").setValue(true);
+            pickuptime = true;
         }else{
-            dbRef.child(servID).child("pickuptime").setValue(false);
+            pickuptime = false;
         }if (cbreturndate.isChecked()){
-            dbRef.child(servID).child("returndate").setValue(true);
+            returndate = true;
         }else{
-            dbRef.child(servID).child("returndate").setValue(false);
+            returndate = false;
         }if (cbreturntime.isChecked()){
-            dbRef.child(servID).child("returntime").setValue(true);
+            returntime = true;
         }else{
-            dbRef.child(servID).child("returntime").setValue(false);
+            returntime = false;
         }if (cbmovingstartlocation.isChecked()){
-            dbRef.child(servID).child("movingstartlocation").setValue(true);
+            movingstartlocation = true;
         }else{
-            dbRef.child(servID).child("movingstartlocation").setValue(false);
+            movingstartlocation = false;
         }if (cbmovingendlocation.isChecked()){
-            dbRef.child(servID).child("movingendlocation").setValue(true);
+            movingendlocation = true;
         }else{
-            dbRef.child(servID).child("movingendlocation").setValue(false);
+            movingendlocation = false;
         }if (cbarea.isChecked()){
-            dbRef.child(servID).child("area").setValue(true);
+            area = true;
         }else{
-            dbRef.child(servID).child("area").setValue(false);
+            area = false;
         }if (cbkmdriven.isChecked()){
-            dbRef.child(servID).child("kmdriven").setValue(true);
+            kmdriven = true;
         }else{
-            dbRef.child(servID).child("kmdriven").setValue(false);
+            kmdriven = false;
         }if (cbnumberofmovers.isChecked()){
-            dbRef.child(servID).child("numberofmovers").setValue(true);
+            numberofmovers = true;
         }else{
-            dbRef.child(servID).child("numberofmovers").setValue(false);
+            numberofmovers = false;
         }if (cbnumberofboxes.isChecked()){
-            dbRef.child(servID).child("numberofboxes").setValue(true);
+            numberofboxes = true;
         }else {
-            dbRef.child(servID).child("numberofboxes").setValue(false);
+            numberofboxes = false;
         }
 
         newRate = Double.parseDouble(editTextRate.getText().toString().trim());
         newName = editTextName.getText().toString().trim();
 
-        dbRef.child(servID).child("rate").setValue(newRate);
-        dbRef.child(servID).child("name").setValue(newName);
+        NewService res = new NewService(address,area,compact,dob,email,firstName,G1,G2,G3,
+         intermediate,kmdriven,lastName,movingendlocation,
+         movingstartlocation,newName,numberofboxes,numberofmovers,
+         pickupdate,pickuptime,newRate,returndate,returntime,
+         SUV,isOffered,servID);
+
+        dbRef.child(servID).setValue(res);
         Toast.makeText(getApplicationContext(), "Service Updated", Toast.LENGTH_LONG).show();
     }
 
