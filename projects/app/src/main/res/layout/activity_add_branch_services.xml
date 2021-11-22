@@ -22,6 +22,17 @@
 
         <Space
             android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#84B58F"
+            android:text="Back to Profile" />
+
+        <Space
+            android:layout_width="match_parent"
             android:layout_height="30dp" />
 
 

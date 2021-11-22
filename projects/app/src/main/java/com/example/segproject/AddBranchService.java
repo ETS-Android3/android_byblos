@@ -40,6 +40,7 @@ public class AddBranchService extends AppCompatActivity {
     String employeeID;
     String services;
     String id;
+    Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,20 @@ public class AddBranchService extends AppCompatActivity {
 
         branchServiceListView = findViewById(R.id.addServiceOptionsListView);
         branchArrayList = new ArrayList<>();
+
+        backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class);
+                intent.putExtra("branchID",uid);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
+
+
 
         //listen for service long press.
         branchServiceListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -118,6 +133,28 @@ public class AddBranchService extends AppCompatActivity {
 
     protected void onStart(){//have list of all services
         super.onStart();
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                branchArrayList.clear();
+
+                for(DataSnapshot info : snapshot.getChildren()) {
+                    NewService ns = info.getValue(NewService.class);
+                    branchArrayList.add(ns);
+                }
+                NewServiceList branchServiceAdapter = new NewServiceList(AddBranchService.this, branchArrayList);
+                branchServiceListView.setAdapter(branchServiceAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    protected void onResume() {
+
+        super.onResume();
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
