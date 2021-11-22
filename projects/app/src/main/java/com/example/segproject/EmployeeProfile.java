@@ -125,7 +125,7 @@ public class EmployeeProfile extends AppCompatActivity {
 
                     if (ns != null) {
                         for (String s : individualServicesRefined) {
-                            if (s.equals(ns.serviceID)) {
+                            if (s.equals(ns.getServiceID())) {
                                 branchServiceList.add(ns);
                             }
                         }
@@ -151,7 +151,6 @@ public class EmployeeProfile extends AppCompatActivity {
         startActivity(intent);
 
     }
-
 
 
 }

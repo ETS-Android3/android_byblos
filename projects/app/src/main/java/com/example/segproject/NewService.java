@@ -11,12 +11,12 @@ public class NewService {
     boolean dob;
     boolean address;
     boolean email;
-    boolean G1;
-    boolean G2;
-    boolean G3;
+    boolean g1;
+    boolean g2;
+    boolean g3;
     boolean compact;
     boolean intermediate;
-    boolean SUV;
+    boolean suv;
     boolean pickupdate;
     boolean pickuptime;
     boolean returndate;
@@ -36,7 +36,7 @@ public class NewService {
                       boolean intermediate, boolean kmdriven, boolean lastName, boolean movingendlocation,
                       boolean movingstartlocation, String name, boolean numberofboxes,boolean numberofmovers,
                       boolean pickupdate, boolean pickuptime,double rate,boolean returndate, boolean returntime,
-                      boolean SUV, boolean isOffered,  String serviceID) {
+                      boolean suv, boolean isOffered,  String serviceID) {
 
         this.isOffered = isOffered;
         this.name = name;
@@ -46,12 +46,12 @@ public class NewService {
         this.dob = dob;
         this.address = address;
         this.email = email;
-        this.G1 = g1;
-        this.G2 = g2;
-        this.G3 = g3;
+        this.g1 = g1;
+        this.g2 = g2;
+        this.g3 = g3;
         this.compact = compact;
         this.intermediate = intermediate;
-        this.SUV = SUV;
+        this.suv = suv;
         this.pickupdate = pickupdate;
         this.pickuptime = pickuptime;
         this.returndate = returndate;
@@ -98,15 +98,15 @@ public class NewService {
     }
 
     public boolean isG1() {
-        return G1;
+        return g1;
     }
 
     public boolean isG2() {
-        return G2;
+        return g2;
     }
 
     public boolean isG3() {
-        return G3;
+        return g3;
     }
 
     public boolean isCompact() {
@@ -118,7 +118,7 @@ public class NewService {
     }
 
     public boolean isSUV() {
-        return SUV;
+        return suv;
     }
 
     public boolean isPickupdate() {
