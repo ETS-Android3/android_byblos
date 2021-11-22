@@ -103,7 +103,7 @@ public class EmployeeProfile extends AppCompatActivity {
 
                     addressEBanner.setText("Address: " + addressNum + " " + addressName + ", " +
                             city + ", " + state + ", " + country + ", " + zip);
-                    phoneNumberEBanner.setText("Phone number: " + phoneNumber + services +"P");
+                    phoneNumberEBanner.setText("Phone number: " + phoneNumber);
 
                     individualServices = services.split(",");
 //                    individualServicesRefined = new String[individualServices.length - 1];

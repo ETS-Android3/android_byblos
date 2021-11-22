@@ -67,6 +67,14 @@ public class EmployeeActivity extends AppCompatActivity {
                     eTPhoneNumber.setError("Please enter a phone number!");
                     eTPhoneNumber.requestFocus();
                     valid = false;
+                }if (!eTPhoneNumber.getText().toString().trim().matches("^[0-9]*$")) {
+                    eTPhoneNumber.setError("Phone number must be a number!");
+                    eTPhoneNumber.requestFocus();
+                    valid = false;
+                }if (eTPhoneNumber.getText().toString().trim().length() > 12 || eTPhoneNumber.getText().toString().trim().length() < 8){
+                    eTPhoneNumber.setError("Phone number must be between 8 and 12 characters");
+                    eTPhoneNumber.requestFocus();
+                    valid = false;
                 }if (eTCity.getText().toString().isEmpty()){
                     eTCity.setError("Please enter city!");
                     eTCity.requestFocus();
@@ -94,8 +102,6 @@ public class EmployeeActivity extends AppCompatActivity {
     }
 
     public void completeEmployeeProfile(){
-
-
 
         int num = Integer.parseInt(eTnumAddressEmployee.getText().toString());
         String street = eTstreetAddressEmployee.getText().toString();
