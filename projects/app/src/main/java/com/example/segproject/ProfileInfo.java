@@ -43,6 +43,9 @@ public class ProfileInfo {
         return zip;
     }
 
+    public String getServices() {
+        return services;
+    }
 
     public int getStreetNum() {
         return streetNum;
