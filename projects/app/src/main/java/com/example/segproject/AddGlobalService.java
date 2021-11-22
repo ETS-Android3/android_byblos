@@ -83,7 +83,7 @@ public class AddGlobalService extends AppCompatActivity {
         cbnumberofmovers = findViewById(R.id.numberofmovers);
         cbnumberofboxes = findViewById(R.id.numberofboxes);
 
-        dbServices = FirebaseDatabase.getInstance().getReference().child("Service");
+        dbServices = FirebaseDatabase.getInstance().getReference().child("GlobalService");
 
         btcreate.setOnClickListener(new View.OnClickListener() {
 

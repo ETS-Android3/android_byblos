@@ -74,7 +74,7 @@ public class EditService extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_service);
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Service");
+        dbRef = FirebaseDatabase.getInstance().getReference("GlobalService");
         listView = (ListView) findViewById(R.id.newServiceListView);
         arrayList = new ArrayList<>();
 

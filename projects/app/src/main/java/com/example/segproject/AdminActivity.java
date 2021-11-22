@@ -39,7 +39,7 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         dbUsers = FirebaseDatabase.getInstance().getReference("users");
-        dbServices = FirebaseDatabase.getInstance().getReference("Service");
+        dbServices = FirebaseDatabase.getInstance().getReference("GlobalService");
 
     }
 
