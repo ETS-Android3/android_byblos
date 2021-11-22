@@ -7,8 +7,8 @@
     android:layout_centerInParent="true"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
-    android:background="#38684E"
-    android:backgroundTint="#4B7A5C"
+    android:background="#D5779585"
+    android:backgroundTint="#D54B7A5C"
     android:gravity="center_horizontal"
     tools:context=".WelcomeActivity">
 
@@ -67,7 +67,7 @@
             android:id="@+id/logoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#5184B5B0"
+            android:backgroundTint="#5151918B"
             android:onClick="logout"
             android:text="@string/logout_button" />
 

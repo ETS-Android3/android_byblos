@@ -16,11 +16,11 @@
             android:id="@+id/employeeBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#4A916B"
             android:gravity="center"
             android:text="Complete Profile Information"
-            android:background="#4A916B"
             android:textColor="#E1DFDF"
-            android:textSize="40sp" />
+            android:textSize="35sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                     android:id="@+id/completeButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#689F82"
+                    android:backgroundTint="#A2C1A9"
                     android:text="Submit" />
             </LinearLayout>
         </ScrollView>

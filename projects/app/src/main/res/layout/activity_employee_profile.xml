@@ -16,10 +16,10 @@
             android:id="@+id/employeeProfileBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#82AF84"
             android:gravity="center"
             android:text="Profile"
-            android:background="#689F82"
-            android:textSize="50sp" />
+            android:textSize="40sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -47,18 +47,18 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="30dp" />
 
         <Button
             android:id="@+id/add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#689F82"
+            android:backgroundTint="#84B58F"
             android:text="Add service" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="30dp" />
 
         <TextView
             android:id="@+id/servicesEmployeeBanner"
