@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
@@ -75,20 +76,23 @@ public class EmployeeProfile extends AppCompatActivity {
                     country = profile.country;
                     zip = profile.zip;
                     phoneNumber = profile.phoneNum;
-
                     services = profile.services;
+
+
+
                     addressEBanner.setText("Address: " + addressNum + " " + addressName + ", " +
                             city + ", " + state + ", " + country + ", " + zip);
-                    phoneNumberEBanner.setText("Phone number: " + phoneNumber);
-                    individualServices = services.split(",");
+                    phoneNumberEBanner.setText("Phone number: " + phoneNumber + services );
+
+                   individualServices = services.split(",");
                     individualServicesRefined = new String[individualServices.length - 1];
                     for (int i = 1; i < individualServices.length; i++) {
                         for (int j = 0; j < individualServicesRefined.length; j++) {
                             individualServicesRefined[j] = individualServices[i];
-                            System.out.println(individualServicesRefined[j]);
                         }
 
                     }
+
 
                 }
 
