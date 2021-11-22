@@ -56,10 +56,7 @@ public class EmployeeProfile extends AppCompatActivity {
         setContentView(R.layout.activity_employee_profile);
 
         dbref = FirebaseDatabase.getInstance().getReference("branch");
-        dbserv = FirebaseDatabase.getInstance().getReference("Service");
-        dbbranchserv = FirebaseDatabase.getInstance().getReference("branchServiceList");
-
-
+        dbserv = FirebaseDatabase.getInstance().getReference("GlobalService");
         uid = getIntent().getStringExtra("branchID");
 
         final TextView addressEBanner = (TextView) findViewById(R.id.addressEmployeeBanner);
@@ -118,7 +115,7 @@ public class EmployeeProfile extends AppCompatActivity {
 
     protected void onStart() {//have list of all services
         super.onStart();
-        dbbranchserv.addValueEventListener(new ValueEventListener() {
+        dbserv.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 branchServiceList.clear();
@@ -127,12 +124,13 @@ public class EmployeeProfile extends AppCompatActivity {
                     NewService ns = info.getValue(NewService.class);
 
                     if (ns != null) {
-                        if (individualServices.equals(ns.serviceID)) {
-                            branchServiceList.add(ns);
+                        for (String s : individualServicesRefined) {
+                            if (s.equals(ns.serviceID)) {
+                                branchServiceList.add(ns);
+                            }
                         }
+
                     }
-
-
                 }
                 NewServiceList branchServiceAdapter = new NewServiceList(EmployeeProfile.this, branchServiceList);
                 branchServiceListView.setAdapter(branchServiceAdapter);
