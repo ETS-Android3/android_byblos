@@ -25,6 +25,7 @@ public class WelcomeActivity extends AppCompatActivity {
     String role;
     DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
     Button btnProfile;
+    String branchID;
 
 
     @Override
@@ -50,6 +51,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     nameTextView.setText("Welcome, " + name + "!");
                     role = userProfile.role;
                     roleTextView.setText("Your role is " + role);
+                    branchID = userProfile.branchID;
                 }
             }
 
@@ -63,8 +65,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                if(role.equals("Employee")) {
+
+                if(!branchID.equals("")){
                     profile();
+                }
+                else if(role.equals("Employee")) {
+                    completeProfile();
                 }
             }
         });
@@ -106,8 +112,18 @@ public class WelcomeActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
     }
 
+    public void completeProfile(){
+        Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class); // if able to sign in send to welcome page.
+        intent.putExtra("id", id);
+        startActivity(intent);
+        Toast.makeText(getApplicationContext(), "Complete profile", Toast.LENGTH_SHORT).show();
+    }
+
     public void profile(){
-        startActivity(new Intent(WelcomeActivity.this, EmployeeActivity.class));
+        Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class); // if able to sign in send to welcome page.
+        intent.putExtra("id", id);
+        intent.putExtra("branchID", branchID);
+        startActivity(intent);
         Toast.makeText(getApplicationContext(), "Redirecting to profile", Toast.LENGTH_SHORT).show();
     }
 }

@@ -27,11 +27,12 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EmployeeProfile extends AppCompatActivity {
 
-    String uid;
+    String branchID;
     String addressName;
     String phoneNumber;
     String city;
@@ -39,17 +40,17 @@ public class EmployeeProfile extends AppCompatActivity {
     String country;
     String zip;
     Button addService;
-    Button deleteService;
     ListView branchServiceListView;
     List<NewService> branchServiceList;
     DatabaseReference dbref;
     DatabaseReference dbserv;
-    DatabaseReference dbbranchserv;
+    DatabaseReference dbUser;
     String services;
     String[] individualServices;
     String[] individualServicesRefined;
-    String userID;
-    FirebaseUser user;
+    String id;
+    String temp = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +59,34 @@ public class EmployeeProfile extends AppCompatActivity {
 
         dbref = FirebaseDatabase.getInstance().getReference("branch");
         dbserv = FirebaseDatabase.getInstance().getReference("GlobalService");
-        uid = getIntent().getStringExtra("branchID");
+        dbUser = FirebaseDatabase.getInstance().getReference("users");
+        branchID = getIntent().getStringExtra("branchID");
+        id = getIntent().getStringExtra("id");
 
         final TextView addressEBanner = (TextView) findViewById(R.id.addressEmployeeBanner);
         final TextView phoneNumberEBanner = (TextView) findViewById(R.id.phoneNumberEmployeeBanner);
 
-        dbref.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+        dbUser.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+                if (userProfile != null) {
+                    String role = userProfile.getRole();
+                    if(role.equals("Employee")){
+                        temp = temp + branchID;
+                        dbUser.child(id).child("branchID").setValue(temp);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        dbref.child(branchID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ProfileInfo profile = snapshot.getValue(ProfileInfo.class);
@@ -76,26 +99,18 @@ public class EmployeeProfile extends AppCompatActivity {
                     country = profile.country;
                     zip = profile.zip;
                     phoneNumber = profile.phoneNum;
-                    services = profile.services;
-
-
+                    services = profile.getServices();
 
                     addressEBanner.setText("Address: " + addressNum + " " + addressName + ", " +
                             city + ", " + state + ", " + country + ", " + zip);
-                    phoneNumberEBanner.setText("Phone number: " + phoneNumber + services );
+                    phoneNumberEBanner.setText("Phone number: " + phoneNumber + services +"P");
 
-                   individualServices = services.split(",");
-                    individualServicesRefined = new String[individualServices.length - 1];
-                    for (int i = 1; i < individualServices.length; i++) {
-                        for (int j = 0; j < individualServicesRefined.length; j++) {
-                            individualServicesRefined[j] = individualServices[i];
-                        }
-
-                    }
-
-
+                    individualServices = services.split(",");
+//                    individualServicesRefined = new String[individualServices.length - 1];
+//                    for (int i = 1; i < individualServices.length; i++) {
+//                        Arrays.fill(individualServicesRefined, individualServices[i]);
+//                    }
                 }
-
             }
 
             @Override
@@ -128,16 +143,17 @@ public class EmployeeProfile extends AppCompatActivity {
                     NewService ns = info.getValue(NewService.class);
 
                     if (ns != null) {
-                        for (String s : individualServicesRefined) {
-                            if (s.equals(ns.getServiceID())) {
-                                branchServiceList.add(ns);
+                        if(individualServices!=null){
+                            for (String s : individualServices) {
+                                if (s.equals(ns.getServiceID())) {
+                                    branchServiceList.add(ns);
+                                }
                             }
                         }
-
                     }
                 }
-                NewServiceList branchServiceAdapter = new NewServiceList(EmployeeProfile.this, branchServiceList);
-                branchServiceListView.setAdapter(branchServiceAdapter);
+                NewServiceList branchAdapter = new NewServiceList(EmployeeProfile.this, branchServiceList);
+                branchServiceListView.setAdapter(branchAdapter);
             }
 
             @Override
@@ -151,7 +167,8 @@ public class EmployeeProfile extends AppCompatActivity {
     public void openAddBranchService(){
 
         Intent intent = new Intent(this,AddBranchService.class);
-        intent.putExtra("branchID",uid);
+        intent.putExtra("branchID",branchID);
+        intent.putExtra("id",id);
         startActivity(intent);
 
     }

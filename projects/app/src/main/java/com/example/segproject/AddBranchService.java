@@ -39,6 +39,7 @@ public class AddBranchService extends AppCompatActivity {
     String phoneNum;
     String employeeID;
     String services;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class AddBranchService extends AppCompatActivity {
         dbRef = FirebaseDatabase.getInstance().getReference("GlobalService");
         dbBranch = FirebaseDatabase.getInstance().getReference("branch");
         uid = getIntent().getStringExtra("branchID");
+        id = getIntent().getStringExtra("id");
         //Toast.makeText(getApplicationContext(), "welcome ." + uid , Toast.LENGTH_SHORT).show();
 
         branchServiceListView = findViewById(R.id.addServiceOptionsListView);
@@ -113,8 +115,6 @@ public class AddBranchService extends AppCompatActivity {
         services = services + "," + servID;
         dbBranch.child(uid).child("services").setValue(services);
     }
-
-
 
     protected void onStart(){//have list of all services
         super.onStart();

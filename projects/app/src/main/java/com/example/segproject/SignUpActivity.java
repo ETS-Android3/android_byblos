@@ -66,7 +66,8 @@ public class SignUpActivity extends AppCompatActivity {
 
 
             String id = dbUser.push().getKey(); //
-            User newUser = new User(username, email, password, role, id);
+            String branchID = "";
+            User newUser = new User(username, email, password, role, id, branchID);
             dbUser.child(id).setValue(newUser);
             Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if able to sign in send to welcome page.
             intent.putExtra("id", id);

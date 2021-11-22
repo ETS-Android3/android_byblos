@@ -27,13 +27,17 @@ public class EmployeeActivity extends AppCompatActivity {
 
     private EditText eTnumAddressEmployee, eTstreetAddressEmployee, eTPhoneNumber, eTCity, eTState, eTCountry, eTZip;
     Button btnComplete;
+    String id;
     DatabaseReference dbEmployeeUser;
+    DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee);
+
+        id = getIntent().getStringExtra("id");
 
         eTnumAddressEmployee = findViewById(R.id.numAddressEmployee);
         eTstreetAddressEmployee = findViewById(R.id.streetAddressEmployee);
@@ -91,6 +95,8 @@ public class EmployeeActivity extends AppCompatActivity {
 
     public void completeEmployeeProfile(){
 
+
+
         int num = Integer.parseInt(eTnumAddressEmployee.getText().toString());
         String street = eTstreetAddressEmployee.getText().toString();
         String phoneNum = eTPhoneNumber.getText().toString();
@@ -110,6 +116,7 @@ public class EmployeeActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class);
         intent.putExtra("branchID",branchid);
+        intent.putExtra("id",id);
         startActivity(intent);
         Toast.makeText(this,"Profile Completed!", Toast.LENGTH_SHORT).show();
 

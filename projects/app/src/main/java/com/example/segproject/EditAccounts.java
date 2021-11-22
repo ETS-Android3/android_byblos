@@ -63,7 +63,7 @@ public class EditAccounts extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 User customer = customers.get(position);
 
-                deleteUserDialog(customer.getUserID(), customer.getUsername());
+                deleteUserDialog(customer.getUserID(), customer.getUsername(), customer.getBranchID());
                 return false;
             }
         });
@@ -74,13 +74,13 @@ public class EditAccounts extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 User employee = employees.get(position);
 
-                deleteUserDialog(employee.getUserID(), employee.getUsername());
+                deleteUserDialog(employee.getUserID(), employee.getUsername(), employee.getBranchID());
                 return false;
             }
         });
     }
 
-    private void deleteUserDialog(final String id, String username){
+    private void deleteUserDialog(final String id, String username, String branchID){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.delete_update_layout, null);
@@ -110,10 +110,10 @@ public class EditAccounts extends AppCompatActivity {
 
                 if (validateUpdateInput(username, email, password)) {
                     if (radioNewRoleCustomer.isChecked()){
-                        updateUser(id, username, email, password, "Customer");
+                        updateUser(id, username, email, password, "Customer", branchID);
                         b.dismiss();
                     }else if (radioNewRoleEmployee.isChecked()){
-                        updateUser(id, username, email, password, "Employee");
+                        updateUser(id, username, email, password, "Employee", branchID);
                         b.dismiss();
                     }
                 }
@@ -166,9 +166,9 @@ public class EditAccounts extends AppCompatActivity {
 
     }
 
-    public void updateUser(String id, String username, String email, String password, String role){
+    public void updateUser(String id, String username, String email, String password, String role, String branchID){
 
-        User user = new User(username, email, password, role, id);
+        User user = new User(username, email, password, role, id, branchID);
         dbUsers.child(id).setValue(user);
         Toast.makeText(getApplicationContext(), "User Updated", Toast.LENGTH_LONG).show();
     }
