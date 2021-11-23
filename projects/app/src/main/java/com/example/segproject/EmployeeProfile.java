@@ -150,7 +150,7 @@ public class EmployeeProfile extends AppCompatActivity {
 
     protected void onStart() {//have list of all services
         super.onStart();
-        
+
         dbBranchRef.child(branchID).addValueEventListener(new ValueEventListener() { // grabs services offered at branch
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -217,12 +217,12 @@ public class EmployeeProfile extends AppCompatActivity {
             }
         });
     }
-    private boolean deleteService(int position){ // have to go through
 
+    private boolean deleteService(int position){ // delete service by position.
         branchServiceList.remove(position);
         String newServices = "";
         for (NewService serv : branchServiceList) {
-            newServices +=serv.getServiceID();
+            newServices = newServices + ","+serv.getServiceID();
         }
         dbBranchRef.child(branchID).child("services").setValue(newServices);// send services to db.
         onStart();
