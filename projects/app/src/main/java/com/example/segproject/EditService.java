@@ -405,6 +405,13 @@ public class EditService extends AppCompatActivity {
         });
     }
 
+    public void backButton(){
+
+        Intent intent = new Intent(this,EmployeeProfile.class);
+        startActivity(intent);
+
+    }
+
     public void openAddGlobalService(){
         Intent intent = new Intent(this,AddGlobalService.class);
         startActivity(intent);

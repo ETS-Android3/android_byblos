@@ -77,6 +77,8 @@
     <!--    <string name=""></string>-->
 
 
+    <string name = "back_button"> Back </string>
+
     // employee activity
     <string name="display_employee_address">Address: </string>
     <string name="display_employee_phoneNum">Phone Number: </string>
