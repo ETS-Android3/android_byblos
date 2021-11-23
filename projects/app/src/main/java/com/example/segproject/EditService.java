@@ -98,7 +98,27 @@ public class EditService extends AppCompatActivity {
                 return false;
             }
         });
+    }
 
+    protected void onStart(){//have list of all services
+        super.onStart();
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                arrayList.clear();
+
+                for(DataSnapshot info : snapshot.getChildren()) {
+                    NewService ns = info.getValue(NewService.class);
+                    arrayList.add(ns);
+                }
+                NewServiceList serviceAdapter = new NewServiceList(EditService.this, arrayList);
+                listView.setAdapter(serviceAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     private void deleteServiceDialog(String name,  String servID, double rate){
@@ -384,26 +404,7 @@ public class EditService extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Service Updated", Toast.LENGTH_LONG).show();
     }
 
-    protected void onStart(){//have list of all services
-        super.onStart();
-        dbRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                arrayList.clear();
 
-                for(DataSnapshot info : snapshot.getChildren()) {
-                    NewService ns = info.getValue(NewService.class);
-                    arrayList.add(ns);
-                }
-                NewServiceList serviceAdapter = new NewServiceList(EditService.this, arrayList);
-                listView.setAdapter(serviceAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
 
     public void backButton(){
 

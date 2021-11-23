@@ -23,5 +23,4 @@ public class Service {
         this.address = address;
         this.email = email;
     }
-
 }

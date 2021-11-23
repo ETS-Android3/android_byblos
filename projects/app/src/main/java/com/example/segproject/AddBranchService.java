@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -85,7 +83,7 @@ public class AddBranchService extends AppCompatActivity {
         dbBranch.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ProfileInfo profile = snapshot.getValue(ProfileInfo.class);
+                BranchProfile profile = snapshot.getValue(BranchProfile.class);
                 if(profile != null){
                     addressNum = profile.streetNum;
                     streetName = profile.streetName;

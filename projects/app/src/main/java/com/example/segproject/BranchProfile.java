@@ -1,6 +1,6 @@
 package com.example.segproject;
 
-public class ProfileInfo {
+public class BranchProfile { // branch info
     public int streetNum;
     public String streetName;
     public String phoneNum;
@@ -11,11 +11,11 @@ public class ProfileInfo {
     public String zip;
     public String services;
 
-    public ProfileInfo() {
+    public BranchProfile() {
     }
 
-    public ProfileInfo(int num, String street, String phoneNum, String id, String city,
-                       String state, String country, String zip, String services){
+    public BranchProfile(int num, String street, String phoneNum, String id, String city,
+                         String state, String country, String zip, String services){
         this.streetNum = num;
         this.streetName = street;
         this.phoneNum = phoneNum;
