@@ -67,7 +67,6 @@ public class AddBranchService extends AppCompatActivity {
         });
 
 
-
         //listen for service long press.
         branchServiceListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 

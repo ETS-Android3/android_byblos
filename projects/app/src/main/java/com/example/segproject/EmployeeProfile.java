@@ -1,11 +1,17 @@
 package com.example.segproject;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EmployeeProfile extends AppCompatActivity {
@@ -34,13 +41,21 @@ public class EmployeeProfile extends AppCompatActivity {
 
     List<NewService> branchServiceList; // stores list of global services associated with branch (branch associated with a user)
 
+    List<NewService> globalServiceList; //list of current global services.
+
+
     DatabaseReference dbBranchRef;
     DatabaseReference dbGlobServ;
     DatabaseReference dbUser;
     String services;
-    String[] individualServices;
+    String[] branchServices;
+
+    List<NewService> globalServices; //list of global services.
+    List<String> branchServices2;
+
+//    List<String> branchServices2;
     String[] individualServicesRefined;
-    String id;
+    String userid;
     String temp = "";
 
 //implement a long click listener for delete later.
@@ -55,7 +70,7 @@ public class EmployeeProfile extends AppCompatActivity {
         dbUser = FirebaseDatabase.getInstance().getReference("users"); // get reference to users.
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
-        id = getIntent().getStringExtra("id"); // user id.
+        userid = getIntent().getStringExtra("id"); // user id.
 
 //        final TextView addressEBanner = (TextView) findViewById(R.id.addressEmployeeBanner);
 //        final TextView phoneNumberEBanner = (TextView) findViewById(R.id.phoneNumberEmployeeBanner);
@@ -75,9 +90,18 @@ public class EmployeeProfile extends AppCompatActivity {
             }
         });
 
+        branchServiceListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { //listen for long press to see if you want to delete a service.
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                NewService service = branchServiceList.get(position);
 
+                showUpdateDeleteDialog(service.getName(), position);
+                return true;
+            }
+        });
 
-        dbUser.child(id).addListenerForSingleValueEvent(new ValueEventListener() { // sets user branch id.
+// use singleValueEvent since we only set branchID once.
+        dbUser.child(userid).addListenerForSingleValueEvent(new ValueEventListener() { // sets user's branch id.
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);
@@ -85,7 +109,7 @@ public class EmployeeProfile extends AppCompatActivity {
                     String role = userProfile.getRole();
                     if(role.equals("Employee")){
                         temp = temp + branchID;
-                        dbUser.child(id).child("branchID").setValue(temp);
+                        dbUser.child(userid).child("branchID").setValue(temp);
                     }
                 }
             }
@@ -108,13 +132,11 @@ public class EmployeeProfile extends AppCompatActivity {
                     country = profile.country;
                     zip = profile.zip;
                     phoneNumber = profile.phoneNum;
-//                    services = profile.getServices();
 
                     addressEBanner.setText("Address: " + addressNum + " " + addressName + ", " +
                             city + ", " + state + ", " + country + ", " + zip);
                     phoneNumberEBanner.setText("Phone number: " + phoneNumber);
 
-//                    individualServices = services.split(",");
                 }
             }
 
@@ -128,15 +150,14 @@ public class EmployeeProfile extends AppCompatActivity {
 
     protected void onStart() {//have list of all services
         super.onStart();
-
-        dbBranchRef.child(branchID).addValueEventListener(new ValueEventListener() { //changed from addListenerForSingleValueEvent to addValueEventListener
+        
+        dbBranchRef.child(branchID).addValueEventListener(new ValueEventListener() { // grabs services offered at branch
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 BranchProfile profile = snapshot.getValue(BranchProfile.class);
                 if (profile != null) {
                     services = profile.getServices();
-                    individualServices = services.split(","); // assume this is correct for now
-//                    Toast.makeText(EmployeeProfile.this, individualServices[0], Toast.LENGTH_LONG).show(); // test later to see if services being stored correctly
+                    branchServices = services.split(",");
                 }
             }
             @Override
@@ -145,8 +166,7 @@ public class EmployeeProfile extends AppCompatActivity {
             }
         });
 
-
-        dbGlobServ.addValueEventListener(new ValueEventListener() { // grab
+        dbGlobServ.addValueEventListener(new ValueEventListener() { // outputs the services offered at the branch in listview.
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 branchServiceList.clear();
@@ -155,8 +175,8 @@ public class EmployeeProfile extends AppCompatActivity {
                     NewService ns = info.getValue(NewService.class);
 
                     if (ns != null) {
-                        if(individualServices!=null){ // look here
-                            for (String s : individualServices) {
+                        if(branchServices !=null){ // look here
+                            for (String s : branchServices) {
                                 if (s.equals(ns.getServiceID())) {
                                     branchServiceList.add(ns);
                                 }
@@ -174,61 +194,48 @@ public class EmployeeProfile extends AppCompatActivity {
         });
     }
 
-//    protected void onResume() {//have list of all services
-//        super.onResume();
-//
-//        dbBranchRef.child(branchID).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                BranchProfile profile = snapshot.getValue(BranchProfile.class);
-//                if (profile != null) {
-//                    services = profile.getServices();
-//                    individualServices = services.split(",");
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//
-//        dbGlobServ.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                branchServiceList.clear();
-//
-//                for (DataSnapshot info : snapshot.getChildren()) {
-//                    NewService ns = info.getValue(NewService.class);
-//
-//                    if (ns != null) {
-//                        if(individualServices!=null){
-//                            for (String s : individualServices) {
-//                                if (s.equals(ns.getServiceID())) {
-//                                    branchServiceList.add(ns);
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                NewServiceList branchAdapter = new NewServiceList(EmployeeProfile.this, branchServiceList);
-//                branchServiceListView.setAdapter(branchAdapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
+    private void showUpdateDeleteDialog( String serviceName, int position){ // delete service offered at branch
+//service id = id of global service we want to delete from branch.
 
-    public void openAddBranchService(){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.delete_service_offered_by_branch, null);
+        dialogBuilder.setView(dialogView);
+
+        final Button buttonDeleteService = (Button) dialogView.findViewById(R.id.deleteBranchServiceBTN);
+
+        dialogBuilder.setTitle("Delete " + serviceName + " service?");
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+        buttonDeleteService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                deleteService(position);
+                b.dismiss();
+            }
+        });
+    }
+    private boolean deleteService(int position){ // have to go through
+
+        branchServiceList.remove(position);
+        String newServices = "";
+        for (NewService serv : branchServiceList) {
+            newServices +=serv.getServiceID();
+        }
+        dbBranchRef.child(branchID).child("services").setValue(newServices);// send services to db.
+        onStart();
+        Toast.makeText(getApplicationContext(), "Service deleted", Toast.LENGTH_LONG).show();
+        return true;
+    }
+
+    private void openAddBranchService(){
 
         Intent intent = new Intent(this,AddBranchService.class);
         intent.putExtra("branchID",branchID);
-        intent.putExtra("id",id);
+        intent.putExtra("id",userid);
         startActivity(intent);
-
     }
 
 }
