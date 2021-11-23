@@ -41,8 +41,6 @@ public class EmployeeProfile extends AppCompatActivity {
 
     List<NewService> branchServiceList; // stores list of global services associated with branch (branch associated with a user)
 
-    List<NewService> globalServiceList; //list of current global services.
-
 
     DatabaseReference dbBranchRef;
     DatabaseReference dbGlobServ;
@@ -50,15 +48,11 @@ public class EmployeeProfile extends AppCompatActivity {
     String services;
     String[] branchServices;
 
-    List<NewService> globalServices; //list of global services.
-    List<String> branchServices2;
 
-//    List<String> branchServices2;
-    String[] individualServicesRefined;
     String userid;
     String temp = "";
 
-//implement a long click listener for delete later.
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +66,7 @@ public class EmployeeProfile extends AppCompatActivity {
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id.
 
-//        final TextView addressEBanner = (TextView) findViewById(R.id.addressEmployeeBanner);
-//        final TextView phoneNumberEBanner = (TextView) findViewById(R.id.phoneNumberEmployeeBanner);
-// removed final
+
 
         TextView addressEBanner = (TextView) findViewById(R.id.addressEmployeeBanner);
         TextView phoneNumberEBanner = (TextView) findViewById(R.id.phoneNumberEmployeeBanner);
