@@ -22,12 +22,27 @@
 
         <Space
             android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
             android:layout_height="30dp" />
 
 
         <ListView
             android:id="@+id/addServiceOptionsListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:drawSelectorOnTop="false"
+            android:layout_weight="5" >
+
+        </ListView>
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#84B591"
+            android:text="Back to Profile" />
     </LinearLayout>
 </RelativeLayout>
