@@ -25,11 +25,11 @@ public class EmployeeActivity extends AppCompatActivity {
 
     private EditText eTnumAddressEmployee, eTstreetAddressEmployee, eTPhoneNumber, eTCity, eTState, eTCountry, eTZip;
 
-    boolean mon = false;
-    boolean tues = false;
-    boolean wed = false;
-    boolean thu = false;
-    boolean fri = false;
+    boolean mon;
+    boolean tue;
+    boolean wed;
+    boolean thurs;
+    boolean fri;
 
 
     CheckBox monCB, tuesCB, wedCB, thuCB, friCB;
@@ -111,22 +111,6 @@ public class EmployeeActivity extends AppCompatActivity {
                     valid = false;
                 }
 
-
-
-
-
-//                if (monCB.isChecked())
-//                    mon = true;
-//                if (tuesCB.isChecked())
-//                    tues = true;
-//                if (wedCB.isChecked())
-//                    wed = true;
-//                if (thuCB.isChecked())
-//                    thu = true;
-//                if (friCB.isChecked())
-//                    fri = true;
-
-
                 if (valid){
                     completeEmployeeProfile();
                 }
@@ -154,15 +138,39 @@ public class EmployeeActivity extends AppCompatActivity {
 
         
         //checking which hours are filled in.
-        mon = monCB.isChecked();
-        tues = tuesCB.isChecked();
-        wed = wedCB.isChecked();
-        thu = thuCB.isChecked();
-        fri = friCB.isChecked();
-// end of checking which work hours are filled in.
+        if(monCB.isChecked()){
+            mon = true;
+        }else{
+            mon = false;
+        }
 
-        WorkingHours hours = new WorkingHours(id, branchid, mon,tues,wed,thu,fri);
-        dbWorkingHours.child(branchid).setValue(hours);
+        if(tuesCB.isChecked()){
+            tue = true;
+        }else{
+            tue = false;
+        }
+
+        if(wedCB.isChecked()){
+            wed = true;
+        }else{
+            wed = false;
+        }
+
+        if(thuCB.isChecked()){
+            thurs = true;
+        }else{
+            thurs = false;
+        }
+
+        if(friCB.isChecked()){
+            fri = true;
+        }else{
+            fri = false;
+        }
+// end of checking which work hours are filled in.
+        String hoursID = dbWorkingHours.push().getKey(); // get unique service id.
+        WorkingHours hours = new WorkingHours(id, branchid, hoursID, mon,tue,wed,thurs,fri);
+        dbWorkingHours.child(hoursID).setValue(hours);
 
 
         Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class);
