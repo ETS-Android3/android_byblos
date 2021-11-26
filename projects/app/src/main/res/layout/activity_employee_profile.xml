@@ -21,9 +21,15 @@
             android:text="Profile"
             android:textSize="40sp" />
 
+        <Button
+            android:id="@+id/empLogOutBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LogOut" />
+
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="27dp" />
 
         <TextView
             android:id="@+id/addressEmployeeBanner"

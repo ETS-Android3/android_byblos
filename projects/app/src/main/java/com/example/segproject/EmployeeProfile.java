@@ -37,6 +37,7 @@ public class EmployeeProfile extends AppCompatActivity {
     String country;
     String zip;
     Button addService;
+    Button empLogout;
     ListView branchServiceListView;
 
     List<NewService> branchServiceList; // stores list of global services associated with branch (branch associated with a user)
@@ -71,9 +72,19 @@ public class EmployeeProfile extends AppCompatActivity {
         TextView addressEBanner = (TextView) findViewById(R.id.addressEmployeeBanner);
         TextView phoneNumberEBanner = (TextView) findViewById(R.id.phoneNumberEmployeeBanner);
 
+        empLogout = findViewById(R.id.empLogOutBTN);
         addService = findViewById(R.id.add);
         branchServiceListView = findViewById(R.id.branchServiceListView);
         branchServiceList = new ArrayList<>();
+
+
+        empLogout.setOnClickListener(new View.OnClickListener() { // listen for logout.
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EmployeeProfile.this, MainActivity.class));
+                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         addService.setOnClickListener(new View.OnClickListener() { // listen for add service button click.
             @Override

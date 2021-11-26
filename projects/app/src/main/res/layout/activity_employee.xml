@@ -107,7 +107,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="40dp" />
+                    android:layout_height="22dp" />
 
                 <TextView
                     android:id="@+id/phoneBanner"
@@ -126,6 +126,49 @@
                     android:hint="Phone Number: "
                     android:textColor="#4A916B"
                     android:textSize="20sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="21dp" />
+
+                <TextView
+                    android:id="@+id/empWorkingHours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#689F82"
+                    android:text="Working Hours:"
+                    android:textColor="#E1DFDF"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/monCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Monday 9am-5pm" />
+
+                <CheckBox
+                    android:id="@+id/tueCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tuesday 9am-5pm" />
+
+                <CheckBox
+                    android:id="@+id/wedCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Wednesday 9am-5pm" />
+
+                <CheckBox
+                    android:id="@+id/thursCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Thursday 9am-5pm" />
+
+                <CheckBox
+                    android:id="@+id/friCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Friday 9am-5pm" />
 
                 <Button
                     android:id="@+id/completeButton"

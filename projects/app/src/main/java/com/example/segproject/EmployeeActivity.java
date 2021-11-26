@@ -2,12 +2,20 @@ package com.example.segproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.wifi.WpsInfo;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -16,9 +24,19 @@ import com.google.firebase.database.FirebaseDatabase;
 public class EmployeeActivity extends AppCompatActivity {
 
     private EditText eTnumAddressEmployee, eTstreetAddressEmployee, eTPhoneNumber, eTCity, eTState, eTCountry, eTZip;
+
+    boolean mon = false;
+    boolean tues = false;
+    boolean wed = false;
+    boolean thu = false;
+    boolean fri = false;
+
+
+    CheckBox monCB, tuesCB, wedCB, thuCB, friCB;
     Button btnComplete;
     String id;
     DatabaseReference dbEmployeeUser;
+    DatabaseReference dbWorkingHours;
     DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
 
 
@@ -37,7 +55,17 @@ public class EmployeeActivity extends AppCompatActivity {
         eTZip = findViewById(R.id.zipCode);
         eTCountry = findViewById(R.id.country);
         btnComplete = findViewById(R.id.completeButton);
+
+        monCB = (CheckBox) findViewById(R.id.monCheckBox);
+        tuesCB = (CheckBox) findViewById(R.id.tueCheckBox);
+        wedCB = (CheckBox) findViewById(R.id.wedCheckBox);
+        thuCB = (CheckBox) findViewById(R.id.thursCheckBox);
+        friCB = (CheckBox) findViewById(R.id.friCheckBox);
+
         dbEmployeeUser = FirebaseDatabase.getInstance().getReference().child("branch");
+        dbWorkingHours = FirebaseDatabase.getInstance().getReference().child("hours");
+
+
 
         btnComplete.setOnClickListener(new View.OnClickListener() {
 
@@ -83,13 +111,29 @@ public class EmployeeActivity extends AppCompatActivity {
                     valid = false;
                 }
 
+
+
+
+
+//                if (monCB.isChecked())
+//                    mon = true;
+//                if (tuesCB.isChecked())
+//                    tues = true;
+//                if (wedCB.isChecked())
+//                    wed = true;
+//                if (thuCB.isChecked())
+//                    thu = true;
+//                if (friCB.isChecked())
+//                    fri = true;
+
+
                 if (valid){
                     completeEmployeeProfile();
                 }
             }
          });
-
     }
+
 
     public void completeEmployeeProfile(){
 
@@ -108,6 +152,17 @@ public class EmployeeActivity extends AppCompatActivity {
         BranchProfile pi = new BranchProfile(num,street,phoneNum,branchid,city, state, country, zip,services);
         dbEmployeeUser.child(branchid).setValue(pi);
 
+        
+        //checking which hours are filled in.
+        mon = monCB.isChecked();
+        tues = tuesCB.isChecked();
+        wed = wedCB.isChecked();
+        thu = thuCB.isChecked();
+        fri = friCB.isChecked();
+// end of checking which work hours are filled in.
+
+        WorkingHours hours = new WorkingHours(id, branchid, mon,tues,wed,thu,fri);
+        dbWorkingHours.child(branchid).setValue(hours);
 
 
         Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class);
