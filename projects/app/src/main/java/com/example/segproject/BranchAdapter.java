@@ -17,6 +17,11 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
         this.list = list;
     }
 
+    public ArrayList<BranchProfile> updateData(ArrayList<BranchProfile> list){
+        this.list = list;
+        return this.list;
+    }
+
     @NonNull
     @Override
     public BranchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -26,7 +31,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
 
     @Override
     public void onBindViewHolder(@NonNull BranchViewHolder holder, int position) {
-//        holder.address.setText(list.get(position).get);
+        holder.address.setText(list.get(position).getWholeAddress());
         holder.phone.setText(list.get(position).getPhoneNum());
         holder.services.setText(list.get(position).getServices());
 
@@ -34,7 +39,11 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
 
     @Override
     public int getItemCount() {
-        return list.size();
+        if (list == null){
+            return 0;
+        }else{
+            return list.size();
+        }
     }
 
     class BranchViewHolder extends RecyclerView.ViewHolder{

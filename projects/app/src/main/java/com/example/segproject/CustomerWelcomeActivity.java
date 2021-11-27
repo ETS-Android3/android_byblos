@@ -2,6 +2,7 @@ package com.example.segproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,11 +33,11 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
     DatabaseReference dbBranches;
     TextView custName;
     Button custLogout;
-    Button searchButton;
-    EditText searchField;
-    RecyclerView searchResult;
+
+    RecyclerView searchResultRV;
     SearchView searchView;
     ArrayList<BranchProfile> branchList;
+    BranchAdapter bAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +46,19 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
 
         custName = findViewById(R.id.custNameTextView);
         custRole = findViewById(R.id.custRoleTextView);
-        searchButton = findViewById(R.id.searchBTN);
+
         custLogout = findViewById(R.id.custLogoutButton);
-        searchField = findViewById(R.id.custSearchField);
-        searchResult = findViewById(R.id.searchResult);
+
+
+        bAdapter = new BranchAdapter(null);
+
+        searchResultRV = findViewById(R.id.searchResult);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        searchResultRV.setLayoutManager(llm);
+        searchResultRV.setAdapter(bAdapter);
+
+
         searchView = findViewById(R.id.searchView);
 
         dbUsers = FirebaseDatabase.getInstance().getReference("users");
@@ -60,32 +71,8 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
 
 
 
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
-
-
-        custLogout.setOnClickListener(new View.OnClickListener() { // logout button listener.
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomerWelcomeActivity.this, MainActivity.class));
-                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         if (dbBranches != null){
-
             dbBranches.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -93,16 +80,17 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
                         branchList = new ArrayList<>();
                         for(DataSnapshot info : snapshot.getChildren()){
                             branchList.add(info.getValue(BranchProfile.class));
-
                         }
-                        BranchAdapter branchAdapter = new BranchAdapter(branchList);
-                        searchResult.setAdapter(branchAdapter);
+
+                        bAdapter.updateData(branchList);
+                        bAdapter.notifyDataSetChanged();
+//                        BranchAdapter branchAdapter = new BranchAdapter(branchList);
+//                        searchResultRV.setAdapter(branchAdapter);
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
+                    Toast.makeText(CustomerWelcomeActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -120,16 +108,71 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
                 }
             });
         }
+
+
+
+
+        custLogout.setOnClickListener(new View.OnClickListener() { // logout button listener.
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomerWelcomeActivity.this, MainActivity.class));
+                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+//
+//        if (dbBranches != null){
+//            dbBranches.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    if (snapshot.exists()){
+//                        branchList = new ArrayList<>();
+//                        for(DataSnapshot info : snapshot.getChildren()){
+//                            branchList.add(info.getValue(BranchProfile.class));
+//                        }
+//
+//                        BranchAdapter branchAdapter = new BranchAdapter(branchList);
+//                        searchResultRV.setAdapter(branchAdapter);
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                    Toast.makeText(CustomerWelcomeActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
+//        if (searchView != null){
+//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//                @Override
+//                public boolean onQueryTextSubmit(String query) {
+//                    return false;
+//                }
+//
+//                @Override
+//                public boolean onQueryTextChange(String newText) {
+//                    search(newText);
+//                    return true;
+//                }
+//            });
+//        }
     }
 
     private void search(String str) {
         ArrayList<BranchProfile> branchlist2 = new ArrayList<>();
-        for (BranchProfile obj : branchlist2){
+        for (BranchProfile obj : branchList){
             if (obj.getWholeAddress().toLowerCase().contains(str.toLowerCase())){
                 branchlist2.add(obj);
             }
         }
-        BranchAdapter branchAdapter = new BranchAdapter(branchlist2);
-        searchResult.setAdapter(branchAdapter);
+
+        bAdapter.updateData(branchlist2);
+        bAdapter.notifyDataSetChanged();
+//        BranchAdapter branchAdapter = new BranchAdapter(branchlist2);
+//        searchResultRV.setAdapter(branchAdapter);
+
     }
 }

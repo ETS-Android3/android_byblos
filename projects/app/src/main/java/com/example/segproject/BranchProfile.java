@@ -29,7 +29,7 @@ public class BranchProfile { // branch info
         this.country = country;
         this.zip = zip;
         this.services = services;
-        this.wholeAddress = streetNum + streetName + this.city + this.state + this.country + this.zip;
+        this.wholeAddress = streetNum + ", "+ streetName + ", " + this.city + ", " +  this.state + ", " + this.country +", " + this.zip;
     }
 
     public String getCity() {
@@ -68,5 +68,5 @@ public class BranchProfile { // branch info
         return employeeID;
     }
 
-    public String getWholeAddress() { return wholeAddress; }
+    public String getWholeAddress() { return (streetNum + ", "+ streetName + ", " + this.city + ", " +  this.state + ", " + this.country +", " + this.zip) ; }
 }
