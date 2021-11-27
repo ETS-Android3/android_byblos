@@ -40,6 +40,9 @@
             android:name=".EmployeeProfile"
             android:exported="true" />
         <activity
+            android:name=".BranchDisplay"
+            android:exported="true" />
+        <activity
             android:name=".AddBranchService"
             android:exported="true" />
         <activity
