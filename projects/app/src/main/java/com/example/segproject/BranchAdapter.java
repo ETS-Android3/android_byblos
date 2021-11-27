@@ -35,8 +35,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
     public void onBindViewHolder(@NonNull BranchViewHolder holder, int position) {
         holder.address.setText(list.get(position).getWholeAddress());
         holder.phone.setText(list.get(position).getPhoneNum());
-        holder.services.setText(list.get(position).getServices());
-
+        holder.servicesNames.setText(list.get(position).getServicesNames().replaceFirst(", ", ""));
     }
 
     @Override
@@ -49,13 +48,13 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
     }
 
     class BranchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView address, phone, services;
+        TextView address, phone, servicesNames;
         OnBranchListener onBranchListener;
         public BranchViewHolder(@NonNull View itemView, OnBranchListener onBranchListener){
             super(itemView);
             address = itemView.findViewById(R.id.searchAddress);
             phone = itemView.findViewById(R.id.searchPhoneNumber);
-            services = itemView.findViewById(R.id.searchServices);
+            servicesNames = itemView.findViewById(R.id.searchServices);
             this.onBranchListener = onBranchListener;
 
             itemView.setOnClickListener(this);

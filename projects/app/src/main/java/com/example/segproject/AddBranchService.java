@@ -39,6 +39,7 @@ public class AddBranchService extends AppCompatActivity {
     String services;
     String id;
     Button backButton;
+    String servicesName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,7 @@ public class AddBranchService extends AppCompatActivity {
                     phoneNum = profile.phoneNum;
                     employeeID = profile.branchID;
                     services = profile.services;
+                    servicesName = profile.servicesNames;
                 }
             }
 
@@ -115,7 +117,7 @@ public class AddBranchService extends AppCompatActivity {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addBranchServiceMethod(servID);
+                addBranchServiceMethod(servID, name);
                 //Toast.makeText(getApplicationContext(), "welcome ." + servID , Toast.LENGTH_SHORT).show();
                 b.dismiss();
 
@@ -123,9 +125,11 @@ public class AddBranchService extends AppCompatActivity {
         });
     }
 
-    public void addBranchServiceMethod(String servID){
+    public void addBranchServiceMethod(String servID, String name){
+        servicesName = servicesName + ", " + name;
         services = services + "," + servID;
         dbBranch.child(uid).child("services").setValue(services);
+        dbBranch.child(uid).child("servicesNames").setValue(servicesName);
     }
 
     protected void onStart(){//have list of all services

@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CustomerWelcomeActivity extends AppCompatActivity implements BranchAdapter.OnBranchListener {
 
@@ -55,7 +56,6 @@ public class CustomerWelcomeActivity extends AppCompatActivity implements Branch
         custRole = findViewById(R.id.custRoleTextView);
 
         custLogout = findViewById(R.id.custLogoutButton);
-
 
         branchListSearch = new ArrayList<>();
 
@@ -132,7 +132,7 @@ public class CustomerWelcomeActivity extends AppCompatActivity implements Branch
     private void search(String str) {
         branchListSearch.clear();
         for (BranchProfile obj : branchList){
-            if (obj.getWholeAddress().toLowerCase().contains(str.toLowerCase())){
+            if (match(obj, str)){
                 branchListSearch.add(obj);
             }
         }
@@ -141,6 +141,18 @@ public class CustomerWelcomeActivity extends AppCompatActivity implements Branch
         bAdapter.notifyDataSetChanged();
 //        BranchAdapter branchAdapter = new BranchAdapter(branchlist2);
 //        searchResultRV.setAdapter(branchAdapter);
+    }
+
+    private boolean match(BranchProfile bp, String str){ //checks if search query matches address, services or working hours.
+        boolean containsAddress;
+        boolean containsServices;
+        boolean containsHours ;
+
+        containsAddress = bp.getWholeAddress().toLowerCase().contains(str.toLowerCase());
+        containsServices = bp.getServicesNames().toLowerCase().contains(str.toLowerCase());
+        containsHours = bp.getHours().toLowerCase().contains(str.toLowerCase());
+
+        return containsAddress || containsServices || containsHours;
     }
 
     @Override
