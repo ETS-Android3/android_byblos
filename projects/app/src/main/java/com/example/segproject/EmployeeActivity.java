@@ -126,7 +126,6 @@ public class EmployeeActivity extends AppCompatActivity {
         String zip = eTZip.getText().toString().trim();
 
 
-
         String branchid = dbBranch.push().getKey(); // make unique id for branch
         String hoursID = dbWorkingHours.push().getKey(); // get unique service id.
 

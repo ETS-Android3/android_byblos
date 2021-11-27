@@ -88,7 +88,14 @@
             android:id="@+id/searchResult"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ListView
+            android:id="@+id/searchResultLV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -70,7 +70,7 @@ public class BranchProfile { // branch info
         return phoneNum;
     }
 
-    public String getBranchesID() {
+    public String getBranchID() {
         return branchID;
     }
 
@@ -83,9 +83,6 @@ public class BranchProfile { // branch info
 //        dbBranches = FirebaseDatabase.getInstance().getReference("branch");
 
         return "";
-    }
-    public String getWorkingHours(){
-        return "" ;
     }
 
 }
