@@ -55,6 +55,12 @@
             android:textColor="#FFFFFF"
             android:textStyle="italic" />
 
+        <Button
+            android:id="@+id/testing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="testing" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="44dp"
