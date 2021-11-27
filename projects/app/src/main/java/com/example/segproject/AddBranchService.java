@@ -87,7 +87,7 @@ public class AddBranchService extends AppCompatActivity {
                     addressNum = profile.streetNum;
                     streetName = profile.streetName;
                     phoneNum = profile.phoneNum;
-                    employeeID = profile.employeeID;
+                    employeeID = profile.branchID;
                     services = profile.services;
                 }
             }
