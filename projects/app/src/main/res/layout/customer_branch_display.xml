@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EmployeeProfile">
+    tools:context=".BranchDisplay">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,34 +13,20 @@
 
 
         <TextView
-            android:id="@+id/employeeProfileBanner"
+            android:id="@+id/branchProfileTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#82AF84"
             android:gravity="center"
-            android:text="Profile"
+            android:text="Branch"
             android:textSize="40sp" />
-
-        <Button
-            android:id="@+id/empLogOutBTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#AECAB4"
-            android:text="LogOut" />
-
-        <Button
-            android:id="@+id/empHoursBTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#84B58F"
-            android:text="Working Hours" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="27dp" />
+            android:layout_height="30sp" />
 
         <TextView
-            android:id="@+id/addressEmployeeBanner"
+            android:id="@+id/branchAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#689F82"
@@ -49,10 +35,10 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height= "30sp" />
 
         <TextView
-            android:id="@+id/phoneNumberEmployeeBanner"
+            android:id="@+id/branchPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/display_employee_phoneNum"
@@ -61,29 +47,19 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="30sp" />
 
-        <Button
-            android:id="@+id/add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#84B58F"
-            android:text="Add service" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="30dp" />
 
         <TextView
-            android:id="@+id/servicesEmployeeBanner"
+            android:id="@+id/branchServices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Services: "
+            android:text="Services Offered: "
             android:textColor="#689F82"
             android:textSize="20sp" />
 
         <ListView
-            android:id="@+id/branchServiceListView"
+            android:id="@+id/branchServiceList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

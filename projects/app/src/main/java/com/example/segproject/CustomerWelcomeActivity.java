@@ -33,6 +33,13 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
     DatabaseReference dbBranches;
     TextView custName;
     Button custLogout;
+    Button testing;
+    String branchID;
+    String id;
+    String workingHours;
+    DatabaseReference dbBranchRef;
+    DatabaseReference dbGlobServ;
+    DatabaseReference dbUser;
 
     RecyclerView searchResultRV;
     SearchView searchView;
@@ -48,7 +55,7 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
         custRole = findViewById(R.id.custRoleTextView);
 
         custLogout = findViewById(R.id.custLogoutButton);
-
+        testing = findViewById(R.id.testing);
 
         bAdapter = new BranchAdapter(null);
 
@@ -68,8 +75,6 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
 
         custName.setText("Welcome, " + username + "!");
         custRole.setText("Your Role is: Customer");
-
-
 
 
         if (dbBranches != null){
@@ -117,6 +122,14 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(CustomerWelcomeActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        testing.setOnClickListener(new View.OnClickListener() { // logout button listener.
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomerWelcomeActivity.this, BranchDisplay.class));
+                Toast.makeText(getApplicationContext(), "testing", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -124,6 +124,12 @@ public class EmployeeActivity extends AppCompatActivity {
         String state = eTState.getText().toString().trim();
         String country = eTCountry.getText().toString().trim();
         String zip = eTZip.getText().toString().trim();
+<<<<<<< HEAD
+=======
+
+        String branchid = dbEmployeeUser.push().getKey(); //
+        String services = "";
+>>>>>>> 0bbc303ad2759114209d05b07efa3df19e5531bb
 
         String branchid = dbBranch.push().getKey(); // make unique id for branch
         String hoursID = dbWorkingHours.push().getKey(); // get unique service id.
