@@ -117,138 +117,49 @@ public class AddGlobalService extends AppCompatActivity {
             String name = etname.getText().toString();
             double rate = Double.parseDouble(etrate.getText().toString());
 
-            if(cbfirstName.isChecked()){
-                firstName = true;
-            }else{
-                firstName = false;
-            }
+            firstName = cbfirstName.isChecked();
 
-            if(cblastName.isChecked()){
-                lastName = true;
-            }else{
-                lastName = false;
-            }
+            lastName = cblastName.isChecked();
 
-            if(cbdob.isChecked()){
-                dob = true;
-            }else{
-                dob = false;
-            }
+            dob = cbdob.isChecked();
 
-            if(cbaddress.isChecked()){
-                address = true;
-            }else{
-                address = false;
-            }
+            address = cbaddress.isChecked();
 
-            if(cbemail.isChecked()){
-                email = true;
-            }else{
-                email = false;
-            }
+            email = cbemail.isChecked();
 
-            if(cbG1.isChecked()){
-                G1 = true;
-            }else{
-                G1 = false;
-            }
+            G1 = cbG1.isChecked();
 
-            if(cbG2.isChecked()){
-                G2 = true;
-            }else{
-                G2 = false;
-            }
+            G2 = cbG2.isChecked();
 
-            if(cbG3.isChecked()){
-                G3 = true;
-            }else{
-                G3 = false;
-            }
+            G3 = cbG3.isChecked();
 
-            if(cbcompact.isChecked()){
-                compact = true;
-            }else{
-                compact = false;
-            }
+            compact = cbcompact.isChecked();
 
-            if(cbintermediate.isChecked()){
-                intermediate = true;
-            }else{
-                intermediate = false;
-            }
+            intermediate = cbintermediate.isChecked();
 
-            if(cbSUV.isChecked()){
-                SUV = true;
-            }else{
-                SUV = false;
-            }
+            SUV = cbSUV.isChecked();
 
-            if(cbpickupdate.isChecked()){
-                pickupdate = true;
-            }else{
-                pickupdate = false;
-            }
+            pickupdate = cbpickupdate.isChecked();
 
-            if(cbpickuptime.isChecked()){
-                pickuptime = true;
-            }else{
-                pickuptime = false;
-            }
+            pickuptime = cbpickuptime.isChecked();
 
-            if(cbreturndate.isChecked()){
-                returndate = true;
-            }else{
-                returndate = false;
-            }
+            returndate = cbreturndate.isChecked();
 
-            if(cbreturntime.isChecked()){
-                returntime = true;
-            }else{
-                returntime = false;
-            }
+            returntime = cbreturntime.isChecked();
 
-            if(cbmovingstartlocation.isChecked()){
-                movingstartlocation = true;
-            }else{
-                movingstartlocation = false;
-            }
+            movingstartlocation = cbmovingstartlocation.isChecked();
 
-            if(cbmovingendlocation.isChecked()){
-                movingendlocation = true;
-            }else{
-                movingendlocation = false;
-            }
+            movingendlocation = cbmovingendlocation.isChecked();
 
-            if(cbarea.isChecked()){
-                area = true;
-            }else{
-                area = false;
-            }
+            area = cbarea.isChecked();
 
-            if(cbkmdriven.isChecked()){
-                kmdriven = true;
-            }else{
-                kmdriven = false;
-            }
+            kmdriven = cbkmdriven.isChecked();
 
-            if(cbnumberofmovers.isChecked()){
-                numberofmovers = true;
-            }else{
-                numberofmovers = false;
-            }
+            numberofmovers = cbnumberofmovers.isChecked();
 
-            if(cbnumberofboxes.isChecked()){
-                numberofboxes = true;
-            }else{
-                numberofboxes = false;
-            }
-            if (cbisoffered.isChecked()){
-                isOffered = true;
-            }else{
-                isOffered = false;
-            }
+            numberofboxes = cbnumberofboxes.isChecked();
 
-
+            isOffered = cbisoffered.isChecked();
 
             String servID = dbServices.push().getKey(); // get unique service id.
 
@@ -263,9 +174,6 @@ public class AddGlobalService extends AppCompatActivity {
             startActivity(new Intent(AddGlobalService.this, EditService.class));
             Toast.makeText(this,"New service created", Toast.LENGTH_SHORT).show();
         }
-
-
-
     }
 
 

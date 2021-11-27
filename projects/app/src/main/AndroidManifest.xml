@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SEGProject">
         <activity
+            android:name=".CustomerWelcomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".EmpWorkingHours"
+            android:exported="true" />
+        <activity
             android:name=".EditAccounts"
             android:exported="true" />
         <activity
@@ -19,7 +25,7 @@
             android:name=".AdminActivity"
             android:exported="true" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".EmployeeWelcomeActivity"
             android:exported="true" />
         <activity
             android:name=".SignUpActivity"

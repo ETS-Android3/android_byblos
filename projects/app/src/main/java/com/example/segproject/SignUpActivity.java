@@ -5,28 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.renderscript.Sampler;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -64,16 +53,22 @@ public class SignUpActivity extends AppCompatActivity {
                 role = "Employee";
             }
 
-
             String id = dbUser.push().getKey(); //
             String branchID = "";
             User newUser = new User(username, email, password, role, id, branchID);
             dbUser.child(id).setValue(newUser);
-            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class); // if able to sign in send to welcome page.
-            intent.putExtra("id", id);
-            startActivity(intent);
-//            startActivityForResult (intent,0);
-            Toast.makeText(getApplicationContext(), "Signed Up!. ", Toast.LENGTH_SHORT).show();
+            if (role.equals( "Customer")){
+                Intent intent = new Intent(getApplicationContext(), CustomerWelcomeActivity.class); // if able to sign in send to welcome page.
+                intent.putExtra("id", id);
+                intent.putExtra("username", username);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Signed Up!. ", Toast.LENGTH_SHORT).show();
+            }else if (role.equals("Employee")){
+                Intent intent = new Intent(getApplicationContext(), EmployeeWelcomeActivity.class); // if able to sign in send to welcome page.
+                intent.putExtra("id", id);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Signed Up!. ", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

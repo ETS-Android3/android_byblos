@@ -35,6 +35,7 @@ public class EmployeeActivity extends AppCompatActivity {
     CheckBox monCB, tuesCB, wedCB, thuCB, friCB;
     Button btnComplete;
     String id;
+    String hoursid;
     DatabaseReference dbEmployeeUser;
     DatabaseReference dbWorkingHours;
     DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
@@ -46,6 +47,7 @@ public class EmployeeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee);
 
         id = getIntent().getStringExtra("id");
+        hoursid = getIntent().getStringExtra("hoursid");
 
         eTnumAddressEmployee = findViewById(R.id.numAddressEmployee);
         eTstreetAddressEmployee = findViewById(R.id.streetAddressEmployee);
@@ -136,38 +138,15 @@ public class EmployeeActivity extends AppCompatActivity {
         BranchProfile pi = new BranchProfile(num,street,phoneNum,branchid,city, state, country, zip,services);
         dbEmployeeUser.child(branchid).setValue(pi);
 
-        
         //checking which hours are filled in.
-        if(monCB.isChecked()){
-            mon = true;
-        }else{
-            mon = false;
-        }
-
-        if(tuesCB.isChecked()){
-            tue = true;
-        }else{
-            tue = false;
-        }
-
-        if(wedCB.isChecked()){
-            wed = true;
-        }else{
-            wed = false;
-        }
-
-        if(thuCB.isChecked()){
-            thurs = true;
-        }else{
-            thurs = false;
-        }
-
-        if(friCB.isChecked()){
-            fri = true;
-        }else{
-            fri = false;
-        }
+        mon = monCB.isChecked();
+        tue = tuesCB.isChecked();
+        wed = wedCB.isChecked();
+        thurs = thuCB.isChecked();
+        fri = friCB.isChecked();
 // end of checking which work hours are filled in.
+
+
         String hoursID = dbWorkingHours.push().getKey(); // get unique service id.
         WorkingHours hours = new WorkingHours(id, branchid, hoursID, mon,tue,wed,thurs,fri);
         dbWorkingHours.child(hoursID).setValue(hours);
@@ -176,6 +155,7 @@ public class EmployeeActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class);
         intent.putExtra("branchID",branchid);
         intent.putExtra("id",id);
+        intent.putExtra("hoursid", hoursID);
         startActivity(intent);
         Toast.makeText(this,"Profile Completed!", Toast.LENGTH_SHORT).show();
 

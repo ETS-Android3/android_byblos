@@ -31,23 +31,23 @@ public class WorkingHours {
         return branchID;
     }
 
-    public boolean isMon() {
+    public boolean getMon() {
         return mon;
     }
 
-    public boolean isTues() {
+    public boolean getTues() {
         return tues;
     }
 
-    public boolean isWed() {
+    public boolean getWed() {
         return wed;
     }
 
-    public boolean isThu() {
+    public boolean getThu() {
         return thu;
     }
 
-    public boolean isFri() {
+    public boolean getFri() {
         return fri;
     }
 

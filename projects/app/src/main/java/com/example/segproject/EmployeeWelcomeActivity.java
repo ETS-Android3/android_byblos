@@ -10,36 +10,60 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class EmployeeWelcomeActivity extends AppCompatActivity {
 
 
     String id;
     String role;
     DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
+    DatabaseReference dbWorkingHours = FirebaseDatabase.getInstance().getReference("hours");
     Button btnProfile;
+    Button empLogout;
     String branchID;
+    String hoursid;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_employee_welcome);
         btnProfile = findViewById(R.id.profileButton);
+        empLogout = findViewById(R.id.empLogoutButton);
         id = getIntent().getStringExtra("id");
 
         final TextView roleTextView = (TextView) findViewById(R.id.roleTextView);
         final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
 
+        dbWorkingHours.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot info : snapshot.getChildren()){
+                    if (info.child("employeeID").getValue().equals(id)){
+                        hoursid = info.child("hoursID").getValue().toString();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 //        Toast.makeText(getApplicationContext(), "welcome ." + id , Toast.LENGTH_SHORT).show();
 
+        empLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EmployeeWelcomeActivity.this, MainActivity.class));
+                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         dbUser.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -74,47 +98,13 @@ public class WelcomeActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-//
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//        ref = FirebaseDatabase.getInstance().getReference("users");
-//        userId = user.getUid();
-//
-//        final TextView roleTextView = (TextView) findViewById(R.id.roleTextView);
-//        final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
-//
-//        ref.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                User userProfile = snapshot.getValue(User.class);
-//
-//                if (userProfile != null){
-//                    String name = userProfile.username;
-//                    nameTextView.setText("Welcome, " + name + "!");
-//                    String role = userProfile.role;
-//                    roleTextView.setText("Your role is " + role);
-//                }
-//                else{
-////                    Toast.makeText(getApplicationContext(), "test: "  , Toast.LENGTH_LONG).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
-
     }
-    public void logout(View view){
-//        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-        Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
-    }
+
 
     public void completeProfile(){
         Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class); // if able to sign in send to welcome page.
         intent.putExtra("id", id);
+        intent.putExtra("hoursid",hoursid);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), "Complete profile", Toast.LENGTH_SHORT).show();
     }
@@ -123,6 +113,7 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class); // if able to sign in send to welcome page.
         intent.putExtra("id", id);
         intent.putExtra("branchID", branchID);
+        intent.putExtra("hoursid",hoursid);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), "Redirecting to profile", Toast.LENGTH_SHORT).show();
     }

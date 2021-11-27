@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:background="#D5779585"
+    android:backgroundTint="#D54B7A5C"
+    android:gravity="center_horizontal"
+    tools:context=".EmployeeWelcomeActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:backgroundTint="#6078CD9E" />
+
+        <EditText
+            android:id="@+id/nameTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:backgroundTint="#604CAF50"
+            android:ems="10"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="@string/welcomeMessage"
+            android:textAlignment="center"
+            android:textColor="#C1FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/roleTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="#6055B359"
+            android:ems="10"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="@string/welcomeMessage2"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/profileButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#5184B5B0"
+            android:text="Profile Information" />
+
+        <Button
+            android:id="@+id/empLogoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#5151918B"
+            android:text="@string/logout_button" />
+
+    </LinearLayout>
+
+</RelativeLayout>

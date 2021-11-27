@@ -27,6 +27,12 @@
             android:layout_height="wrap_content"
             android:text="LogOut" />
 
+        <Button
+            android:id="@+id/empHoursBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Working Hours" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="27dp" />

@@ -38,6 +38,7 @@ public class EmployeeProfile extends AppCompatActivity {
     String zip;
     Button addService;
     Button empLogout;
+    Button viewHours;
     ListView branchServiceListView;
 
     List<NewService> branchServiceList; // stores list of global services associated with branch (branch associated with a user)
@@ -51,6 +52,7 @@ public class EmployeeProfile extends AppCompatActivity {
 
 
     String userid;
+    String hoursID;
     String temp = "";
 
 
@@ -66,16 +68,30 @@ public class EmployeeProfile extends AppCompatActivity {
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id.
-
+        hoursID = getIntent().getStringExtra("hoursid");
 
 
         TextView addressEBanner = (TextView) findViewById(R.id.addressEmployeeBanner);
         TextView phoneNumberEBanner = (TextView) findViewById(R.id.phoneNumberEmployeeBanner);
 
         empLogout = findViewById(R.id.empLogOutBTN);
+        viewHours = findViewById(R.id.empHoursBTN);
+
         addService = findViewById(R.id.add);
         branchServiceListView = findViewById(R.id.branchServiceListView);
         branchServiceList = new ArrayList<>();
+
+
+        viewHours.setOnClickListener(new View.OnClickListener() { // go to hours page.
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EmployeeProfile.this,EmpWorkingHours.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("hoursid",hoursID);
+                startActivity(intent);
+            }
+        });
 
 
         empLogout.setOnClickListener(new View.OnClickListener() { // listen for logout.
