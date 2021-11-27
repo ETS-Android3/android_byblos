@@ -25,12 +25,14 @@
             android:id="@+id/empLogOutBTN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#AECAB4"
             android:text="LogOut" />
 
         <Button
             android:id="@+id/empHoursBTN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#84B58F"
             android:text="Working Hours" />
 
         <Space

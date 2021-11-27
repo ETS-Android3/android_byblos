@@ -85,6 +85,7 @@
         <entry key="app/src/main/res/layout/activity_admin.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/activity_delete_account.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/activity_edit_service.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_emp_working_hours.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_employee.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/activity_employee_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24635416666666668" />
