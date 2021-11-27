@@ -137,41 +137,7 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-//
-//        if (dbBranches != null){
-//            dbBranches.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if (snapshot.exists()){
-//                        branchList = new ArrayList<>();
-//                        for(DataSnapshot info : snapshot.getChildren()){
-//                            branchList.add(info.getValue(BranchProfile.class));
-//                        }
-//
-//                        BranchAdapter branchAdapter = new BranchAdapter(branchList);
-//                        searchResultRV.setAdapter(branchAdapter);
-//                    }
-//                }
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//                    Toast.makeText(CustomerWelcomeActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
-//        if (searchView != null){
-//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//                @Override
-//                public boolean onQueryTextSubmit(String query) {
-//                    return false;
-//                }
-//
-//                @Override
-//                public boolean onQueryTextChange(String newText) {
-//                    search(newText);
-//                    return true;
-//                }
-//            });
-//        }
+
     }
 
     private void search(String str) {
