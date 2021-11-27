@@ -37,6 +37,9 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
     String branchID;
     String id;
     String workingHours;
+    DatabaseReference dbBranchRef;
+    DatabaseReference dbGlobServ;
+    DatabaseReference dbUser;
 
     RecyclerView searchResultRV;
     SearchView searchView;
@@ -72,7 +75,6 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
 
         custName.setText("Welcome, " + username + "!");
         custRole.setText("Your Role is: Customer");
-
 
 
         if (dbBranches != null){
