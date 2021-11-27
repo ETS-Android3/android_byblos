@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D5779585"
-    android:backgroundTint="#D54B7A5C"
+    android:backgroundTint="#D572A585"
     tools:context=".CustomerWelcomeActivity">
 
 
@@ -59,6 +59,7 @@
             android:id="@+id/testing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#513A716C"
             android:text="testing" />
 
         <Space
@@ -71,9 +72,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:gravity="bottom|left"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="Search For Branch"
+            android:text="  Search For Branch"
+            android:textColor="#94E1EAE2"
             android:textSize="20sp" />
 
         <SearchView
@@ -85,8 +88,7 @@
             android:id="@+id/searchResult"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            />
+            android:scrollbars="vertical" />
 
     </LinearLayout>
 </RelativeLayout>
