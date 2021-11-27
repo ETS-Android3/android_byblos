@@ -123,13 +123,13 @@ public class EmployeeActivity extends AppCompatActivity {
 
     public void completeEmployeeProfile(){
 
-        int num = Integer.parseInt(eTnumAddressEmployee.getText().toString());
-        String street = eTstreetAddressEmployee.getText().toString();
-        String phoneNum = eTPhoneNumber.getText().toString();
-        String city = eTCity.getText().toString();
-        String state = eTState.getText().toString();
-        String country = eTCountry.getText().toString();
-        String zip = eTZip.getText().toString();
+        int num = Integer.parseInt(eTnumAddressEmployee.getText().toString().trim());
+        String street = eTstreetAddressEmployee.getText().toString().trim();
+        String phoneNum = eTPhoneNumber.getText().toString().trim();
+        String city = eTCity.getText().toString().trim();
+        String state = eTState.getText().toString().trim();
+        String country = eTCountry.getText().toString().trim();
+        String zip = eTZip.getText().toString().trim();
 
         String branchid = dbEmployeeUser.push().getKey(); //
         String services = "";
