@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class CustomerWelcomeActivity extends AppCompatActivity implements BranchAdapter.OnBranchListener {
-
+    String bID;
     String userid;
     String username;
     TextView custRole;
@@ -161,12 +161,11 @@ public class CustomerWelcomeActivity extends AppCompatActivity implements Branch
         Log.d("test", "onBranchCLick: " + branchListSearch.get(position).streetName );
 
         if (branchListSearch.size() > 0){
-            String bID;
             bID = branchListSearch.get(position).branchID;
-//            Intent intent = new Intent(CustomerWelcomeActivity.this, BranchDisplay.class);
-//            intent.putExtra("branchID", bID);
-//            intent.putExtra("id", userid);
-//            startActivity(intent);
+            Intent intent = new Intent(CustomerWelcomeActivity.this, BranchDisplay.class);
+            intent.putExtra("branchID", bID);
+            intent.putExtra("id", userid);
+            startActivity(intent);
         }
 
     }
