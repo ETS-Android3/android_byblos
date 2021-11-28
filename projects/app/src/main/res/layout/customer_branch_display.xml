@@ -21,6 +21,13 @@
             android:text="Byblos Branch"
             android:textSize="40sp" />
 
+        <Button
+            android:id="@+id/rateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#82AF84"
+            android:text="Rate Us" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="30sp" />

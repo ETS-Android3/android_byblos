@@ -33,9 +33,7 @@ public class BranchDisplay extends AppCompatActivity {
     String country;
     String zip;
     String hours;
-    Button addService;
-    Button empLogout;
-    Button viewHours;
+    Button rateUs;
     ListView branchServiceListView;
 
     List<NewService> branchServiceList; // stores list of global services associated with branch (branch associated with a user)
@@ -75,11 +73,20 @@ public class BranchDisplay extends AppCompatActivity {
         TextView addressEBanner = (TextView) findViewById(R.id.branchAddress);
         TextView phoneNumberEBanner = (TextView) findViewById(R.id.branchPhoneNumber);
         TextView hoursEBanner = (TextView) findViewById(R.id.branchHours);
-
+        rateUs = findViewById(R.id.rateButton);
 
         branchServiceListView = findViewById(R.id.branchServiceList);
         branchServiceList = new ArrayList<>();
 
+        rateUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), FeedbackPage.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                startActivity(intent);
+            }
+        });
 
         dbBranchRef.child(branchID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -145,20 +152,20 @@ public class BranchDisplay extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // sendServiceRequest(servID);
+                sendServiceRequest(servID);
                 b.dismiss();
 
             }
         });
     }
 
-//    private void sendServiceRequest(String serviceID){
-//        Intent intent = new Intent(this,ServiceRequestForm.class);
-//        intent.putExtra("serviceID", serviceID);
-//        intent.putExtra("branchID",branchID);
-//        intent.putExtra("id",userid);
-//        startActivity(intent);
-//    }
+    private void sendServiceRequest(String serviceID){
+        Intent intent = new Intent(this,ServiceRequestForm.class);
+        intent.putExtra("serviceID", serviceID);
+        intent.putExtra("branchID",branchID);
+        intent.putExtra("id",userid);
+        startActivity(intent);
+    }
 
     protected void onStart() {//have list of all services
         super.onStart();
