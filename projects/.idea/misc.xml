@@ -101,6 +101,7 @@
         <entry key="app/src/main/res/layout/delete_update_layout.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/layout_services_list.xml" value="0.1503623188405797" />
         <entry key="app/src/main/res/layout/layout_user_list.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/layout/service_request_form.xml" value="0.25" />
         <entry key="app/src/main/res/layout/update_delete_service.xml" value="0.25" />
       </map>
     </option>
