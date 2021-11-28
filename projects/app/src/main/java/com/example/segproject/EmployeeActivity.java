@@ -141,9 +141,11 @@ public class EmployeeActivity extends AppCompatActivity {
         // end of checking which work hours are filled in.
         String hoursString = "";
         hoursString = makeHours(mon,tue,wed,thurs,fri);
+        String requests = "";
+        String acceptedRequests = "";
 
 
-        BranchProfile pi = new BranchProfile(num,street,phoneNum,branchid,city, state, country, zip,services, servicesNames, hoursString);
+        BranchProfile pi = new BranchProfile(num,street,phoneNum,branchid,city, state, country, zip,services, servicesNames, hoursString, requests, acceptedRequests);
         dbBranch.child(branchid).setValue(pi); // store
 
         WorkingHours hours = new WorkingHours(userID, branchid, hoursID, mon,tue,wed,thurs,fri);

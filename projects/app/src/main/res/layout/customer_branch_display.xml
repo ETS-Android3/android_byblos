@@ -28,6 +28,31 @@
             android:backgroundTint="#82AF84"
             android:text="Rate Us" />
 
+        <TextView
+            android:id="@+id/yourRatingBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#689F82"
+            android:text="Your rating:"
+            android:gravity="center"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/customerRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#689F82"
+            android:gravity="center"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/customerComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#689F82"
+            android:gravity="center"
+            android:textSize="15sp"/>
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />

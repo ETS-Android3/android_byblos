@@ -67,7 +67,7 @@ public class EmpWorkingHours extends AppCompatActivity {
                     if (wh.getThu()){
                         thu.setText("Thursday: 9am - 5pm");
                     }else{
-                        thu.setText("Thursday: Not Working");
+                        thu.setText("Thursday: Closed");
                     }
                     if (wh.getFri()){
                         fri.setText("Friday: 9am - 5pm");

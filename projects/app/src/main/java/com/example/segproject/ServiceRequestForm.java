@@ -24,6 +24,9 @@ public class ServiceRequestForm extends AppCompatActivity {
 
     DatabaseReference dbService;
     DatabaseReference dbRequest;
+    DatabaseReference dbBranch;
+    DatabaseReference dbUser;
+
     Button submitRequest;
 
     TextView tgeneralInfo, tlicenseType, tcarType, tpickupreturn, tmovinginfo, tmiscellaneous;
@@ -58,6 +61,10 @@ public class ServiceRequestForm extends AppCompatActivity {
     String kmdriven;
     String numberofmovers;
     String numberofboxes;
+    String username;
+    String serviceName;
+
+    String serviceRequest = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +109,39 @@ public class ServiceRequestForm extends AppCompatActivity {
 
         dbService = FirebaseDatabase.getInstance().getReference("GlobalService");
         dbRequest = FirebaseDatabase.getInstance().getReference("ServiceRequests");
+        dbBranch = FirebaseDatabase.getInstance().getReference("branch");
+        dbUser = FirebaseDatabase.getInstance().getReference("users");
+
+        // get userName
+        dbUser.child(userID).addValueEventListener(new ValueEventListener() { // grabs services offered at branch
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User up = snapshot.getValue(User.class);
+                if (up != null) {
+                    username = up.getUsername();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ServiceRequestForm.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // get serviceName
+        dbService.child(serviceID).addValueEventListener(new ValueEventListener() { // grabs services offered at branch
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                NewService ns = snapshot.getValue(NewService.class);
+                if (ns != null) {
+                    serviceName = ns.getName();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ServiceRequestForm.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            }
+        });
+
 
          //find specific service and set visibility for each attribute
         dbService.child(serviceID).addListenerForSingleValueEvent(new ValueEventListener() { // sets user's branch id.
@@ -201,6 +241,12 @@ public class ServiceRequestForm extends AppCompatActivity {
 
     }
 
+    public void addBranchRequestMethod(String serviceRequestID){
+        serviceRequest = serviceRequest + serviceRequestID + ", ";
+        dbBranch.child(branchID).child("requests").setValue(serviceRequest);
+
+    }
+
     private void submitNewRequest(){
 //
         //send form info to database
@@ -228,14 +274,19 @@ public class ServiceRequestForm extends AppCompatActivity {
 
         servRequestID = dbRequest.push().getKey(); // get unique service request id.
 
+
+
         ServiceRequest sr = new ServiceRequest(address, area, compact, dob, email, firstName,
                 g1, g2, g3, intermediate, kmdriven, lastName, movingendlocation,
                 movingstartlocation, name, numberofboxes, numberofmovers,
                 pickupdate, pickuptime, rate, returndate, returntime,
-                suv, serviceID, branchID, userID);
+                suv, serviceID, branchID, userID, servRequestID, username, serviceName);
 
         // create service request sorted by service request id
         dbRequest.child(servRequestID).setValue(sr);
+
+
+        addBranchRequestMethod(servRequestID);
 
         // go back to branch display
         Intent intent = new Intent(this,BranchDisplay.class);

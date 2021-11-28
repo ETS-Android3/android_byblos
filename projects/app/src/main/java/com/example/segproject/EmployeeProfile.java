@@ -43,10 +43,19 @@ public class EmployeeProfile extends AppCompatActivity {
 
     List<NewService> branchServiceList; // stores list of global services associated with branch (branch associated with a user)
 
+    ListView branchRequestsListView;
+    List<ServiceRequest> branchRequestsServiceList;
+    String requests;
+    String[] branchRequests;
+
+    ListView branchAcceptedRequestsListView;
+    List<ServiceRequest> branchAcceptedRequestsServiceList;
+    String[] branchAcceptedRequests;
 
     DatabaseReference dbBranchRef;
     DatabaseReference dbGlobServ;
     DatabaseReference dbUser;
+    DatabaseReference dbRequests;
     String services;
     String servicesNames;
     String[] branchServices;
@@ -67,6 +76,7 @@ public class EmployeeProfile extends AppCompatActivity {
         dbBranchRef = FirebaseDatabase.getInstance().getReference("branch"); // get reference to branches
         dbGlobServ = FirebaseDatabase.getInstance().getReference("GlobalService"); // get reference to Global services
         dbUser = FirebaseDatabase.getInstance().getReference("users"); // get reference to users.
+        dbRequests= FirebaseDatabase.getInstance().getReference("ServiceRequests"); // get reference to users.
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id.
@@ -84,6 +94,17 @@ public class EmployeeProfile extends AppCompatActivity {
         branchServiceList = new ArrayList<>();
 
         branchServicesNamesList = new ArrayList<>();
+
+
+        // requests
+
+        branchRequestsListView = findViewById(R.id.branchRequestsListView);
+        branchRequestsServiceList = new ArrayList<>();
+
+        // accepted requests
+        branchAcceptedRequestsListView = findViewById(R.id.branchAcceptedRequestsListView);
+        branchAcceptedRequestsServiceList= new ArrayList<>();
+
 
         viewHours.setOnClickListener(new View.OnClickListener() { // go to hours page.
             @Override
@@ -112,12 +133,36 @@ public class EmployeeProfile extends AppCompatActivity {
             }
         });
 
+
         branchServiceListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { //listen for long press to see if you want to delete a service.
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 NewService service = branchServiceList.get(position);
 
                 showUpdateDeleteDialog(service.getName(), position);
+                return true;
+            }
+        });
+
+
+        // request long click
+        branchRequestsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { //listen for long press to see if you want to delete a service.
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ServiceRequest request = branchRequestsServiceList.get(position);
+
+                acceptRequestDialog(request.getServiceName(), request.getRequestID(),position);
+                return true;
+            }
+        });
+
+        // accepted long click
+        branchAcceptedRequestsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { //listen for long press to see if you want to delete a service.
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ServiceRequest request = branchAcceptedRequestsServiceList.get(position);
+
+               // acceptRequestDialog(request.getServiceName(), request.getRequestID(),position);
                 return true;
             }
         });
@@ -180,6 +225,10 @@ public class EmployeeProfile extends AppCompatActivity {
                 if (profile != null) {
                     services = profile.getServices();
                     branchServices = services.split(",");
+                    requests = profile.getRequests();
+                    branchRequests = requests.split(",");
+                    acceptedRequests = profile.getRequests();
+                    branchAcceptedRequests = requests.split(",");
 
                 }
             }
@@ -218,6 +267,48 @@ public class EmployeeProfile extends AppCompatActivity {
                 Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
+
+
+
+        dbRequests.addValueEventListener(new ValueEventListener() { // outputs the services offered at the branch in listview.
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                branchRequestsServiceList.clear();
+
+                for (DataSnapshot info : snapshot.getChildren()) { // iterate through all global services and check if
+                    ServiceRequest sr = info.getValue(ServiceRequest.class);
+
+                    if (sr != null) {
+                        if(branchRequests !=null){ // look here
+                            for (String s : branchRequests) {
+                                if (s.equals(sr.getRequestID())) {
+                                    branchRequestsServiceList.add(sr);
+                                }
+                            }
+
+                            for (String s : branchAcceptedRequests) {
+                                if (s.equals(sr.getRequestID())) {
+                                    branchAcceptedRequestsServiceList.add(sr);
+                                }
+                            }
+                        }
+
+                    }
+                }
+                ServiceRequestList branchRequestAdapter = new ServiceRequestList(EmployeeProfile.this, branchRequestsServiceList);
+                branchRequestsListView.setAdapter(branchRequestAdapter);
+
+                ServiceRequestList branchAcceptedRequestAdapter = new ServiceRequestList(EmployeeProfile.this, branchAcceptedRequestsServiceList);
+                branchAcceptedRequestsListView.setAdapter(branchAcceptedRequestAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
     }
 
     private void showUpdateDeleteDialog( String serviceName, int position){ // delete service offered at branch
@@ -242,6 +333,53 @@ public class EmployeeProfile extends AppCompatActivity {
                 b.dismiss();
             }
         });
+    }
+
+    private void acceptRequestDialog(String serviceName, String requestID, int position){ // delete service offered at branch
+//service id = id of global service we want to delete from branch.
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.accept_request, null);
+        dialogBuilder.setView(dialogView);
+
+        final Button buttonAcceptRequest = (Button) dialogView.findViewById(R.id.acceptButton);
+
+        dialogBuilder.setTitle("Accept " + serviceName + " service request?");
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+        buttonAcceptRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                acceptRequest(requestID, position);
+                b.dismiss();
+            }
+        });
+    }
+
+    private boolean acceptRequest(String requestID, int position){ // delete service by position.
+        branchRequestsServiceList.remove(position);
+
+        String requests = "";
+
+        for (ServiceRequest r: branchRequestsServiceList) {
+            requests = requests + "," + r.getRequestID();
+        }
+        addAcceptedBranchRequestMethod(requestID);
+
+        dbBranchRef.child(branchID).child("requests").setValue(requests);// send services to db.
+
+        onStart();
+        Toast.makeText(getApplicationContext(), "Request added", Toast.LENGTH_LONG).show();
+        return true;
+    }
+    String acceptedRequests = "";
+    public void addAcceptedBranchRequestMethod(String serviceRequestID){
+        acceptedRequests = acceptedRequests + serviceRequestID + ", ";
+        dbBranchRef.child(branchID).child("acceptedRequests").setValue(acceptedRequests);
+
     }
 
     private boolean deleteService(int position){ // delete service by position.

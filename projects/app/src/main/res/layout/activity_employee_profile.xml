@@ -21,71 +21,150 @@
             android:text="Profile"
             android:textSize="40sp" />
 
-        <Button
-            android:id="@+id/empLogOutBTN"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#AECAB4"
-            android:text="LogOut" />
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/empHoursBTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#84B58F"
-            android:text="Working Hours" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="27dp" />
+                <Button
+                    android:id="@+id/empLogOutBTN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#AECAB4"
+                    android:text="LogOut" />
 
-        <TextView
-            android:id="@+id/addressEmployeeBanner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#689F82"
-            android:text="@string/display_employee_address"
-            android:textSize="20sp" />
+                <Button
+                    android:id="@+id/empHoursBTN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#84B58F"
+                    android:text="Working Hours" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="27dp" />
 
-        <TextView
-            android:id="@+id/phoneNumberEmployeeBanner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/display_employee_phoneNum"
-            android:textColor="#689F82"
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/addressEmployeeBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/display_employee_address"
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="30dp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
 
-        <Button
-            android:id="@+id/add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#84B58F"
-            android:text="Add service" />
+                <TextView
+                    android:id="@+id/phoneNumberEmployeeBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/display_employee_phoneNum"
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="30dp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
 
-        <TextView
-            android:id="@+id/servicesEmployeeBanner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Services: "
-            android:textColor="#689F82"
-            android:textSize="20sp" />
+                <Button
+                    android:id="@+id/add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#84B58F"
+                    android:text="Add service" />
 
-        <ListView
-            android:id="@+id/branchServiceListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:id="@+id/servicesEmployeeBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Services: "
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <ListView
+                            android:id="@+id/branchServiceListView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                </ScrollView>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:id="@+id/branchRequests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Service requests: "
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <ListView
+                            android:id="@+id/branchRequestsListView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                </ScrollView>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:id="@+id/branchAcceptedRequests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Accepted Requests: "
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <ListView
+                            android:id="@+id/branchAcceptedRequestsListView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </RelativeLayout>

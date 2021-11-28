@@ -75,7 +75,6 @@ public class FeedbackPage extends AppCompatActivity {
                 showRating.setText("Your Rating: \n" + temp + "\n" + review.getText());
                 comment = review.getText().toString();
                 review.setText("");
-                ratingBar.setRating(0);
                 rateCount.setText("");
                 submitFeedback();
             }

@@ -42,6 +42,7 @@ public class BranchDisplay extends AppCompatActivity {
     DatabaseReference dbBranchRef;
     DatabaseReference dbGlobServ;
     DatabaseReference dbUser;
+    DatabaseReference dbFeedback;
     String services;
     String[] branchServices;
 
@@ -54,7 +55,8 @@ public class BranchDisplay extends AppCompatActivity {
     String name;
     double rate;
 
-
+    TextView customerRating;
+    TextView customerComment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class BranchDisplay extends AppCompatActivity {
         dbBranchRef = FirebaseDatabase.getInstance().getReference("branch"); // get reference to branches
         dbGlobServ = FirebaseDatabase.getInstance().getReference("GlobalService"); // get reference to Global services
         dbUser = FirebaseDatabase.getInstance().getReference("users"); // get reference to users.
+        dbFeedback = FirebaseDatabase.getInstance().getReference("feedback");
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
@@ -74,6 +77,8 @@ public class BranchDisplay extends AppCompatActivity {
         TextView phoneNumberEBanner = (TextView) findViewById(R.id.branchPhoneNumber);
         TextView hoursEBanner = (TextView) findViewById(R.id.branchHours);
         rateUs = findViewById(R.id.rateButton);
+        TextView customerRating = findViewById(R.id.customerRating);
+        TextView customerComment = findViewById(R.id.customerComment);
 
         branchServiceListView = findViewById(R.id.branchServiceList);
         branchServiceList = new ArrayList<>();
@@ -124,6 +129,8 @@ public class BranchDisplay extends AppCompatActivity {
             }
         });
 
+
+
         branchServiceListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
@@ -135,6 +142,29 @@ public class BranchDisplay extends AppCompatActivity {
             }
         });
 
+
+        dbFeedback.addValueEventListener(new ValueEventListener() { // outputs the services offered at the branch in listview.
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot info : snapshot.getChildren()) { // iterate through all global services and check if
+                    Feedback fb = info.getValue(Feedback.class);
+                    if (fb != null) {
+                       if(fb.getUserID().equals(userid) && fb.getBranchID().equals(branchID)){
+                            customerRating.setText("" + fb.getRating());
+                            customerComment.setText(fb.getComment());
+                       };
+
+                    }
+                }
+                NewServiceList branchAdapter = new NewServiceList(BranchDisplay.this, branchServiceList);
+                branchServiceListView.setAdapter(branchAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(BranchDisplay.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 

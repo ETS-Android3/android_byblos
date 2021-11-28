@@ -22,13 +22,16 @@ public class BranchProfile { // branch info
     public String hours;
     public String branchID;
     public String servicesNames;
+    public String requests;
+    public String acceptedRequests;
 
 
     public BranchProfile() {
     }
 
     public BranchProfile(int num, String street, String phoneNum, String id, String city,
-                         String state, String country, String zip, String services, String servicesNames, String hours){
+                         String state, String country, String zip, String services, String servicesNames, String hours,
+                         String requests, String acceptedRequests){
         this.streetNum = num;
         this.streetName = street;
         this.phoneNum = phoneNum;
@@ -40,6 +43,16 @@ public class BranchProfile { // branch info
         this.services = services;
         this.hours = hours;
         this.servicesNames = servicesNames;
+        this.requests = requests;
+        this.acceptedRequests = acceptedRequests;
+    }
+
+    public String getRequests() {
+        return requests;
+    }
+
+    public String getAcceptedRequests() {
+        return acceptedRequests;
     }
 
     public String getCity() {
