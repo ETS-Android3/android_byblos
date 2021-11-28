@@ -25,6 +25,9 @@
             android:name=".AdminActivity"
             android:exported="true" />
         <activity
+            android:name=".FeedbackPage"
+            android:exported="true" />
+        <activity
             android:name=".EmployeeWelcomeActivity"
             android:exported="true" />
         <activity
