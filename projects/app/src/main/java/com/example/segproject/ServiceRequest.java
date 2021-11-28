@@ -27,13 +27,14 @@ public class ServiceRequest {
     String kmdriven;
     String numberofmovers;
     String numberofboxes;
+    String userID;
 
     public ServiceRequest (String address, String area, boolean compact, String dob,
                            String email, String firstName, boolean g1, boolean g2, boolean g3,
                            boolean intermediate, String kmdriven, String lastName, String movingendlocation,
                            String movingstartlocation, String name, String numberofboxes, String numberofmovers,
                            String pickupdate, String pickuptime, double rate,String returndate, String returntime,
-                           boolean suv, String serviceID, String branchID){
+                           boolean suv, String serviceID, String branchID, String userID){
         this.name = name;
         this.rate = rate;
         this.firstName = firstName;
@@ -59,8 +60,11 @@ public class ServiceRequest {
         this.numberofboxes = numberofboxes;
         this.serviceID = serviceID;
         this.branchID = branchID;
+        this.userID = userID;
     }
 
+
+    public String getUserID(){return userID;}
 
     public String getServiceID(){return serviceID;}
 

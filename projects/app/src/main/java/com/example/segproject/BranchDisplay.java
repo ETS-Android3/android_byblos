@@ -85,6 +85,7 @@ public class BranchDisplay extends AppCompatActivity {
                 intent.putExtra("branchID",branchID);
                 intent.putExtra("id",userid);
                 startActivity(intent);
+                Toast.makeText(BranchDisplay.this, "Redirecting to feedback form", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -165,6 +166,7 @@ public class BranchDisplay extends AppCompatActivity {
         intent.putExtra("branchID",branchID);
         intent.putExtra("id",userid);
         startActivity(intent);
+        Toast.makeText(BranchDisplay.this, "Redirecting to form", Toast.LENGTH_LONG).show();
     }
 
     protected void onStart() {//have list of all services

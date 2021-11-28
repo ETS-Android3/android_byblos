@@ -49,6 +49,9 @@
             android:name=".AddBranchService"
             android:exported="true" />
         <activity
+            android:name=".ServiceRequestForm"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

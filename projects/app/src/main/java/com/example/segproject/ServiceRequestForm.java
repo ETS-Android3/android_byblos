@@ -23,6 +23,7 @@ public class ServiceRequestForm extends AppCompatActivity {
     // service request form where customer can fill out required info to submit a service request
 
     DatabaseReference dbService;
+    DatabaseReference dbRequest;
     Button submitRequest;
 
     TextView tgeneralInfo, tlicenseType, tcarType, tpickupreturn, tmovinginfo, tmiscellaneous;
@@ -32,8 +33,8 @@ public class ServiceRequestForm extends AppCompatActivity {
     CheckBox cG1, cG2, cG3, ccompact, cintermediate, cSUV;
     String branchID;
     String servRequestID;
-
     String serviceID;
+    String userID;
     String name;
     double rate;
     String firstName;
@@ -97,8 +98,12 @@ public class ServiceRequestForm extends AppCompatActivity {
         serviceID = getIntent().getStringExtra("serviceID");
         // get branch id from previous page
         branchID = getIntent().getStringExtra("branchID");
+        userID = getIntent().getStringExtra("id");
 
-        // find specific service and set visibility for each attribute
+        dbService = FirebaseDatabase.getInstance().getReference("GlobalService");
+        dbRequest = FirebaseDatabase.getInstance().getReference("ServiceRequests");
+
+         //find specific service and set visibility for each attribute
         dbService.child(serviceID).addListenerForSingleValueEvent(new ValueEventListener() { // sets user's branch id.
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -197,7 +202,7 @@ public class ServiceRequestForm extends AppCompatActivity {
     }
 
     private void submitNewRequest(){
-
+//
         //send form info to database
         firstName = tfirstName.getText().toString();
         lastName = tlastName.getText().toString();
@@ -221,20 +226,23 @@ public class ServiceRequestForm extends AppCompatActivity {
         numberofmovers = tnumberofmovers.getText().toString();
         numberofboxes = tnumberofboxes.getText().toString();
 
-        servRequestID = dbService.push().getKey(); // get unique service request id.
+        servRequestID = dbRequest.push().getKey(); // get unique service request id.
 
         ServiceRequest sr = new ServiceRequest(address, area, compact, dob, email, firstName,
                 g1, g2, g3, intermediate, kmdriven, lastName, movingendlocation,
                 movingstartlocation, name, numberofboxes, numberofmovers,
                 pickupdate, pickuptime, rate, returndate, returntime,
-                suv, serviceID, branchID);
+                suv, serviceID, branchID, userID);
 
         // create service request sorted by service request id
-        dbService.child(servRequestID).setValue(sr);
+        dbRequest.child(servRequestID).setValue(sr);
 
         // go back to branch display
         Intent intent = new Intent(this,BranchDisplay.class);
+        intent.putExtra("branchID",branchID);
+        intent.putExtra("id",userID);
         startActivity(intent);
+        Toast.makeText(ServiceRequestForm.this, "Back to branch profile", Toast.LENGTH_LONG).show();
     }
 
 
