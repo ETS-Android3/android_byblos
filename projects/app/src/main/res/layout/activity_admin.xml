@@ -22,7 +22,12 @@
             android:paddingVertical="20dp"
             android:text="WELCOME ADMIN"
             android:textAlignment="center"
+<<<<<<< HEAD
             android:textColor="#C1FFFFFF"
+=======
+            android:background="#84B58F"
+            android:textColor="@color/white"
+>>>>>>> 97f5d1c6bb951a555bfc9b709774ad038d72adeb
             android:textSize="30sp"
             android:textStyle="bold" />
 
