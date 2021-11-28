@@ -15,14 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:background="#84B58F"
             android:textStyle="bold"
-            android:text="Services to add" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="SERVICES TO ADD" />
 
         <Space
             android:layout_width="match_parent"
@@ -42,7 +39,7 @@
             android:id="@+id/backButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#84B591"
+            android:backgroundTint="#84B58F"
             android:text="Back to Profile" />
     </LinearLayout>
 </RelativeLayout>

@@ -14,10 +14,11 @@
             android:id="@+id/newServiceBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#92B594"
+            android:background="#84B58F"
             android:gravity="center"
             android:minHeight="48dp"
-            android:text="Add new service"
+            android:text="ADD NEW SERVICE"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
 
