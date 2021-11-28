@@ -31,6 +31,7 @@ public class ServiceRequestForm extends AppCompatActivity {
             tmovingendlocation, tarea, tkmdriven, tnumberofmovers, tnumberofboxes;
     CheckBox cG1, cG2, cG3, ccompact, cintermediate, cSUV;
     String branchID;
+    String servRequestID;
 
     String serviceID;
     String name;
@@ -220,14 +221,16 @@ public class ServiceRequestForm extends AppCompatActivity {
         numberofmovers = tnumberofmovers.getText().toString();
         numberofboxes = tnumberofboxes.getText().toString();
 
+        servRequestID = dbService.push().getKey(); // get unique service request id.
+
         ServiceRequest sr = new ServiceRequest(address, area, compact, dob, email, firstName,
                 g1, g2, g3, intermediate, kmdriven, lastName, movingendlocation,
                 movingstartlocation, name, numberofboxes, numberofmovers,
                 pickupdate, pickuptime, rate, returndate, returntime,
-                suv, serviceID);
+                suv, serviceID, branchID);
 
-        // create service request sorted by branch id
-        dbService.child(branchID).setValue(sr);
+        // create service request sorted by service request id
+        dbService.child(servRequestID).setValue(sr);
 
         // go back to branch display
         Intent intent = new Intent(this,BranchDisplay.class);

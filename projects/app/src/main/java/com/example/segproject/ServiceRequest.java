@@ -3,6 +3,7 @@ package com.example.segproject;
 public class ServiceRequest {
 
     String serviceID;
+    String branchID;
     String name;
     double rate;
     String firstName;
@@ -32,7 +33,7 @@ public class ServiceRequest {
                            boolean intermediate, String kmdriven, String lastName, String movingendlocation,
                            String movingstartlocation, String name, String numberofboxes, String numberofmovers,
                            String pickupdate, String pickuptime, double rate,String returndate, String returntime,
-                           boolean suv, String serviceID){
+                           boolean suv, String serviceID, String branchID){
         this.name = name;
         this.rate = rate;
         this.firstName = firstName;
@@ -57,10 +58,13 @@ public class ServiceRequest {
         this.numberofmovers = numberofmovers;
         this.numberofboxes = numberofboxes;
         this.serviceID = serviceID;
+        this.branchID = branchID;
     }
 
 
     public String getServiceID(){return serviceID;}
+
+    public String getBranchID(){return branchID;}
 
     public String getName() {
         return name;
