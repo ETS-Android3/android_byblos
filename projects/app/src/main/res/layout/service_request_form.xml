@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/serviceRequestForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#92B594"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:text="Service Request Form"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tgeneralInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="General Customer Info"
+                        android:visibility="visible" />
+
+                    <EditText
+                        android:id="@+id/tfirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter first name"
+                        android:inputType="textPersonName"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible" />
+
+                    <EditText
+                        android:id="@+id/tlastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter last name"
+                        android:inputType="textPersonName"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/tdob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter date of birth"
+                        android:inputType="date"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible" />
+
+                    <EditText
+                        android:id="@+id/taddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter address"
+                        android:inputType="textPostalAddress"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/temail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter email"
+                        android:inputType="textEmailAddress"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tlicenseType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="License Type"
+                        android:visibility="visible"/>
+
+                    <CheckBox
+                        android:id="@+id/cG1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="G1"
+                        android:visibility="visible"/>
+
+                    <CheckBox
+                        android:id="@+id/cG2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="G2"
+                        android:visibility="visible"/>
+
+                    <CheckBox
+                        android:id="@+id/cG3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="G3"
+                        android:visibility="visible"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tcarType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Car Preference"
+                        android:visibility="visible"/>
+
+                    <CheckBox
+                        android:id="@+id/ccompact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Compact"
+                        android:visibility="visible"/>
+
+                    <CheckBox
+                        android:id="@+id/cintermediate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Intermediate"
+                        android:visibility="visible"/>
+
+                    <CheckBox
+                        android:id="@+id/cSUV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SUV"
+                        android:visibility="visible"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tpickupreturn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pick up and Return Info"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/tpickupdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter pickup date"
+                        android:inputType="date"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/tpickuptime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter pickup time"
+                        android:inputType="time"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/treturndate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter return date"
+                        android:inputType="date"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/treturntime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter return time"
+                        android:inputType="time"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:id="@+id/tmovinginfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Moving Info"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/tmovingstartlocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter moving start location"
+                        android:inputType="textPostalAddress"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/tmovingendlocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter moving end location"
+                        android:inputType="textPostalAddress"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tmiscellaneous"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Miscellaneous"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/tarea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter area"
+                        android:inputType="number"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/tkmdriven"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter KM driven"
+                        android:inputType="number"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/tnumberofmovers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter number of movers"
+                        android:inputType="number"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                    <EditText
+                        android:id="@+id/tnumberofboxes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Enter number of boxes"
+                        android:inputType="number"
+                        android:minHeight="30dp"
+                        android:textSize="20sp"
+                        android:visibility="visible"/>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+            <Button
+                android:id="@+id/submitRequestButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#84B591"
+                android:text="Submit Request" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
