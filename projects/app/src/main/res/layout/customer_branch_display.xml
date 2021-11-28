@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:background="#82AF84"
             android:gravity="center"
-            android:text="Branch"
+            android:text="Byblos Branch"
             android:textSize="40sp" />
 
         <Space
@@ -49,6 +49,17 @@
             android:layout_width="match_parent"
             android:layout_height="30sp" />
 
+        <TextView
+            android:id="@+id/branchHours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#689F82"
+            android:text="Working hours: "
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30sp" />
 
         <TextView
             android:id="@+id/branchServices"

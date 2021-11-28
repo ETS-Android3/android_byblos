@@ -48,7 +48,9 @@ public class EmployeeProfile extends AppCompatActivity {
     DatabaseReference dbGlobServ;
     DatabaseReference dbUser;
     String services;
+    String servicesNames;
     String[] branchServices;
+    ArrayList<String> branchServicesNamesList;
 
 
     String userid;
@@ -81,6 +83,7 @@ public class EmployeeProfile extends AppCompatActivity {
         branchServiceListView = findViewById(R.id.branchServiceListView);
         branchServiceList = new ArrayList<>();
 
+        branchServicesNamesList = new ArrayList<>();
 
         viewHours.setOnClickListener(new View.OnClickListener() { // go to hours page.
             @Override
@@ -177,6 +180,7 @@ public class EmployeeProfile extends AppCompatActivity {
                 if (profile != null) {
                     services = profile.getServices();
                     branchServices = services.split(",");
+
                 }
             }
             @Override
@@ -189,6 +193,7 @@ public class EmployeeProfile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 branchServiceList.clear();
+                branchServicesNamesList.clear();
 
                 for (DataSnapshot info : snapshot.getChildren()) { // iterate through all global services and check if
                     NewService ns = info.getValue(NewService.class);
@@ -198,6 +203,8 @@ public class EmployeeProfile extends AppCompatActivity {
                             for (String s : branchServices) {
                                 if (s.equals(ns.getServiceID())) {
                                     branchServiceList.add(ns);
+                                    branchServicesNamesList.add(ns.getName());
+
                                 }
                             }
                         }
@@ -239,11 +246,16 @@ public class EmployeeProfile extends AppCompatActivity {
 
     private boolean deleteService(int position){ // delete service by position.
         branchServiceList.remove(position);
+
         String newServices = "";
+        String newServicesNames = "";
         for (NewService serv : branchServiceList) {
             newServices = newServices + ","+serv.getServiceID();
+            newServicesNames = newServicesNames + "," + serv.getName();
         }
+
         dbBranchRef.child(branchID).child("services").setValue(newServices);// send services to db.
+        dbBranchRef.child(branchID).child("serviceNames").setValue(newServicesNames); // send new service names to db.
         onStart();
         Toast.makeText(getApplicationContext(), "Service deleted", Toast.LENGTH_LONG).show();
         return true;

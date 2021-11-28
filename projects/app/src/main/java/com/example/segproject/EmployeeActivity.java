@@ -126,11 +126,11 @@ public class EmployeeActivity extends AppCompatActivity {
         String zip = eTZip.getText().toString().trim();
 
 
-
         String branchid = dbBranch.push().getKey(); // make unique id for branch
         String hoursID = dbWorkingHours.push().getKey(); // get unique service id.
 
         String services = "";
+        String servicesNames= "";
 
         //checking which hours are filled in.
         mon = monCB.isChecked();
@@ -143,7 +143,7 @@ public class EmployeeActivity extends AppCompatActivity {
         hoursString = makeHours(mon,tue,wed,thurs,fri);
 
 
-        BranchProfile pi = new BranchProfile(num,street,phoneNum,branchid,city, state, country, zip,services, hoursString);
+        BranchProfile pi = new BranchProfile(num,street,phoneNum,branchid,city, state, country, zip,services, servicesNames, hoursString);
         dbBranch.child(branchid).setValue(pi); // store
 
         WorkingHours hours = new WorkingHours(userID, branchid, hoursID, mon,tue,wed,thurs,fri);

@@ -1,7 +1,14 @@
 package com.example.segproject;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class BranchProfile { // branch info
     public int streetNum;
@@ -14,18 +21,14 @@ public class BranchProfile { // branch info
     public String services;
     public String hours;
     public String branchID;
+    public String servicesNames;
 
-//    public DatabaseReference dbGloServs;
-//    public DatabaseReference dbBranches;
-//    public DatabaseReference dbWorkingHours;
-
-    public WorkingHours branchHours;
 
     public BranchProfile() {
     }
 
     public BranchProfile(int num, String street, String phoneNum, String id, String city,
-                         String state, String country, String zip, String services, String hours){
+                         String state, String country, String zip, String services, String servicesNames, String hours){
         this.streetNum = num;
         this.streetName = street;
         this.phoneNum = phoneNum;
@@ -36,6 +39,7 @@ public class BranchProfile { // branch info
         this.zip = zip;
         this.services = services;
         this.hours = hours;
+        this.servicesNames = servicesNames;
     }
 
     public String getCity() {
@@ -70,7 +74,7 @@ public class BranchProfile { // branch info
         return phoneNum;
     }
 
-    public String getBranchesID() {
+    public String getBranchID() {
         return branchID;
     }
 
@@ -78,14 +82,7 @@ public class BranchProfile { // branch info
 
     public String getWholeAddress() { return (streetNum + ", "+ streetName + ", " + this.city + ", " +  this.state + ", " + this.country +", " + this.zip) ; }
 
-    public String getServiceNames(){
-//        dbGloServs = FirebaseDatabase.getInstance().getReference("GlobalService");
-//        dbBranches = FirebaseDatabase.getInstance().getReference("branch");
+    public String getServicesNames(){return servicesNames; }
 
-        return "";
-    }
-    public String getWorkingHours(){
-        return "" ;
-    }
 
 }

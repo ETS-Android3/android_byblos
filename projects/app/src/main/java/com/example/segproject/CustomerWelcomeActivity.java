@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class CustomerWelcomeActivity extends AppCompatActivity {
-
+public class CustomerWelcomeActivity extends AppCompatActivity implements BranchAdapter.OnBranchListener {
+    String bID;
     String userid;
     String username;
     TextView custRole;
@@ -33,18 +34,18 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
     DatabaseReference dbBranches;
     TextView custName;
     Button custLogout;
-    Button testing;
-    String branchID;
-    String id;
     String workingHours;
     DatabaseReference dbBranchRef;
     DatabaseReference dbGlobServ;
     DatabaseReference dbUser;
 
     RecyclerView searchResultRV;
+
     SearchView searchView;
     ArrayList<BranchProfile> branchList;
+    ArrayList<BranchProfile> branchListSearch;
     BranchAdapter bAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +56,15 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
         custRole = findViewById(R.id.custRoleTextView);
 
         custLogout = findViewById(R.id.custLogoutButton);
-        testing = findViewById(R.id.testing);
 
-        bAdapter = new BranchAdapter(null);
+        branchListSearch = new ArrayList<>();
 
+        bAdapter = new BranchAdapter(null, this);
         searchResultRV = findViewById(R.id.searchResult);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         searchResultRV.setLayoutManager(llm);
         searchResultRV.setAdapter(bAdapter);
-
 
         searchView = findViewById(R.id.searchView);
 
@@ -87,8 +87,9 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
                             branchList.add(info.getValue(BranchProfile.class));
                         }
 
-                        bAdapter.updateData(branchList);
-                        bAdapter.notifyDataSetChanged();
+//                        bAdapter.updateData(branchList);
+//                        bAdapter.notifyDataSetChanged();
+
 //                        BranchAdapter branchAdapter = new BranchAdapter(branchList);
 //                        searchResultRV.setAdapter(branchAdapter);
                     }
@@ -114,9 +115,6 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
             });
         }
 
-
-
-
         custLogout.setOnClickListener(new View.OnClickListener() { // logout button listener.
             @Override
             public void onClick(View v) {
@@ -124,34 +122,51 @@ public class CustomerWelcomeActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
             }
         });
-
-        testing.setOnClickListener(new View.OnClickListener() { // logout button listener.
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomerWelcomeActivity.this, BranchDisplay.class));
-                Toast.makeText(getApplicationContext(), "testing", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
     private void search(String str) {
-        ArrayList<BranchProfile> branchlist2 = new ArrayList<>();
+        branchListSearch.clear();
         for (BranchProfile obj : branchList){
-            if (obj.getWholeAddress().toLowerCase().contains(str.toLowerCase())){
-                branchlist2.add(obj);
+            if (match(obj, str)){
+                branchListSearch.add(obj);
             }
         }
 
-        bAdapter.updateData(branchlist2);
+        bAdapter.updateData(branchListSearch);
         bAdapter.notifyDataSetChanged();
 //        BranchAdapter branchAdapter = new BranchAdapter(branchlist2);
 //        searchResultRV.setAdapter(branchAdapter);
+    }
+
+    private boolean match(BranchProfile bp, String str){ //checks if search query matches address, services or working hours.
+        boolean containsAddress;
+        boolean containsServices;
+        boolean containsHours ;
+
+        containsAddress = bp.getWholeAddress().toLowerCase().contains(str.toLowerCase());
+        containsServices = bp.getServicesNames().toLowerCase().contains(str.toLowerCase());
+        containsHours = bp.getHours().toLowerCase().contains(str.toLowerCase());
+
+        return containsAddress || containsServices || containsHours;
+    }
+
+    @Override
+    public void onBranchCLick(int position) {
+        Log.d("test", "onBranchCLick: "+ position);
+        Log.d("test", "onBranchCLick: " + branchListSearch.get(position).streetName );
+
+        if (branchListSearch.size() > 0){
+            bID = branchListSearch.get(position).branchID;
+            Intent intent = new Intent(CustomerWelcomeActivity.this, BranchDisplay.class);
+            intent.putExtra("branchID", bID);
+            intent.putExtra("id", userid);
+            startActivity(intent);
+        }
 
     }
 }

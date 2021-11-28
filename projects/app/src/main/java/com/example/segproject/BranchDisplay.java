@@ -2,6 +2,7 @@ package com.example.segproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +32,7 @@ public class BranchDisplay extends AppCompatActivity {
     String state;
     String country;
     String zip;
+    String hours;
     Button addService;
     Button empLogout;
     Button viewHours;
@@ -49,6 +52,11 @@ public class BranchDisplay extends AppCompatActivity {
     String hoursID;
     String temp = "";
 
+    String serviceID;
+    String name;
+    double rate;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,28 +69,17 @@ public class BranchDisplay extends AppCompatActivity {
         dbUser = FirebaseDatabase.getInstance().getReference("users"); // get reference to users.
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
-        userid = getIntent().getStringExtra("id"); // user id.
-        hoursID = getIntent().getStringExtra("hoursid");
+        userid = getIntent().getStringExtra("id"); // user id
 
 
         TextView addressEBanner = (TextView) findViewById(R.id.branchAddress);
         TextView phoneNumberEBanner = (TextView) findViewById(R.id.branchPhoneNumber);
+        TextView hoursEBanner = (TextView) findViewById(R.id.branchHours);
 
 
         branchServiceListView = findViewById(R.id.branchServiceList);
         branchServiceList = new ArrayList<>();
 
-
-        viewHours.setOnClickListener(new View.OnClickListener() { // go to hours page.
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(com.example.segproject.BranchDisplay.this, EmpWorkingHours.class);
-                intent.putExtra("branchID", branchID);
-                intent.putExtra("id", userid);
-                intent.putExtra("hoursid", hoursID);
-                startActivity(intent);
-            }
-        });
 
         dbBranchRef.child(branchID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -97,10 +94,18 @@ public class BranchDisplay extends AppCompatActivity {
                     country = profile.country;
                     zip = profile.zip;
                     phoneNumber = profile.phoneNum;
+                    hours = profile.getHours();
+
+                    String[] times = hours.split(", ");
+                    String hourDisplay = "";
+                    for(int i = 0; i < times.length; i++){
+                        hourDisplay = hourDisplay + times[i] + ": 9:00 AM - 5:00PM" + "\n";
+                    }
 
                     addressEBanner.setText("Address: " + addressNum + " " + addressName + ", " +
                             city + ", " + state + ", " + country + ", " + zip);
                     phoneNumberEBanner.setText("Phone number: " + phoneNumber);
+                    hoursEBanner.setText("Working hours: " + "\n" + hourDisplay);
 
                 }
             }
@@ -111,8 +116,49 @@ public class BranchDisplay extends AppCompatActivity {
             }
         });
 
+        branchServiceListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                NewService serv = branchServiceList.get(position);
+                serviceID = serv.getServiceID();
+                sendServiceRequestDialog(serviceID);
+                return false;
+            }
+        });
+
 
     }
+
+    private void sendServiceRequestDialog(String servID){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.send_request, null);
+        dialogBuilder.setView(dialogView);
+
+        final Button sendButton = (Button) dialogView.findViewById(R.id.sendRequestButton);
+
+        dialogBuilder.setTitle(name);
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // sendServiceRequest(servID);
+                b.dismiss();
+
+            }
+        });
+    }
+
+//    private void sendServiceRequest(String serviceID){
+//        Intent intent = new Intent(this,ServiceRequestForm.class);
+//        intent.putExtra("serviceID", serviceID);
+//        intent.putExtra("branchID",branchID);
+//        intent.putExtra("id",userid);
+//        startActivity(intent);
+//    }
 
     protected void onStart() {//have list of all services
         super.onStart();

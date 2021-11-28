@@ -52,17 +52,17 @@ public class EmpWorkingHours extends AppCompatActivity {
                     if (wh.getMon()){
                         mon.setText("Monday: 9am - 5pm");
                     }else{
-                        mon.setText("Monday: Not Working");
+                        mon.setText("Monday: CLosed");
                     }
                     if (wh.getTues()){
                         tue.setText("Tuesday: 9am - 5pm");
                     }else{
-                        tue.setText("Tuesday: Not Working");
+                        tue.setText("Tuesday: Closed");
                     }
                     if (wh.getWed()){
                         wed.setText("Wednesday: 9am - 5pm");
                     }else{
-                        wed.setText("Wednesday: Not Working");
+                        wed.setText("Wednesday: Closed");
                     }
                     if (wh.getThu()){
                         thu.setText("Thursday: 9am - 5pm");
@@ -72,7 +72,7 @@ public class EmpWorkingHours extends AppCompatActivity {
                     if (wh.getFri()){
                         fri.setText("Friday: 9am - 5pm");
                     }else{
-                        fri.setText("Friday: Not Working");
+                        fri.setText("Friday: Closed");
                     }
                 }
             }
