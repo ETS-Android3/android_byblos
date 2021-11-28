@@ -17,98 +17,111 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#82AF84"
+            android:textColor="@color/white"
+            android:paddingVertical="20dp"
             android:gravity="center"
             android:text="Byblos Branch"
             android:textSize="40sp" />
 
-        <Button
-            android:id="@+id/rateButton"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#82AF84"
-            android:text="Rate Us" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/yourRatingBanner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#689F82"
-            android:text="Your rating:"
-            android:gravity="center"
-            android:textSize="20sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/customerRating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#689F82"
-            android:gravity="center"
-            android:textSize="15sp"/>
+                <Button
+                    android:id="@+id/rateButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#82AF84"
+                    android:text="Rate Us" />
 
-        <TextView
-            android:id="@+id/customerComment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#689F82"
-            android:gravity="center"
-            android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/yourRatingBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Your rating:"
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
+                <TextView
+                    android:id="@+id/customerRating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="#689F82"
+                    android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/branchAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#689F82"
-            android:text="@string/display_employee_address"
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/customerComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="#689F82"
+                    android:textSize="15sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height= "30sp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
 
-        <TextView
-            android:id="@+id/branchPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/display_employee_phoneNum"
-            android:textColor="#689F82"
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/branchAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/display_employee_address"
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="30sp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp" />
 
-        <TextView
-            android:id="@+id/branchHours"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#689F82"
-            android:text="Working hours: "
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/branchPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/display_employee_phoneNum"
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="30sp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp" />
 
-        <TextView
-            android:id="@+id/branchServices"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Services Offered: "
-            android:textColor="#689F82"
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/branchHours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Working hours: "
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="25dp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp" />
 
-        <ListView
-            android:id="@+id/branchServiceList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/branchServices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Services Offered: "
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp" />
+
+                <ListView
+                    android:id="@+id/branchServiceList"
+                    android:layout_width="match_parent"
+                    android:layout_height="284dp" />
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </RelativeLayout>

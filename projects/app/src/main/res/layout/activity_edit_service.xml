@@ -27,11 +27,12 @@
                 android:text="SERVICES"
                 android:textColor="@color/white"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:paddingVertical="20dp"/>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="10dp" />
 
             <Button
                 android:id="@+id/addServiceBTN"

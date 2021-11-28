@@ -16,15 +16,16 @@
             android:id="@+id/employeeBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#4A916B"
+            android:background="#84B58F"
             android:gravity="center"
             android:text="Complete Profile Information"
-            android:textColor="#E1DFDF"
+            android:padding="20dp"
+            android:textColor="@color/white"
             android:textSize="35sp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="20dp"
             android:background="#4A916B"/>
 
         <ScrollView
@@ -42,6 +43,7 @@
                     android:layout_height="wrap_content"
                     android:background="#689F82"
                     android:text="Address information: "
+                    android:paddingVertical="10dp"
                     android:textColor="#E1DFDF"
                     android:textSize="20sp" />
 
@@ -115,7 +117,8 @@
                     android:layout_height="wrap_content"
                     android:background="#689F82"
                     android:text="Phone information: "
-                    android:textColor="#E1DFDF"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/white"
                     android:textSize="20sp" />
 
                 <EditText
@@ -136,8 +139,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#689F82"
+                    android:paddingVertical="10dp"
                     android:text="Working Hours:"
-                    android:textColor="#E1DFDF"
+                    android:textColor="@color/white"
                     android:textSize="20sp" />
 
                 <CheckBox
