@@ -7,53 +7,40 @@
     android:layout_centerInParent="true"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
-    android:background="#D5779585"
-    android:backgroundTint="#D54B7A5C"
+    android:background="@color/white"
     android:gravity="center_horizontal"
     tools:context=".EmployeeWelcomeActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:backgroundTint="#6078CD9E" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/nameTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:backgroundTint="#604CAF50"
+            android:background="#84B58F"
             android:ems="10"
             android:gravity="center|center_horizontal|center_vertical"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="@string/welcomeMessage"
+            android:paddingVertical="20dp"
+            android:text="WELCOME"
             android:textAlignment="center"
-            android:textColor="#C1FFFFFF"
+            android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/roleTextView"
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:backgroundTint="#6055B359"
-            android:ems="10"
-            android:gravity="center|center_horizontal|center_vertical"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/welcomeMessage2"
-            android:textColor="#FFFFFF"
+            android:textColor="#434242"
             android:textStyle="italic" />
 
         <Button
