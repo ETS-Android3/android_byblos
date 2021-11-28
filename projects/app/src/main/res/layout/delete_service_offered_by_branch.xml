@@ -8,5 +8,6 @@
         android:id="@+id/deleteBranchServiceBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#82AF84"
         android:text="Delete" />
 </LinearLayout>

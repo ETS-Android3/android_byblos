@@ -23,21 +23,21 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="27dp" />
+            android:layout_height="45dp" />
 
         <TextView
             android:id="@+id/rateUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#82AF84"
-            android:textColor="#FFFFFF"
+            android:background="#6B916D"
             android:gravity="center"
             android:text="RATE US"
+            android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="27dp" />
+            android:layout_height="30dp" />
 
 
         <RatingBar
@@ -58,7 +58,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="#689F82"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
@@ -79,17 +80,19 @@
         <TextView
             android:id="@+id/showRating"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="30dp" />
 
         <Button
             android:id="@+id/submitReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#AECAB4"
+            android:backgroundTint="#82AF84"
             android:text="Submit" />
 
         <Button
