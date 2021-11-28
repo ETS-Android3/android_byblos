@@ -21,7 +21,7 @@
             android:text="WELCOME ADMIN"
             android:textAlignment="center"
             android:background="#84B58F"
-            android:textColor="#C1FFFFFF"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold"
             android:paddingVertical="20dp"/>

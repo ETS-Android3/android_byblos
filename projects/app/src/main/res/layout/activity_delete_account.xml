@@ -16,16 +16,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/delete_text"
-            android:textSize="24sp" />
+            android:text="EDIT OR DELETE ACCOUNT"
+            android:textAlignment="center"
+            android:background="#84B58F"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:paddingVertical="20dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp" />
+            android:layout_height="20dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,11 +43,18 @@
                 <TextView
                     android:id="@+id/customerDeleteTextView"
                     android:layout_width="match_parent"
-                    android:layout_height="31dp"
+                    android:layout_height="79dp"
                     android:layout_weight="1"
+                    android:background="#84B58F"
                     android:gravity="center"
-                    android:text="@string/customer_text"
+                    android:paddingVertical="10dp"
+                    android:text="CUSTOMERS"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
 
                 <ListView
                     android:id="@+id/CustomerListView"
@@ -64,11 +73,17 @@
                 <TextView
                     android:id="@+id/EmployeeDeleteTextView"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="#84B58F"
                     android:gravity="center"
-                    android:text="@string/employee_text"
+                    android:paddingVertical="10dp"
+                    android:text="EMPLOYEES"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
 
                 <ListView
                     android:id="@+id/EmployeeListView"
