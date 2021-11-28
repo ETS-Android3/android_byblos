@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class serviceRequestForm extends AppCompatActivity {
+public class ServiceRequestForm extends AppCompatActivity {
     // service request form where customer can fill out required info to submit a service request
 
     DatabaseReference dbService;
@@ -30,6 +30,7 @@ public class serviceRequestForm extends AppCompatActivity {
     EditText tfirstName, tlastName, tdob, taddress, temail, tpickupdate, tpickuptime, treturndate, treturntime, tmovingstartlocation,
             tmovingendlocation, tarea, tkmdriven, tnumberofmovers, tnumberofboxes;
     CheckBox cG1, cG2, cG3, ccompact, cintermediate, cSUV;
+    String branchID;
 
     String serviceID;
     String name;
@@ -92,7 +93,9 @@ public class serviceRequestForm extends AppCompatActivity {
         cSUV = findViewById(R.id.cSUV);
 
         // get service id from previous page
-        serviceID = getIntent().getStringExtra("id");
+        serviceID = getIntent().getStringExtra("serviceID");
+        // get branch id from previous page
+        branchID = getIntent().getStringExtra("branchID");
 
         // find specific service and set visibility for each attribute
         dbService.child(serviceID).addListenerForSingleValueEvent(new ValueEventListener() { // sets user's branch id.
@@ -223,8 +226,8 @@ public class serviceRequestForm extends AppCompatActivity {
                 pickupdate, pickuptime, rate, returndate, returntime,
                 suv, serviceID);
 
-        // create service request sorted by id
-        dbService.child(serviceID).setValue(sr);
+        // create service request sorted by branch id
+        dbService.child(branchID).setValue(sr);
 
         // go back to branch display
         Intent intent = new Intent(this,BranchDisplay.class);
