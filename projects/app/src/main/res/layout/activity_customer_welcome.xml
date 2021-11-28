@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D5779585"
-    android:backgroundTint="#C143835B"
+    android:backgroundTint="@color/white"
     tools:context=".CustomerWelcomeActivity">
 
 
@@ -16,11 +16,8 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="60dp" />
 
-        <EditText
+        <TextView
             android:id="@+id/custNameTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -31,25 +28,27 @@
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="@string/welcomeMessage"
+            android:text="WELCOME"
             android:textAlignment="center"
-            android:textColor="#C1FFFFFF"
-            android:textSize="35sp"
-            android:textStyle="bold" />
+            android:background="#84B58F"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:paddingVertical="20dp" />
 
-        <EditText
+        <TextView
             android:id="@+id/custRoleTextView"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:backgroundTint="#6048784A"
+            android:background="#84B58F"
             android:ems="10"
             android:gravity="center|center_horizontal|center_vertical"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="@string/welcomeMessage2"
-            android:textColor="#FFFFFF"
+            android:text="Role: "
+            android:textColor="@color/white"
             android:textStyle="italic" />
 
         <Space
@@ -65,8 +64,8 @@
             android:gravity="bottom|left"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="  Search For Branch"
-            android:textColor="#94E1EAE2"
+            android:text= "SEARCH FOR A BRANCH"
+            android:textColor="#434242"
             android:textSize="20sp" />
 
         <SearchView
@@ -90,7 +89,7 @@
             android:id="@+id/custLogoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#5151918B"
+            android:backgroundTint="#84B58F"
             android:text="@string/logout_button" />
 
     </LinearLayout>
