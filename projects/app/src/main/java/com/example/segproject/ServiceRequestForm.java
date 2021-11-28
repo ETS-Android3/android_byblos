@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +29,7 @@ public class ServiceRequestForm extends AppCompatActivity {
 
     EditText tfirstName, tlastName, tdob, taddress, temail, tpickupdate, tpickuptime, treturndate, treturntime, tmovingstartlocation,
             tmovingendlocation, tarea, tkmdriven, tnumberofmovers, tnumberofboxes;
-    CheckBox cG1, cG2, cG3, ccompact, cintermediate, cSUV;
+    RadioButton rG1, rG2, rG3, rcompact, rintermediate, rSUV;
     String branchID;
     String servRequestID;
 
@@ -86,12 +86,12 @@ public class ServiceRequestForm extends AppCompatActivity {
         tnumberofmovers = findViewById(R.id.tnumberofmovers);
         tnumberofboxes = findViewById(R.id.tnumberofboxes);
 
-        cG1 = findViewById(R.id.cG1);
-        cG2 = findViewById(R.id.cG2);
-        cG3 = findViewById(R.id.cG3);
-        ccompact = findViewById(R.id.ccompact);
-        cintermediate = findViewById(R.id.cintermediate);
-        cSUV = findViewById(R.id.cSUV);
+        rG1 = findViewById(R.id.rG1);
+        rG2 = findViewById(R.id.rG2);
+        rG3 = findViewById(R.id.rG3);
+        rcompact = findViewById(R.id.rcompact);
+        rintermediate = findViewById(R.id.rintermediate);
+        rSUV = findViewById(R.id.rSUV);
 
         // get service id from previous page
         serviceID = getIntent().getStringExtra("serviceID");
@@ -125,22 +125,22 @@ public class ServiceRequestForm extends AppCompatActivity {
                 if(!ns.isG1() && !ns.isG2() && !ns.isG3()){
                     tlicenseType.setVisibility(View.GONE);
                 }if (!ns.isG1()){
-                    cG1.setVisibility(View.GONE);
+                    rG1.setVisibility(View.GONE);
                 }if (!ns.isG2()){
-                    cG2.setVisibility(View.GONE);
+                    rG2.setVisibility(View.GONE);
                 }if (!ns.isG3()){
-                    cG3.setVisibility(View.GONE);
+                    rG3.setVisibility(View.GONE);
                 }
 
                 // set car type text visibility
                 if(!ns.isSUV() && !ns.isCompact() && !ns.isIntermediate()){
                     tcarType.setVisibility(View.GONE);
                 }if (!ns.isSUV()){
-                    cSUV.setVisibility(View.GONE);
+                    rSUV.setVisibility(View.GONE);
                 }if (!ns.isCompact()){
-                    ccompact.setVisibility(View.GONE);
+                    rcompact.setVisibility(View.GONE);
                 }if (!ns.isIntermediate()){
-                    cintermediate.setVisibility(View.GONE);
+                    rintermediate.setVisibility(View.GONE);
                 }
 
                 // set pickup/return info text visibility
@@ -204,12 +204,12 @@ public class ServiceRequestForm extends AppCompatActivity {
         dob = tdob.getText().toString();
         address = taddress.getText().toString();
         email = temail.getText().toString();
-        g1 = cG1.isChecked();
-        g2 = cG2.isChecked();
-        g3 = cG3.isChecked();
-        compact = ccompact.isChecked();
-        intermediate = cintermediate.isChecked();
-        suv = cSUV.isChecked();
+        g1 = rG1.isChecked();
+        g2 = rG2.isChecked();
+        g3 = rG3.isChecked();
+        compact = rcompact.isChecked();
+        intermediate = rintermediate.isChecked();
+        suv = rSUV.isChecked();
         pickupdate = tpickupdate.getText().toString();
         pickuptime = tpickuptime.getText().toString();
         returndate = treturndate.getText().toString();

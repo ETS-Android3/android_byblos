@@ -23,7 +23,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30sp" />
+            android:layout_height="50dp" />
 
         <TextView
             android:id="@+id/branchAddress"
@@ -68,6 +68,10 @@
             android:text="Services Offered: "
             android:textColor="#689F82"
             android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
 
         <ListView
             android:id="@+id/branchServiceList"

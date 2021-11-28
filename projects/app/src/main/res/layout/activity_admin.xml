@@ -10,38 +10,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#4A916B"
-        android:backgroundTint="#50835F"
+        android:backgroundTint="#C153936B"
         android:orientation="vertical">
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="70dp" />
+            android:layout_height="70dp"
+            android:backgroundTint="#FFFFFF" />
 
         <TextView
             android:id="@+id/adminBanner"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:ems="10"
+            android:gravity="center|center_horizontal|center_vertical"
             android:text="@string/admin_text"
-            android:textColor="#E1DFDF"
-            android:textSize="30sp" />
+            android:textAlignment="center"
+            android:textColor="#C1FFFFFF"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <Button
-            android:id="@+id/adminLogoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#7DAAA3"
-            android:onClick="logoutAdmin"
-            android:text="@string/admin_logout_button"
-            android:textColor="#454343" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="60dp" />
 
         <TextView
             android:id="@+id/numEmployeesTextView"
@@ -65,20 +57,20 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="30dp" />
 
         <Button
             android:id="@+id/editAccountButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#84B591"
+            android:backgroundTint="#A2C5AC"
             android:onClick="editAccountsOnClick"
             android:text="@string/edit_accounts_button"
             android:textColor="#434242" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="45dp" />
+            android:layout_height="50dp" />
 
         <TextView
             android:id="@+id/numServicesTextView"
@@ -90,16 +82,29 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="30dp" />
 
         <Button
             android:id="@+id/editServicesButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#84B58F"
+            android:backgroundTint="#A2C5AC"
             android:onClick="editServicesOnClick"
             android:text="@string/services_button"
             android:textColor="#333333" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/adminLogoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#5151918B"
+            android:onClick="logoutAdmin"
+            android:text="@string/admin_logout_button"
+            android:textColor="#454343" />
 
     </LinearLayout>
 </RelativeLayout>
