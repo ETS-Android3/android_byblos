@@ -9,21 +9,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#9EC5C1"
-        android:backgroundTint="#9EC5C1"
+        android:background="#E4F3E8"
         android:orientation="vertical">
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="120dp" />
 
         <TextView
             android:id="@+id/loginText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#C5DCCE"
             android:text="@string/login"
             android:textAlignment="center"
-            android:textColor="#FFFDFD"
+            android:textColor="#68876F"
             android:textSize="30sp"
             android:textStyle="bold" />
 
