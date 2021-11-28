@@ -52,7 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter first name"
                         android:inputType="textPersonName"
                         android:minHeight="30dp"
@@ -64,20 +64,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter last name"
                         android:inputType="textPersonName"
                         android:minHeight="30dp"
                         android:textSize="20sp"
-                        android:visibility="visible"/>
+                        android:visibility="visible" />
 
                     <EditText
                         android:id="@+id/tdob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
+<<<<<<< HEAD
                         android:gravity="center"
                         android:hint="Enter date of birth Day/Month/Year"
+=======
+                        android:gravity="left"
+                        android:hint="Enter date of birth"
+>>>>>>> 376b3412eb8d7f0c6ac28b0ea55e2172dfc0e4d2
                         android:inputType="date"
                         android:minHeight="30dp"
                         android:textSize="20sp"
@@ -88,7 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter address"
                         android:inputType="textPostalAddress"
                         android:minHeight="30dp"
@@ -100,7 +105,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter email"
                         android:inputType="textEmailAddress"
                         android:minHeight="30dp"
@@ -118,26 +123,31 @@
                         android:text="License Type"
                         android:visibility="visible"/>
 
-                    <CheckBox
-                        android:id="@+id/cG1"
+                    <RadioGroup
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="G1"
-                        android:visibility="visible"/>
+                        android:layout_height="match_parent" >
 
-                    <CheckBox
-                        android:id="@+id/cG2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="G2"
-                        android:visibility="visible"/>
+                        <RadioButton
+                            android:id="@+id/rG1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="G1"
+                            android:visibility="visible" />
 
-                    <CheckBox
-                        android:id="@+id/cG3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="G3"
-                        android:visibility="visible"/>
+                        <RadioButton
+                            android:id="@+id/rG2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="G2"
+                            android:visibility="visible" />
+
+                        <RadioButton
+                            android:id="@+id/rG3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="G3"
+                            android:visibility="visible" />
+                    </RadioGroup>
 
                     <Space
                         android:layout_width="match_parent"
@@ -150,26 +160,31 @@
                         android:text="Car Preference"
                         android:visibility="visible"/>
 
-                    <CheckBox
-                        android:id="@+id/ccompact"
+                    <RadioGroup
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Compact"
-                        android:visibility="visible"/>
+                        android:layout_height="match_parent" >
 
-                    <CheckBox
-                        android:id="@+id/cintermediate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Intermediate"
-                        android:visibility="visible"/>
+                        <RadioButton
+                            android:id="@+id/rcompact"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Compact"
+                            android:visibility="visible" />
 
-                    <CheckBox
-                        android:id="@+id/cSUV"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="SUV"
-                        android:visibility="visible"/>
+                        <RadioButton
+                            android:id="@+id/rintermediate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Intermediate"
+                            android:visibility="visible" />
+
+                        <RadioButton
+                            android:id="@+id/rSUV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SUV"
+                            android:visibility="visible" />
+                    </RadioGroup>
 
                     <Space
                         android:layout_width="match_parent"
@@ -187,7 +202,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter pickup date"
                         android:inputType="date"
                         android:minHeight="30dp"
@@ -199,7 +214,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter pickup time"
                         android:inputType="time"
                         android:minHeight="30dp"
@@ -211,7 +226,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter return date"
                         android:inputType="date"
                         android:minHeight="30dp"
@@ -223,7 +238,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter return time"
                         android:inputType="time"
                         android:minHeight="30dp"
@@ -247,7 +262,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter moving start location"
                         android:inputType="textPostalAddress"
                         android:minHeight="30dp"
@@ -259,7 +274,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter moving end location"
                         android:inputType="textPostalAddress"
                         android:minHeight="30dp"
@@ -282,9 +297,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter area"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:minHeight="30dp"
                         android:textSize="20sp"
                         android:visibility="visible"/>
@@ -294,7 +309,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter KM driven"
                         android:inputType="number"
                         android:minHeight="30dp"
@@ -306,7 +321,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter number of movers"
                         android:inputType="number"
                         android:minHeight="30dp"
@@ -318,7 +333,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter number of boxes"
                         android:inputType="number"
                         android:minHeight="30dp"

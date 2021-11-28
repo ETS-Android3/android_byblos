@@ -5,30 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D5779585"
-    android:backgroundTint="#D572A585"
+    android:backgroundTint="#C143835B"
     tools:context=".CustomerWelcomeActivity">
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
 
-        <Button
-            android:id="@+id/custLogoutButton"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#5151918B"
-            android:text="@string/logout_button" />
+            android:layout_height="60dp" />
 
         <EditText
             android:id="@+id/custNameTextView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:backgroundTint="#604CAF50"
+            android:backgroundTint="#6048784A"
             android:ems="10"
             android:gravity="center|center_horizontal|center_vertical"
             android:importantForAutofill="no"
@@ -37,7 +34,7 @@
             android:text="@string/welcomeMessage"
             android:textAlignment="center"
             android:textColor="#C1FFFFFF"
-            android:textSize="30sp"
+            android:textSize="35sp"
             android:textStyle="bold" />
 
         <EditText
@@ -45,7 +42,7 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:backgroundTint="#6055B359"
+            android:backgroundTint="#6048784A"
             android:ems="10"
             android:gravity="center|center_horizontal|center_vertical"
             android:importantForAutofill="no"
@@ -55,16 +52,9 @@
             android:textColor="#FFFFFF"
             android:textStyle="italic" />
 
-        <Button
-            android:id="@+id/testing"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#513A716C"
-            android:text="testing" />
-
         <Space
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="25dp"
             android:backgroundTint="#6078CD9E" />
 
         <TextView
@@ -88,9 +78,20 @@
             android:id="@+id/searchResult"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical" >
+            android:scrollbars="vertical">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/custLogoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#5151918B"
+            android:text="@string/logout_button" />
 
     </LinearLayout>
 </RelativeLayout>
