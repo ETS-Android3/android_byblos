@@ -31,18 +31,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-                <Button
-                    android:id="@+id/empLogOutBTN"
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#AECAB4"
-                    android:text="LogOut" />
+                    android:layout_height="50dp" />
 
                 <Button
                     android:id="@+id/empHoursBTN"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#84B58F"
+                    android:backgroundTint="#669871"
                     android:text="Working Hours" />
 
                 <Space
@@ -163,6 +160,13 @@
                             android:layout_height="match_parent" />
                     </LinearLayout>
                 </ScrollView>
+
+                <Button
+                    android:id="@+id/empLogOutBTN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#AECAB4"
+                    android:text="LogOut" />
 
             </LinearLayout>
         </ScrollView>

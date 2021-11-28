@@ -6,15 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".EmpWorkingHours">
 
+    <TextView
+        android:id="@+id/workingHoursBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#228338"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Working Hours"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#75FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:gravity="center"
         android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#4A916B" />
+
 
         <TextView
             android:id="@+id/monTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#BAD6C1"
+            android:gravity="center"
             android:text="TextView"
             android:textSize="30sp" />
 
@@ -22,6 +46,8 @@
             android:id="@+id/tuesTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#BAD6C1"
+            android:gravity="center"
             android:text="TextView"
             android:textSize="30sp" />
 
@@ -29,6 +55,8 @@
             android:id="@+id/wedTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#BAD6C1"
+            android:gravity="center"
             android:text="TextView"
             android:textSize="30sp" />
 
@@ -36,6 +64,8 @@
             android:id="@+id/thuTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#BAD6C1"
+            android:gravity="center"
             android:text="TextView"
             android:textSize="30sp" />
 
@@ -43,6 +73,8 @@
             android:id="@+id/friTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#BAD6C1"
+            android:gravity="center"
             android:text="TextView"
             android:textSize="30sp" />
     </LinearLayout>

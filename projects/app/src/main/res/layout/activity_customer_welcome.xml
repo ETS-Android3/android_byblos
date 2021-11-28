@@ -12,9 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:orientation="vertical">
 
 
         <TextView
@@ -22,26 +20,26 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:backgroundTint="#6048784A"
+            android:background="#84B58F"
+            android:backgroundTint="#84B58F"
             android:ems="10"
             android:gravity="center|center_horizontal|center_vertical"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:paddingVertical="20dp"
             android:text="WELCOME"
             android:textAlignment="center"
-            android:background="#84B58F"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:paddingVertical="20dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/custRoleTextView"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="#84B58F"
+            android:background="#B5D1BB"
             android:ems="10"
             android:gravity="center|center_horizontal|center_vertical"
             android:importantForAutofill="no"
@@ -89,7 +87,7 @@
             android:id="@+id/custLogoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#84B58F"
+            android:backgroundTint="#7EA186"
             android:text="@string/logout_button" />
 
     </LinearLayout>
