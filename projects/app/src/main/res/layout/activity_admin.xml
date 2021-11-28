@@ -18,11 +18,11 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:ems="10"
             android:gravity="center|center_horizontal|center_vertical"
-            android:text="@string/admin_text"
+            android:text="WELCOME ADMIN"
             android:textAlignment="center"
             android:background="#84B58F"
             android:textColor="#C1FFFFFF"
-            android:textSize="35sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:paddingVertical="20dp"/>
 
