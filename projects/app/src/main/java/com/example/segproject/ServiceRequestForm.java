@@ -237,7 +237,7 @@ public class ServiceRequestForm extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 validate();
-                Toast.makeText(getApplicationContext(), "Request submitted", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Request submitted", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -286,7 +286,6 @@ public class ServiceRequestForm extends AppCompatActivity {
 
         // create service request sorted by service request id
         dbRequest.child(servRequestID).setValue(sr);
-
 
         addBranchRequestMethod(servRequestID);
 
@@ -356,7 +355,7 @@ public class ServiceRequestForm extends AppCompatActivity {
         }
         // license field validation
         if (tlicenseType.getVisibility() == View.VISIBLE){
-            if (g1 || g2 || g3){
+            if (!(g1 || g2 || g3)){
                 rG1.setError("License type required!");
                 rG1.requestFocus();
                 valid = false;
@@ -364,7 +363,7 @@ public class ServiceRequestForm extends AppCompatActivity {
         }
         // car type field validation
         if (tcarType.getVisibility() == View.VISIBLE){
-            if (suv || compact || intermediate){
+            if (!(suv || compact || intermediate)){
                 rcompact.setError("Car type required!");
                 rcompact.requestFocus();
                 valid = false;

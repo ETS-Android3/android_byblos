@@ -233,7 +233,12 @@ public class EmployeeProfile extends AppCompatActivity {
                     }
                 }
                 rate = rate / counter;
-                avgRate.setText("Average rating: " + new DecimalFormat("##.#").format(rate));
+                if(Double.isNaN(rate)){
+                    avgRate.setText("No ratings");
+                }else{
+                    avgRate.setText("Average rating: " + new DecimalFormat("##.#").format(rate));
+                }
+
             }
 
             @Override

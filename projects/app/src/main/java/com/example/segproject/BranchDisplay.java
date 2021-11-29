@@ -178,8 +178,8 @@ public class BranchDisplay extends AppCompatActivity {
 
                 rate = rate / counter;
 
-                if(rate <= 0.01){
-                    avgRate.setText("Average rating: 0.0");
+                if(Double.isNaN(rate)){
+                    avgRate.setText("No ratings");
                 }else{
                     avgRate.setText("Average rating: " + new DecimalFormat("##.#").format(rate));
                 }
