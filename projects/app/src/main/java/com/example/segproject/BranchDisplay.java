@@ -35,6 +35,7 @@ public class BranchDisplay extends AppCompatActivity {
     String zip;
     String hours;
     Button rateUs;
+    Button logout;
     ListView branchServiceListView;
 
     List<NewService> branchServiceList; // stores list of global services associated with branch (branch associated with a user)
@@ -76,6 +77,7 @@ public class BranchDisplay extends AppCompatActivity {
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
 
+        logout = findViewById(R.id.custLogoutButton2);
 
         TextView addressEBanner = (TextView) findViewById(R.id.branchAddress);
         TextView phoneNumberEBanner = (TextView) findViewById(R.id.branchPhoneNumber);
@@ -88,7 +90,17 @@ public class BranchDisplay extends AppCompatActivity {
         branchServiceListView = findViewById(R.id.branchServiceList);
         branchServiceList = new ArrayList<>();
 
+<<<<<<< HEAD
 
+=======
+        logout.setOnClickListener(new View.OnClickListener() { // logout button listener.
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BranchDisplay.this, MainActivity.class));
+                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
+            }
+        });
+>>>>>>> b9f4cdbb9862696231789e184877ef638694fd95
 
         rateUs.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -136,9 +136,25 @@
                 <ListView
                     android:id="@+id/branchServiceList"
                     android:layout_width="match_parent"
-                    android:layout_height="284dp" />
+                    android:layout_height="284dp" >
+
+                </ListView>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <Button
+                    android:id="@+id/custLogoutButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#7EA186"
+                    android:text="@string/logout_button" />
+
             </LinearLayout>
+
         </ScrollView>
+
 
     </LinearLayout>
 </RelativeLayout>

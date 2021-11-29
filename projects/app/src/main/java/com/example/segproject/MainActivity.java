@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     public void onLoginButton(View view) {
         // if log in credentials = admin
         // then go to admin page
-        // else if log in credentials = employer
-        // then go to employer welcome page
+        // else if log in credentials = employee
+        // then go to employee welcome page
         // else go to customer welcome page.
         String username = eTUsername.getText().toString().trim(); // username or email
         String password = eTPassword.getText().toString().trim();
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (username.equals("employee") && password.equals("employee")){ //case that employee is logging in.
             Toast.makeText(getApplicationContext(), "Welcome Employee", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class); // if successful go to admin page.
+            Intent intent = new Intent(getApplicationContext(), EmployeeWelcomeActivity.class); // if successful go to admin page.
             startActivity(intent);
             return;
         }

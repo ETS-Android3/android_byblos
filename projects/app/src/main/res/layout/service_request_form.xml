@@ -76,7 +76,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:hint="Enter date of birth Day/Month/Year"
                         android:inputType="date"
                         android:minHeight="30dp"
