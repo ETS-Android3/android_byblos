@@ -32,15 +32,22 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-                <Space
+                <TextView
+                    android:id="@+id/avgRatingDisplay"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Rate"
+                    android:textColor="#404040"
+                    android:textSize="20sp"
+                    android:paddingVertical="10dp"/>
+
 
                 <Button
                     android:id="@+id/rateButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#B4D1B5"
+                    android:backgroundTint="#669871"
                     android:text="Rate Us" />
 
                 <Space

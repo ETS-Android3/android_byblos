@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,10 +55,13 @@ public class BranchDisplay extends AppCompatActivity {
 
     String serviceID;
     String name;
-    double rate;
 
     TextView customerRating;
     TextView customerComment;
+    TextView avgRate;
+
+    double rate = 0.0;
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +85,14 @@ public class BranchDisplay extends AppCompatActivity {
         rateUs = findViewById(R.id.rateButton);
         TextView customerRating = findViewById(R.id.customerRating);
         TextView customerComment = findViewById(R.id.customerComment);
+        avgRate = findViewById(R.id.avgRatingDisplay);
 
         branchServiceListView = findViewById(R.id.branchServiceList);
         branchServiceList = new ArrayList<>();
 
+<<<<<<< HEAD
+
+=======
         logout.setOnClickListener(new View.OnClickListener() { // logout button listener.
             @Override
             public void onClick(View v) {
@@ -92,6 +100,7 @@ public class BranchDisplay extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
             }
         });
+>>>>>>> b9f4cdbb9862696231789e184877ef638694fd95
 
         rateUs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,6 +168,8 @@ public class BranchDisplay extends AppCompatActivity {
                 for (DataSnapshot info : snapshot.getChildren()) { // iterate through all global services and check if
                     Feedback fb = info.getValue(Feedback.class);
                     if (fb != null) {
+                        rate = rate + (double)fb.getRating();
+                        counter++;
                        if(fb.getUserID().equals(userid) && fb.getBranchID().equals(branchID)){
                             customerRating.setText("" + fb.getRating());
                             customerComment.setText(fb.getComment());
@@ -168,6 +179,15 @@ public class BranchDisplay extends AppCompatActivity {
                 }
                 NewServiceList branchAdapter = new NewServiceList(BranchDisplay.this, branchServiceList);
                 branchServiceListView.setAdapter(branchAdapter);
+
+                rate = rate / counter;
+
+                if(rate <= 0.01){
+                    avgRate.setText("Average rating: 0.0");
+                }else{
+                    avgRate.setText("Average rating: " + new DecimalFormat("##.#").format(rate));
+                }
+
             }
 
             @Override
