@@ -13,6 +13,9 @@
             android:name=".CustomerWelcomeActivity"
             android:exported="true" />
         <activity
+            android:name=".CustomerAcceptedRequests"
+            android:exported="true" />
+        <activity
             android:name=".EmpWorkingHours"
             android:exported="true" />
         <activity

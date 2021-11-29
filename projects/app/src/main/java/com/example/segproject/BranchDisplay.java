@@ -36,6 +36,7 @@ public class BranchDisplay extends AppCompatActivity {
     String hours;
     Button rateUs;
     Button logout;
+    Button acceptedServices;
     ListView branchServiceListView;
 
     List<NewService> branchServiceList; // stores list of global services associated with branch (branch associated with a user)
@@ -47,7 +48,8 @@ public class BranchDisplay extends AppCompatActivity {
     DatabaseReference dbFeedback;
     String services;
     String[] branchServices;
-
+    String acceptedRequests;
+    String[] acceptedRequestsList;
 
     String userid;
     String hoursID;
@@ -78,6 +80,7 @@ public class BranchDisplay extends AppCompatActivity {
         userid = getIntent().getStringExtra("id"); // user id
 
         logout = findViewById(R.id.custLogoutButton2);
+        acceptedServices = findViewById(R.id.acceptedServices);
 
         TextView addressEBanner = (TextView) findViewById(R.id.branchAddress);
         TextView phoneNumberEBanner = (TextView) findViewById(R.id.branchPhoneNumber);
@@ -95,6 +98,17 @@ public class BranchDisplay extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(BranchDisplay.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        acceptedServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), CustomerAcceptedRequests.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                startActivity(intent);
+                Toast.makeText(BranchDisplay.this, "Redirecting to accepted requests", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -133,7 +147,7 @@ public class BranchDisplay extends AppCompatActivity {
                     addressEBanner.setText("Address: " + addressNum + " " + addressName + ", " +
                             city + ", " + state + ", " + country + ", " + zip);
                     phoneNumberEBanner.setText("Phone number: " + phoneNumber);
-                    hoursEBanner.setText("Working hours: " + "\n" + hourDisplay);
+                    hoursEBanner.setText("Working hours: " + "\n" + hourDisplay + "\nClosed all other days");
 
                 }
             }
@@ -235,6 +249,7 @@ public class BranchDisplay extends AppCompatActivity {
                 if (profile != null) {
                     services = profile.getServices();
                     branchServices = services.split(",");
+
                 }
             }
 
