@@ -289,6 +289,7 @@ public class ServiceRequestForm extends AppCompatActivity {
 //        kmdriven = tkmdriven.getText().toString();
 //        numberofmovers = tnumberofmovers.getText().toString();
 //        numberofboxes = tnumberofboxes.getText().toString();
+<<<<<<< HEAD
 
         servRequestID = dbRequest.push().getKey(); // get unique service request id.
 
@@ -462,7 +463,178 @@ public class ServiceRequestForm extends AppCompatActivity {
             submitNewRequest();
         }
     }
+=======
+
+        servRequestID = dbRequest.push().getKey(); // get unique service request id.
+
+
+        ServiceRequest sr = new ServiceRequest(address, area, compact, dob, email, firstName,
+                g1, g2, g3, intermediate, kmdriven, lastName, movingendlocation,
+                movingstartlocation, name, numberofboxes, numberofmovers,
+                pickupdate, pickuptime, rate, returndate, returntime,
+                suv, serviceID, branchID, userID, servRequestID, username, serviceName);
+
+        // create service request sorted by service request id
+        dbRequest.child(servRequestID).setValue(sr);
+>>>>>>> 7b778b1d8f8d884b27d0ef41c531fc7455ca23cf
+
+
+
+<<<<<<< HEAD
+}
+=======
+    // validation method
+    private void validate(){
+
+        firstName = tfirstName.getText().toString();
+        lastName = tlastName.getText().toString();
+        dob = tdob.getText().toString();
+        address = taddress.getText().toString();
+        email = temail.getText().toString();
+        g1 = rG1.isChecked();
+        g2 = rG2.isChecked();
+        g3 = rG3.isChecked();
+        compact = rcompact.isChecked();
+        intermediate = rintermediate.isChecked();
+        suv = rSUV.isChecked();
+        pickupdate = tpickupdate.getText().toString();
+        pickuptime = tpickuptime.getText().toString();
+        returndate = treturndate.getText().toString();
+        returntime = treturntime.getText().toString();
+        movingstartlocation = tmovingstartlocation.getText().toString();
+        movingendlocation = tmovingendlocation.getText().toString();
+        area = tarea.getText().toString();
+        kmdriven = tkmdriven.getText().toString();
+        numberofmovers = tnumberofmovers.getText().toString();
+        numberofboxes = tnumberofboxes.getText().toString();
+
+        boolean valid = true;
+
+        // name field validation
+        if (firstName.trim().isEmpty()) {
+            tfirstName.setError("Please enter a name!");
+            tfirstName.requestFocus();
+            valid = false;
+        } if (lastName.trim().isEmpty()) {
+            tlastName.setError("Please enter a name!");
+            tlastName.requestFocus();
+            valid = false;
+        }
+        // dob field validation
+        int type1 = tdob.getInputType();
+        if ((type1 != (InputType.TYPE_CLASS_DATETIME | InputType.TYPE_DATETIME_VARIATION_DATE)) || (dob.trim().isEmpty())){
+            tdob.setError("Please enter a date!");
+            tdob.requestFocus();
+            valid = false;
+        }
+        // address field validation
+        if (address.trim().isEmpty()) {
+            taddress.setError("Please enter an address!");
+            taddress.requestFocus();
+            valid = false;
+        }
+        // email field validation
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches() || (email.trim().isEmpty())){
+            temail.setError("Not a valid email!");
+            temail.requestFocus();
+            valid = false;
+        }
+        // license field validation
+        if (tlicenseType.getVisibility() == View.VISIBLE){
+            if (!(g1 || g2 || g3)){
+                rG1.setError("License type required!");
+                rG1.requestFocus();
+                valid = false;
+            }
+        }
+        // car type field validation
+        if (tcarType.getVisibility() == View.VISIBLE){
+            if (!(suv || compact || intermediate)){
+                rcompact.setError("Car type required!");
+                rcompact.requestFocus();
+                valid = false;
+            }
+        }
+        // pickup/return field validation
+        if (tpickupdate.getVisibility() == View.VISIBLE){
+            int type2 = tpickupdate.getInputType();
+            if ((type2 != (InputType.TYPE_CLASS_DATETIME | InputType.TYPE_DATETIME_VARIATION_DATE)) || (pickupdate.trim().isEmpty())) {
+                tpickupdate.setError("Please enter a valid date!");
+                tpickupdate.requestFocus();
+                valid = false;
+            }
+        } if (tpickuptime.getVisibility() == View.VISIBLE) {
+            if (!pickuptime.trim().matches("[0-9]+(\\.){0,1}[0-9]*") || (pickuptime.trim().isEmpty())) {
+                tpickuptime.setError("Please enter a valid time!");
+                tpickuptime.requestFocus();
+                valid = false;
+            }
+        } if (treturndate.getVisibility() == View.VISIBLE){
+            int type3 = treturndate.getInputType();
+            if ((type3 != (InputType.TYPE_CLASS_DATETIME | InputType.TYPE_DATETIME_VARIATION_DATE)) || (returndate.trim().isEmpty())) {
+                treturndate.setError("Please enter a valid date!");
+                treturndate.requestFocus();
+                valid = false;
+            }
+        } if (treturntime.getVisibility() == View.VISIBLE) {
+            if (!returntime.trim().matches("[0-9]+(\\.){0,1}[0-9]*") || (returntime.trim().isEmpty())) {
+                treturntime.setError("Please enter a valid time!");
+                treturntime.requestFocus();
+                valid = false;
+            }
+        }
+        // moving info field validation
+        if (tmovingstartlocation.getVisibility() == View.VISIBLE){
+            if (movingstartlocation.trim().isEmpty()) {
+                tmovingstartlocation.setError("Please enter a location!");
+                tmovingstartlocation.requestFocus();
+                valid = false;
+            }
+        }
+        if (tmovingendlocation.getVisibility() == View.VISIBLE) {
+            if (movingendlocation.trim().isEmpty()) {
+                tmovingendlocation.setError("Please enter a location!");
+                tmovingendlocation.requestFocus();
+                valid = false;
+            }
+        }
+        // miscellaneous field validation
+        if (tarea.getVisibility() == View.VISIBLE){
+            if (area.trim().isEmpty()) {
+                tarea.setError("Please enter an area!");
+                tarea.requestFocus();
+                valid = false;
+            }
+        }
+        if (tkmdriven.getVisibility() == View.VISIBLE){
+            if (!kmdriven.trim().matches("[0-9]+(\\.){0,1}[0-9]*") || (kmdriven.trim().isEmpty())) {
+                tkmdriven.setError("Please enter a number!");
+                tkmdriven.requestFocus();
+                valid = false;
+            }
+        }
+        if (tnumberofmovers.getVisibility() == View.VISIBLE){
+            if (!numberofmovers.trim().matches("[0-9]+(\\.){0,1}[0-9]*") || (numberofmovers.trim().isEmpty())) {
+                tnumberofmovers.setError("Please enter a number!");
+                tnumberofmovers.requestFocus();
+                valid = false;
+            }
+        }
+        if (tnumberofboxes.getVisibility() == View.VISIBLE) {
+            if (!numberofboxes.trim().matches("[0-9]+(\\.){0,1}[0-9]*") || (numberofboxes.trim().isEmpty())) {
+                tnumberofboxes.setError("Please enter a number!");
+                tnumberofboxes.requestFocus();
+                valid = false;
+            }
+        }
+        // all fields are valid and request can be submitted
+        if (valid){
+            Log.d("request","VALID");
+            submitNewRequest();
+        }
+    }
 
 
 
 }
+>>>>>>> 7b778b1d8f8d884b27d0ef41c531fc7455ca23cf
