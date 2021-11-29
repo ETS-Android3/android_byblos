@@ -90,9 +90,6 @@ public class BranchDisplay extends AppCompatActivity {
         branchServiceListView = findViewById(R.id.branchServiceList);
         branchServiceList = new ArrayList<>();
 
-<<<<<<< HEAD
-
-=======
         logout.setOnClickListener(new View.OnClickListener() { // logout button listener.
             @Override
             public void onClick(View v) {
@@ -100,7 +97,6 @@ public class BranchDisplay extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
             }
         });
->>>>>>> b9f4cdbb9862696231789e184877ef638694fd95
 
         rateUs.setOnClickListener(new View.OnClickListener() {
             @Override

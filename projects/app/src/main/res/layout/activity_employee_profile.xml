@@ -19,14 +19,20 @@
             android:background="#82AF84"
             android:gravity="center"
             android:text="Profile"
-<<<<<<< HEAD
-            android:textSize="40sp"
-            android:paddingVertical="20dp"/>
-=======
             android:textColor="@color/white"
             android:textSize="40sp"
-            tools:ignore="TextContrastCheck" />
->>>>>>> b9f4cdbb9862696231789e184877ef638694fd95
+            tools:ignore="TextContrastCheck"
+            android:paddingVertical="20dp"/>
+
+        <TextView
+            android:id="@+id/avgRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Rate"
+            android:textColor="#404040"
+            android:textSize="20sp"
+            android:paddingVertical="10dp"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -36,17 +42,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/avgRating"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Rate"
-                    android:textColor="#404040"
-                    android:textSize="20sp"
-                    android:paddingVertical="10dp"/>
-
 
                 <Button
                     android:id="@+id/empHoursBTN"
@@ -94,6 +89,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp" />
 
+                <TextView
+                    android:id="@+id/servicesEmployeeBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Services: "
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
+
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -103,30 +106,9 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
-                        <LinearLayout
+                        <ListView
+                            android:id="@+id/branchServiceListView"
                             android:layout_width="match_parent"
-<<<<<<< HEAD
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/servicesEmployeeBanner"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Services: "
-                                android:textColor="#689F82"
-                                android:textSize="20sp" />
-
-                            <ListView
-                                android:id="@+id/branchServiceListView"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
-                        </LinearLayout>
-
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp" />
-=======
                             android:layout_weight="1"
                             android:layout_height="0dip" />
                     </LinearLayout>
@@ -160,54 +142,33 @@
                             android:layout_height="0dip" />
                     </LinearLayout>
                 </ScrollView>
->>>>>>> b9f4cdbb9862696231789e184877ef638694fd95
 
-                        <LinearLayout
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:id="@+id/branchAcceptedRequests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Accepted Requests: "
+                    android:textColor="#689F82"
+                    android:textSize="20sp" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <ListView
+                            android:id="@+id/branchAcceptedRequestsListView"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/branchRequests"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Service requests: "
-                                android:textColor="#689F82"
-                                android:textSize="20sp" />
-
-                            <ListView
-                                android:id="@+id/branchRequestsListView"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
-                        </LinearLayout>
-
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-<<<<<<< HEAD
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/branchAcceptedRequests"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Accepted Requests: "
-                                android:textColor="#689F82"
-                                android:textSize="20sp" />
-
-                            <ListView
-                                android:id="@+id/branchAcceptedRequestsListView"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
-                        </LinearLayout>
-=======
                             android:layout_weight="1"
                             android:layout_height="0dip" />
->>>>>>> b9f4cdbb9862696231789e184877ef638694fd95
                     </LinearLayout>
                 </ScrollView>
 
