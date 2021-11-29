@@ -34,9 +34,6 @@
             android:textSize="20sp"
             android:paddingVertical="10dp"/>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,28 +71,11 @@
                     android:textColor="#689F82"
                     android:textSize="20sp" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp" />
 
-                <Button
-                    android:id="@+id/add"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#84B58F"
-                    android:text="Add service" />
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="30dp" />
-
-                <TextView
-                    android:id="@+id/servicesEmployeeBanner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Services: "
-                    android:textColor="#689F82"
-                    android:textSize="20sp" />
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -106,81 +86,61 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
 
-                        <ListView
-                            android:id="@+id/branchServiceListView"
+                        <Button
+                            android:id="@+id/viewServices"
                             android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:layout_height="0dip" />
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#84B58F"
+                            android:text="VIEW SERVICES" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp" />
+
+                        <Button
+                            android:id="@+id/add"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#84B58F"
+                            android:text="ADD SERVICES" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp" />
+
+                        <Button
+                            android:id="@+id/serviceRequests"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#84B58F"
+                            android:text="VIEW SERVICE REQUESTS" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp" />
+
+                        <Button
+                            android:id="@+id/acceptedRequests"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#84B58F"
+                            android:text="VIEW ACCEPTED REQUESTS" />
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp" />
+
+                        <Button
+                            android:id="@+id/empLogOutBTN"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#AECAB4"
+                            android:text="LogOut" />
                     </LinearLayout>
                 </ScrollView>
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp" />
-
-                <TextView
-                    android:id="@+id/branchRequests"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Service requests: "
-                    android:textColor="#689F82"
-                    android:textSize="20sp" />
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-
-                        <ListView
-                            android:id="@+id/branchRequestsListView"
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:layout_height="0dip" />
-                    </LinearLayout>
-                </ScrollView>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp" />
-
-                <TextView
-                    android:id="@+id/branchAcceptedRequests"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Accepted Requests: "
-                    android:textColor="#689F82"
-                    android:textSize="20sp" />
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-
-                        <ListView
-                            android:id="@+id/branchAcceptedRequestsListView"
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:layout_height="0dip" />
-                    </LinearLayout>
-                </ScrollView>
-
-                <Button
-                    android:id="@+id/empLogOutBTN"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#AECAB4"
-                    android:text="LogOut" />
 
             </LinearLayout>
-        </ScrollView>
 
     </LinearLayout>
 </RelativeLayout>

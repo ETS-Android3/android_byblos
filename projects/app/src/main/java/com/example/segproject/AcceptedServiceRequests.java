@@ -1,6 +1,8 @@
 package com.example.segproject;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,29 +18,44 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerAcceptedRequests extends AppCompatActivity {
-
-    String acceptedRequests;
-    String[] acceptedRequestsList;
+public class AcceptedServiceRequests extends AppCompatActivity {
+    String requests;
+    String[] branchRequests;
     DatabaseReference dbBranchRef;
     DatabaseReference dbRequests;
     String branchID;
     String userid;
+
     ListView branchAcceptedRequestsListView;
     List<ServiceRequest> branchAcceptedRequestsServiceList;
+    String[] branchAcceptedRequests;
+    String acceptedRequests;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.customer_accepted_services);
+        setContentView(R.layout.accepted_requests);
 
         //rename db refs
         dbBranchRef = FirebaseDatabase.getInstance().getReference("branch"); // get reference to branches
         dbRequests = FirebaseDatabase.getInstance().getReference("ServiceRequests");
+
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
-        branchAcceptedRequestsListView = findViewById(R.id.customerAcceptedRequests);
-        branchAcceptedRequestsServiceList = new ArrayList<>();
+
+        branchAcceptedRequestsListView = findViewById(R.id.branchAcceptedRequestsListView);
+        branchAcceptedRequestsServiceList= new ArrayList<>();
+
+
+        branchAcceptedRequestsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { //listen for long press to see if you want to delete a service.
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ServiceRequest request = branchAcceptedRequestsServiceList.get(position);
+
+                // acceptRequestDialog(request.getServiceName(), request.getRequestID(),position);
+                return true;
+            }
+        });
 
     }
 
@@ -51,14 +68,13 @@ public class CustomerAcceptedRequests extends AppCompatActivity {
                 BranchProfile profile = snapshot.getValue(BranchProfile.class);
                 if (profile != null) {
                     acceptedRequests = profile.getAcceptedRequests();
-                    acceptedRequestsList = acceptedRequests.split(", ");
+                    branchAcceptedRequests = acceptedRequests.split(", ");
 
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(CustomerAcceptedRequests.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+                Toast.makeText(AcceptedServiceRequests.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -66,15 +82,22 @@ public class CustomerAcceptedRequests extends AppCompatActivity {
         dbRequests.addValueEventListener(new ValueEventListener() { // outputs the services offered at the branch in listview.
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //branchRequestsServiceList.clear();
                 branchAcceptedRequestsServiceList.clear();
 
                 for (DataSnapshot info : snapshot.getChildren()) { // iterate through all global services and check if
                     ServiceRequest sr = info.getValue(ServiceRequest.class);
 
                     if (sr != null) {
-                        if(acceptedRequestsList != null){ // look here
-                            for (String s : acceptedRequestsList) {
-                                if (s.equals(sr.getRequestID()) && userid.equals(sr.getUserID()) && branchID.equals(sr.getBranchID())) {
+                        if(branchAcceptedRequests !=null){ // look here
+//                            for (String s : branchRequests) {
+//                                if (s.equals(sr.getRequestID())) {
+//                                    branchRequestsServiceList.add(sr);
+//                                }
+//                            }
+
+                            for (String s : branchAcceptedRequests) {
+                                if (s.equals(sr.getRequestID())) {
                                     branchAcceptedRequestsServiceList.add(sr);
                                 }
                             }
@@ -82,15 +105,19 @@ public class CustomerAcceptedRequests extends AppCompatActivity {
 
                     }
                 }
+//                ServiceRequestList branchRequestAdapter = new ServiceRequestList(EmployeeProfile.this, branchRequestsServiceList);
+//                branchRequestsListView.setAdapter(branchRequestAdapter);
 
-                ServiceRequestList branchAcceptedRequestAdapter = new ServiceRequestList(CustomerAcceptedRequests.this, branchAcceptedRequestsServiceList);
+                ServiceRequestList branchAcceptedRequestAdapter = new ServiceRequestList(AcceptedServiceRequests.this, branchAcceptedRequestsServiceList);
                 branchAcceptedRequestsListView.setAdapter(branchAcceptedRequestAdapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(CustomerAcceptedRequests.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+                Toast.makeText(AcceptedServiceRequests.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
+
+
     }
 }
