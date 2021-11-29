@@ -23,10 +23,6 @@
             android:textColor="@color/white"
             android:textSize="35sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="#4A916B"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -44,7 +40,7 @@
                     android:background="#689F82"
                     android:text="Address information: "
                     android:paddingVertical="10dp"
-                    android:textColor="#E1DFDF"
+                    android:textColor="@color/white"
                     android:textSize="20sp" />
 
                 <EditText

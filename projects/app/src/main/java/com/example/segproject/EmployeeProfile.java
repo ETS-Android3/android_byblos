@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -56,6 +57,7 @@ public class EmployeeProfile extends AppCompatActivity {
     DatabaseReference dbGlobServ;
     DatabaseReference dbUser;
     DatabaseReference dbRequests;
+    DatabaseReference dbFeedback;
     String services;
     String servicesNames;
     String[] branchServices;
@@ -66,6 +68,9 @@ public class EmployeeProfile extends AppCompatActivity {
     String hoursID;
     String temp = "";
 
+    double rate = 0.0;
+    int counter = 0;
+    TextView avgRate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,7 @@ public class EmployeeProfile extends AppCompatActivity {
         dbGlobServ = FirebaseDatabase.getInstance().getReference("GlobalService"); // get reference to Global services
         dbUser = FirebaseDatabase.getInstance().getReference("users"); // get reference to users.
         dbRequests= FirebaseDatabase.getInstance().getReference("ServiceRequests"); // get reference to users.
+        dbFeedback= FirebaseDatabase.getInstance().getReference("feedback");
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id.
@@ -95,6 +101,8 @@ public class EmployeeProfile extends AppCompatActivity {
 
         branchServicesNamesList = new ArrayList<>();
 
+        // feedback
+        avgRate = findViewById(R.id.avgRating);
 
         // requests
 
@@ -212,6 +220,28 @@ public class EmployeeProfile extends AppCompatActivity {
                 Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
+
+
+        dbFeedback.addValueEventListener(new ValueEventListener() { // outputs the services offered at the branch in listview.
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot info : snapshot.getChildren()) { // iterate through all global services and check if
+                    Feedback fb = info.getValue(Feedback.class);
+                    if (fb != null) {
+                        rate = rate + (double) fb.getRating();
+                        counter++;
+                    }
+                }
+                rate = rate / counter;
+                avgRate.setText("Average rating: " + new DecimalFormat("##.#").format(rate));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(EmployeeProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
 
@@ -227,8 +257,8 @@ public class EmployeeProfile extends AppCompatActivity {
                     branchServices = services.split(",");
                     requests = profile.getRequests();
                     branchRequests = requests.split(",");
-                    acceptedRequests = profile.getRequests();
-                    branchAcceptedRequests = requests.split(",");
+                    acceptedRequests = profile.getAcceptedRequests();
+                    branchAcceptedRequests = acceptedRequests.split(",");
 
                 }
             }

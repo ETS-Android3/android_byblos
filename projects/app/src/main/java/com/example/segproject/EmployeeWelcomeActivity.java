@@ -69,6 +69,7 @@ public class EmployeeWelcomeActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
                 User userProfile = snapshot.getValue(User.class);
                 if (userProfile != null){
                     String name = userProfile.username;
