@@ -17,10 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#82AF84"
-            android:textColor="@color/white"
             android:gravity="center"
             android:text="Profile"
-            android:textSize="40sp" />
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            tools:ignore="TextContrastCheck" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -101,7 +102,8 @@
                         <ListView
                             android:id="@+id/branchServiceListView"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_weight="1"
+                            android:layout_height="0dip" />
                     </LinearLayout>
                 </ScrollView>
 
@@ -129,7 +131,8 @@
                         <ListView
                             android:id="@+id/branchRequestsListView"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_weight="1"
+                            android:layout_height="0dip" />
                     </LinearLayout>
                 </ScrollView>
 
@@ -157,7 +160,8 @@
                         <ListView
                             android:id="@+id/branchAcceptedRequestsListView"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_weight="1"
+                            android:layout_height="0dip" />
                     </LinearLayout>
                 </ScrollView>
 
