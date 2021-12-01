@@ -22,14 +22,16 @@
             android:id="@+id/searchPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="TextView"
             android:textColor="#434242"
-            android:text="TextView" />
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/searchServices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="TextView"
             android:textColor="#434242"
-            android:text="TextView" />
+            android:textStyle="bold" />
     </LinearLayout>
 </RelativeLayout>

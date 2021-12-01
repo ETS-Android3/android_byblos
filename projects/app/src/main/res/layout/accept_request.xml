@@ -1,13 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/acceptButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:backgroundTint="#84B58F"
-        android:text="ACCEPT" />
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/acceptName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Customer Name:" />
+
+        <TextView
+            android:id="@+id/acceptDOBTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date Of Birth:" />
+
+        <TextView
+            android:id="@+id/acceptAddyTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Address:" />
+
+        <TextView
+            android:id="@+id/acceptEmailTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email:" />
+
+        <TextView
+            android:id="@+id/acceptLicenseTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="License: " />
+
+        <TextView
+            android:id="@+id/acceptCartypeTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Car Preference: " />
+
+        <TextView
+            android:id="@+id/acceptPickDateTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pickup Date: " />
+
+        <TextView
+            android:id="@+id/acceptPickTimeTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pickup Time:" />
+
+        <TextView
+            android:id="@+id/acceptReturnDateTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return Date:" />
+
+        <TextView
+            android:id="@+id/acceptReturnTimeTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return Time:" />
+
+        <TextView
+            android:id="@+id/acceptStartLocationTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Moving Start Location:" />
+
+        <TextView
+            android:id="@+id/acceptEndLocTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Moving End Location: " />
+
+        <TextView
+            android:id="@+id/acceptAreaTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Area:" />
+
+        <TextView
+            android:id="@+id/acceptKMTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KM driven:" />
+
+        <TextView
+            android:id="@+id/acceptNumMoversTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Number of Movers:" />
+
+        <TextView
+            android:id="@+id/acceptNumBoxesTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Number of Boxes: " />
+
+        <Button
+            android:id="@+id/acceptButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#84B58F"
+            android:text="ACCEPT" />
+    </LinearLayout>
+
+</RelativeLayout>

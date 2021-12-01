@@ -23,6 +23,12 @@
             android:textStyle="bold"
             android:paddingVertical="20dp"/>
 
+        <Button
+            android:id="@+id/branchServicesOfferedBackBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BACK" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp" />

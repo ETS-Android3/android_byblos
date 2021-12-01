@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 public class EmployeeWelcomeActivity extends AppCompatActivity {
 
 
-    String id;
+    String userid; //user id
     String role;
     DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("users");
     DatabaseReference dbWorkingHours = FirebaseDatabase.getInstance().getReference("hours");
@@ -35,7 +35,7 @@ public class EmployeeWelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee_welcome);
         btnProfile = findViewById(R.id.profileButton);
         empLogout = findViewById(R.id.empLogoutButton);
-        id = getIntent().getStringExtra("id");
+        userid = getIntent().getStringExtra("id");
 
         final TextView roleTextView = (TextView) findViewById(R.id.roleTextView);
         final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
@@ -44,7 +44,7 @@ public class EmployeeWelcomeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot info : snapshot.getChildren()){
-                    if (info.child("employeeID").getValue().equals(id)){
+                    if (info.child("employeeID").getValue().equals(userid)){
                         hoursid = info.child("hoursID").getValue().toString();
                     }
                 }
@@ -65,11 +65,11 @@ public class EmployeeWelcomeActivity extends AppCompatActivity {
             }
         });
 
-        dbUser.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+        dbUser.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), userid, Toast.LENGTH_SHORT).show();
                 User userProfile = snapshot.getValue(User.class);
                 if (userProfile != null){
                     String name = userProfile.username;
@@ -87,7 +87,6 @@ public class EmployeeWelcomeActivity extends AppCompatActivity {
         });
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
 
@@ -104,7 +103,7 @@ public class EmployeeWelcomeActivity extends AppCompatActivity {
 
     public void completeProfile(){
         Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class); // if able to sign in send to welcome page.
-        intent.putExtra("id", id);
+        intent.putExtra("id", userid);
         intent.putExtra("hoursid",hoursid);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), "Complete profile", Toast.LENGTH_SHORT).show();
@@ -112,7 +111,7 @@ public class EmployeeWelcomeActivity extends AppCompatActivity {
 
     public void profile(){
         Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class); // if able to sign in send to welcome page.
-        intent.putExtra("id", id);
+        intent.putExtra("id", userid);
         intent.putExtra("branchID", branchID);
         intent.putExtra("hoursid",hoursid);
         startActivity(intent);

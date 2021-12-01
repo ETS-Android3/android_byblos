@@ -56,7 +56,6 @@ public class AcceptedServiceRequests extends AppCompatActivity {
                 return true;
             }
         });
-
     }
 
     protected void onStart() {//have list of all services
@@ -77,7 +76,6 @@ public class AcceptedServiceRequests extends AppCompatActivity {
                 Toast.makeText(AcceptedServiceRequests.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
-
 
         dbRequests.addValueEventListener(new ValueEventListener() { // outputs the services offered at the branch in listview.
             @Override

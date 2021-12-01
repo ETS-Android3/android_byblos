@@ -33,9 +33,9 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
 
     @Override
     public void onBindViewHolder(@NonNull BranchViewHolder holder, int position) {
-        holder.address.setText(list.get(position).getWholeAddress());
-        holder.phone.setText(list.get(position).getPhoneNum());
-        holder.servicesNames.setText(list.get(position).getServicesNames().replaceFirst(", ", ""));
+        holder.address.setText("Address: "+ list.get(position).getWholeAddress());
+        holder.phone.setText("Phone Number: " + list.get(position).getPhoneNum());
+        holder.servicesNames.setText("Services: "+ list.get(position).getServicesNames().replaceFirst(", ", ""));
     }
 
     @Override
@@ -56,7 +56,6 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.BranchView
             phone = itemView.findViewById(R.id.searchPhoneNumber);
             servicesNames = itemView.findViewById(R.id.searchServices);
             this.onBranchListener = onBranchListener;
-
             itemView.setOnClickListener(this);
         }
 

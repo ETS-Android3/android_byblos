@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -124,6 +125,113 @@ public class BranchRequests extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final Button buttonAcceptRequest = (Button) dialogView.findViewById(R.id.acceptButton);
+        TextView custName = dialogView.findViewById(R.id.acceptName);
+        TextView DOB = dialogView.findViewById(R.id.acceptDOBTV);
+        TextView addy = dialogView.findViewById(R.id.acceptAddyTV);
+        TextView email = dialogView.findViewById(R.id.acceptEmailTV);
+        TextView license = dialogView.findViewById(R.id.acceptLicenseTV);
+        TextView carPref = dialogView.findViewById(R.id.acceptCartypeTV);
+        TextView pickDate = dialogView.findViewById(R.id.acceptPickDateTV);
+        TextView pickTime = dialogView.findViewById(R.id.acceptPickTimeTV);
+        TextView retDate = dialogView.findViewById(R.id.acceptReturnDateTV);
+        TextView retTime = dialogView.findViewById(R.id.acceptReturnTimeTV);
+        TextView startLoc = dialogView.findViewById(R.id.acceptStartLocationTV);
+        TextView endLoc = dialogView.findViewById(R.id.acceptEndLocTV);
+        TextView area = dialogView.findViewById(R.id.acceptAreaTV);
+        TextView kmDriven = dialogView.findViewById(R.id.acceptKMTV);
+        TextView numMovers = dialogView.findViewById(R.id.acceptNumMoversTV);
+        TextView custNameNumBoxes = dialogView.findViewById(R.id.acceptNumBoxesTV);
+
+
+        dbRequests.child(requestID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ServiceRequest servReq = snapshot.getValue(ServiceRequest.class);
+
+                if (servReq != null){
+                    custName.setText("Customer Name: " + servReq.getFirstName() + " " + servReq.getLastName());
+                    DOB.setText("Date of Birth: " + servReq.getDob());
+                    addy.setText("Address: " + servReq.getAddress());
+                    email.setText("Email: " + servReq.getEmail());
+
+                    //License
+                    if (servReq.isG1())
+                        license.setText("License: G1");
+                    else if (servReq.isG2())
+                        license.setText("License: G2");
+                    else if (servReq.isG3())
+                        license.setText("License: G3");
+                    else
+                        license.setVisibility(View.GONE);
+
+                    //car type
+                    if (servReq.isCompact())
+                        carPref.setText("Car Type: Compact");
+                    else if (servReq.isIntermediate())
+                        carPref.setText("Car Type: Intermediate");
+                    else if (servReq.isSUV())
+                        carPref.setText("Car Type: SUV");
+                    else
+                        carPref.setVisibility(View.GONE);
+
+                    //pickup date
+                    if (servReq.getPickupdate().equals(""))
+                        pickDate.setVisibility(View.GONE);
+                    else
+                        pickDate.setText("Pickup Date: " + servReq.getPickupdate());
+                    //pickup time
+                    if (servReq.getPickuptime().equals(""))
+                        pickTime.setVisibility(View.GONE);
+                    else
+                        pickTime.setText("Pickup Time: " + servReq.getPickuptime());
+                    //return date
+                    if (servReq.getReturndate().equals(""))
+                        retDate.setVisibility(View.GONE);
+                    else
+                        retDate.setText("Return Date: " + servReq.getReturndate());
+                    //return time
+                    if (servReq.getReturntime().equals(""))
+                        retTime.setVisibility(View.GONE);
+                    else
+                        retTime.setText("Return Time: " + servReq.getReturntime());
+
+                    //start location
+                    if (servReq.getMovingstartlocation().equals(""))
+                        startLoc.setVisibility(View.GONE);
+                    else
+                        startLoc.setText("Moving Start Location: " + servReq.getMovingstartlocation());
+                    if (servReq.getMovingendlocation().equals(""))
+                        endLoc.setVisibility(View.GONE);
+                    else
+                        endLoc.setText("Moving End Location: " + servReq.getMovingendlocation());
+                    //area
+                    if (servReq.getArea().equals(""))
+                        area.setVisibility(View.GONE);
+                    else
+                        area.setText("Area: " + servReq.getArea());
+                    if (servReq.getKmdriven().equals(""))
+                        kmDriven.setVisibility(View.GONE);
+                    else
+                        kmDriven.setText("KM Driven: " + servReq.getKmdriven());
+
+                    //num movers
+                    if (servReq.getNumberofmovers().equals(""))
+                        numMovers.setVisibility(View.GONE);
+                    else
+                        numMovers.setText("Number of Movers: " + servReq.getNumberofmovers());
+                    //num boxes
+                    if (servReq.getNumberofboxes().equals(""))
+                        custNameNumBoxes.setVisibility(View.GONE);
+                    else
+                        custNameNumBoxes.setText("Number of Boxes: " + servReq.getNumberofboxes());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         dialogBuilder.setTitle("Accept " + serviceName + " service request?");
         final AlertDialog b = dialogBuilder.create();

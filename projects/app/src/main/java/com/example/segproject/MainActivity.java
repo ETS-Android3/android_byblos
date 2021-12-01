@@ -50,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (username.equals("employee") && password.equals("employee")){ //case that employee is logging in.
-            Toast.makeText(getApplicationContext(), "Welcome Employee", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), EmployeeWelcomeActivity.class); // if successful go to admin page.
-            startActivity(intent);
-            return;
-        }
+//        if (username.equals("employee") && password.equals("employee")){ //case that employee is logging in.
+//            Toast.makeText(getApplicationContext(), "Welcome Employee", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(getApplicationContext(), EmployeeWelcomeActivity.class); // if successful go to admin page.
+//            startActivity(intent);
+//            return;
+//        }
         if (username.equals("customer") && password.equals("customer")){ //case that employee is logging in.
             Toast.makeText(getApplicationContext(), "Welcome Employee", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), CustomerWelcomeActivity.class); // if successful go to admin page.
@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                         }else if (info.child("role").getValue().equals("Employee")){
                             Intent intent = new Intent(getApplicationContext(), EmployeeWelcomeActivity.class); // if successful go to welcome page.
                             intent.putExtra("id", info.child("userID").getValue().toString());
+
                             startActivity(intent);
                             return;
                         }

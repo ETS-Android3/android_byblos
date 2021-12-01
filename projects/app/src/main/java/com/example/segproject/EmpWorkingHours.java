@@ -43,7 +43,6 @@ public class EmpWorkingHours extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        // hoursid null.
         dbWorkingHours.child(hoursID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -51,28 +50,38 @@ public class EmpWorkingHours extends AppCompatActivity {
                 if (wh != null){
                     if (wh.getMon()){
                         mon.setText("Monday: 9am - 5pm");
+                        mon.setBackgroundColor(0xFF6FAE7F);
                     }else{
                         mon.setText("Monday: CLosed");
+                        mon.setBackgroundColor(0xFFBAD6C1);
                     }
                     if (wh.getTues()){
                         tue.setText("Tuesday: 9am - 5pm");
+                        tue.setBackgroundColor(0xFF6FAE7F);
                     }else{
                         tue.setText("Tuesday: Closed");
+                        tue.setBackgroundColor(0xFFBAD6C1);
                     }
                     if (wh.getWed()){
                         wed.setText("Wednesday: 9am - 5pm");
+                        wed.setBackgroundColor(0xFF6FAE7F);
                     }else{
                         wed.setText("Wednesday: Closed");
+                        wed.setBackgroundColor(0xFFBAD6C1);
                     }
                     if (wh.getThu()){
                         thu.setText("Thursday: 9am - 5pm");
+                        thu.setBackgroundColor(0xFF6FAE7F);
                     }else{
                         thu.setText("Thursday: Closed");
+                        thu.setBackgroundColor(0xFFBAD6C1);
                     }
                     if (wh.getFri()){
                         fri.setText("Friday: 9am - 5pm");
+                        fri.setBackgroundColor(0xFF6FAE7F);
                     }else{
                         fri.setText("Friday: Closed");
+                        fri.setBackgroundColor(0xFFBAD6C1);
                     }
                 }
             }

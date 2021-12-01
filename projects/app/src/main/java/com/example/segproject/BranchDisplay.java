@@ -41,7 +41,6 @@ public class BranchDisplay extends AppCompatActivity {
 
     List<NewService> branchServiceList; // stores list of global services associated with branch (branch associated with a user)
 
-
     DatabaseReference dbBranchRef;
     DatabaseReference dbGlobServ;
     DatabaseReference dbUser;
@@ -151,7 +150,6 @@ public class BranchDisplay extends AppCompatActivity {
 
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(BranchDisplay.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
@@ -159,9 +157,7 @@ public class BranchDisplay extends AppCompatActivity {
         });
 
 
-
         branchServiceListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 NewService serv = branchServiceList.get(position);
@@ -171,20 +167,21 @@ public class BranchDisplay extends AppCompatActivity {
             }
         });
 
-
         dbFeedback.addValueEventListener(new ValueEventListener() { // outputs the services offered at the branch in listview.
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot info : snapshot.getChildren()) { // iterate through all global services and check if
                     Feedback fb = info.getValue(Feedback.class);
                     if (fb != null) {
-                        rate = rate + (double)fb.getRating();
-                        counter++;
-                       if(fb.getUserID().equals(userid) && fb.getBranchID().equals(branchID)){
-                            customerRating.setText("" + fb.getRating());
-                            customerComment.setText(fb.getComment());
-                       };
+                       if(fb.getUserID().equals(userid) && fb.getBranchID().equals(branchID)){ // match user with branch
+                               customerRating.setText("" + fb.getRating());
+                               customerComment.setText(fb.getComment());
 
+                           if (fb.getBranchID().equals(serviceID)){
+                               rate = rate + (double)fb.getRating();
+                               counter++;
+                           }
+                       };
                     }
                 }
                 NewServiceList branchAdapter = new NewServiceList(BranchDisplay.this, branchServiceList);
@@ -194,18 +191,18 @@ public class BranchDisplay extends AppCompatActivity {
 
                 if(Double.isNaN(rate)){
                     avgRate.setText("No ratings");
+                    TextView ratingBanner = findViewById(R.id.yourRatingBanner);
+                    ratingBanner.setVisibility(View.GONE);
+                    customerRating.setVisibility(View.GONE);
                 }else{
                     avgRate.setText("Average rating: " + new DecimalFormat("##.#").format(rate));
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(BranchDisplay.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
     private void sendServiceRequestDialog(String servID){
