@@ -21,6 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import android.util.Log;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class ServiceRequestForm extends AppCompatActivity {
     // service request form where customer can fill out required info to submit a service request
@@ -417,7 +420,7 @@ public class ServiceRequestForm extends AppCompatActivity {
                 valid = false;
             }
         } if (tpickuptime.getVisibility() == View.VISIBLE) {
-            if (!pickuptime.trim().matches("[0-9]+(\\.){0,1}[0-9]*") || (pickuptime.trim().isEmpty())) {
+            if (!pickuptime.trim().matches("(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)(am|pm)") || (pickuptime.trim().isEmpty())) {
                 tpickuptime.setError("Please enter a valid time!");
                 tpickuptime.requestFocus();
                 valid = false;
@@ -430,7 +433,7 @@ public class ServiceRequestForm extends AppCompatActivity {
                 valid = false;
             }
         } if (treturntime.getVisibility() == View.VISIBLE) {
-            if (!returntime.trim().matches("[0-9]+(\\.){0,1}[0-9]*") || (returntime.trim().isEmpty())) {
+            if (!returntime.trim().matches("(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)(am|pm)") || (returntime.trim().isEmpty())) {
                 treturntime.setError("Please enter a valid time!");
                 treturntime.requestFocus();
                 valid = false;
@@ -482,7 +485,7 @@ public class ServiceRequestForm extends AppCompatActivity {
         }
         // all fields are valid and request can be submitted
         if (valid){
-            Log.d("request","VALID");
+            //Log.d("request","VALID");
             submitNewRequest();
         }
     }
