@@ -36,7 +36,7 @@ public class BranchRequests extends AppCompatActivity {
     List<ServiceRequest> branchRequestsServiceList;
     String acceptedRequests;
     String rejectedRequests;
-    Button backButton;
+    Button branchRequestsBackButton;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class BranchRequests extends AppCompatActivity {
         dbBranchRef = FirebaseDatabase.getInstance().getReference("branch"); // get reference to branches
         dbRequests = FirebaseDatabase.getInstance().getReference("ServiceRequests");
 
-        backButton = findViewById(R.id.branchRequestsBackBTN);
+        branchRequestsBackButton = findViewById(R.id.branchRequestsBackBTN);
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
@@ -56,7 +56,7 @@ public class BranchRequests extends AppCompatActivity {
         branchRequestsListView = findViewById(R.id.branchRequestList);
         branchRequestsServiceList = new ArrayList<>();
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+        branchRequestsBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BranchRequests.this,EmployeeProfile.class);
@@ -64,6 +64,7 @@ public class BranchRequests extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(BranchRequests.this, "Back to branch profile", Toast.LENGTH_LONG).show();
             }
         });
         // request long click

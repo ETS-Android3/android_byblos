@@ -59,6 +59,7 @@ public class RejectedServiceRequests extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursid);
                 startActivity(intent);
+                Toast.makeText(RejectedServiceRequests.this, "Back to branch profile", Toast.LENGTH_LONG).show();
             }
         });
 

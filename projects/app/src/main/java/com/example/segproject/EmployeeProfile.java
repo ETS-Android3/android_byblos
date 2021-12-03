@@ -129,6 +129,7 @@ public class EmployeeProfile extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(EmployeeProfile.this, "Viewing services", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -140,6 +141,7 @@ public class EmployeeProfile extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(EmployeeProfile.this, "Viewing service requests", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -151,6 +153,7 @@ public class EmployeeProfile extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(EmployeeProfile.this, "Viewing accepted service requests", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -162,6 +165,7 @@ public class EmployeeProfile extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(EmployeeProfile.this, "Viewing rejected service requests", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -173,6 +177,7 @@ public class EmployeeProfile extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid",hoursID);
                 startActivity(intent);
+                Toast.makeText(EmployeeProfile.this, "Viewing hours", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -190,6 +195,7 @@ public class EmployeeProfile extends AppCompatActivity {
             public void onClick(View view) {
                 openAddBranchService();
             }
+
         });
 
 
@@ -275,6 +281,7 @@ public class EmployeeProfile extends AppCompatActivity {
         intent.putExtra("id",userid);
         intent.putExtra("hoursid", hoursID);
         startActivity(intent);
+        Toast.makeText(EmployeeProfile.this, "Adding branch service", Toast.LENGTH_LONG).show();
     }
 
 }

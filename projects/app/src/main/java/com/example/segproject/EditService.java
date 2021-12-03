@@ -86,6 +86,7 @@ public class EditService extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(EditService.this, AdminActivity.class);
                 startActivity(intent);
+                Toast.makeText(EditService.this, "Back to admin profile", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -428,6 +429,7 @@ public class EditService extends AppCompatActivity {
     public void openAddGlobalService(){
         Intent intent = new Intent(this,AddGlobalService.class);
         startActivity(intent);
+        Toast.makeText(EditService.this, "Adding service", Toast.LENGTH_LONG).show();
 
     }
 

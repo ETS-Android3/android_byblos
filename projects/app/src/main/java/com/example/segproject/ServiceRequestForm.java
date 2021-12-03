@@ -144,6 +144,7 @@ public class ServiceRequestForm extends AppCompatActivity {
                 intent.putExtra("username", username);
                 intent.putExtra("id",userID);
                 startActivity(intent);
+                Toast.makeText(ServiceRequestForm.this, "Back to branch profile", Toast.LENGTH_LONG).show();
             }
         });
 

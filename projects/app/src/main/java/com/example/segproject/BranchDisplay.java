@@ -105,6 +105,7 @@ public class BranchDisplay extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("username", username);
                 startActivity(intent);
+                Toast.makeText(BranchDisplay.this, "Redirecting to rejected requests", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -116,6 +117,7 @@ public class BranchDisplay extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("username", username);
                 startActivity(intent);
+                Toast.makeText(BranchDisplay.this, "Redirecting to welcome page", Toast.LENGTH_LONG).show();
             }
         });
 

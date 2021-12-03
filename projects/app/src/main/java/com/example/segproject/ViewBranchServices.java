@@ -69,6 +69,7 @@ public class ViewBranchServices extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(ViewBranchServices.this, "Back to branch profile", Toast.LENGTH_LONG).show();
             }
         });
 

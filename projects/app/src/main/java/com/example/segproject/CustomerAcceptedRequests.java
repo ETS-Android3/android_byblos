@@ -30,7 +30,7 @@ public class CustomerAcceptedRequests extends AppCompatActivity {
     String username;
     ListView branchAcceptedRequestsListView;
     List<ServiceRequest> branchAcceptedRequestsServiceList;
-    Button goBackButton;
+    Button customerAcceptedBackButton;
     String serviceid;
 
 
@@ -44,11 +44,11 @@ public class CustomerAcceptedRequests extends AppCompatActivity {
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
         username = getIntent().getStringExtra("username");
-        goBackButton = findViewById(R.id.custAcceptedServicesBackBTN);
+        customerAcceptedBackButton = findViewById(R.id.custAcceptedServicesBackBTN);
         branchAcceptedRequestsListView = findViewById(R.id.customerAcceptedRequests);
         branchAcceptedRequestsServiceList = new ArrayList<>();
 
-        goBackButton.setOnClickListener(new View.OnClickListener() {
+        customerAcceptedBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CustomerAcceptedRequests.this, BranchDisplay.class);
@@ -56,6 +56,7 @@ public class CustomerAcceptedRequests extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("username", username);
                 startActivity(intent);
+                Toast.makeText(CustomerAcceptedRequests.this, "Back to branch display", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -70,7 +71,6 @@ public class CustomerAcceptedRequests extends AppCompatActivity {
                 if (profile != null) {
                     acceptedRequests = profile.getAcceptedRequests();
                     acceptedRequestsList = acceptedRequests.split(", ");
-
                 }
             }
 

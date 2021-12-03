@@ -60,6 +60,7 @@ public class AcceptedServiceRequests extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursid);
                 startActivity(intent);
+                Toast.makeText(AcceptedServiceRequests.this, "Back to branch profile", Toast.LENGTH_LONG).show();
             }
         });
 

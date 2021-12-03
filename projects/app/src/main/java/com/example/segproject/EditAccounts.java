@@ -66,6 +66,7 @@ public class EditAccounts extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(EditAccounts.this, AdminActivity.class);
                 startActivity(intent);
+                Toast.makeText(EditAccounts.this, "Back to admin profile", Toast.LENGTH_LONG).show();
             }
         });
 

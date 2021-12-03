@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
     public void onSignUpButton(View view) {
         Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
         startActivity (intent);
+        Toast.makeText(MainActivity.this, "Signing up", Toast.LENGTH_LONG).show();
     }
 
 }

@@ -30,7 +30,7 @@ public class CustomerRejectedRequests extends AppCompatActivity {
     String username;
     ListView branchRejectedRequestsListView;
     List<ServiceRequest> branchRejectedRequestsServiceList;
-    Button  goBackCustButton;
+    Button  customerRejectedGoBackCustButton;
     String serviceid;
 
 
@@ -44,11 +44,11 @@ public class CustomerRejectedRequests extends AppCompatActivity {
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
         username = getIntent().getStringExtra("username");
-        goBackCustButton = findViewById(R.id.custRejectedServicesBackBTN);
+        customerRejectedGoBackCustButton = findViewById(R.id.custRejectedServicesBackBTN);
         branchRejectedRequestsListView = findViewById(R.id.customerRejectedRequests);
         branchRejectedRequestsServiceList = new ArrayList<>();
 
-        goBackCustButton.setOnClickListener(new View.OnClickListener() {
+        customerRejectedGoBackCustButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CustomerRejectedRequests.this, BranchDisplay.class);
@@ -56,6 +56,8 @@ public class CustomerRejectedRequests extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("username", username);
                 startActivity(intent);
+                Toast.makeText(CustomerRejectedRequests.this, "Back to branch profile", Toast.LENGTH_LONG).show();
+
             }
         });
     }
