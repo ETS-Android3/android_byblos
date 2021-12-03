@@ -87,11 +87,6 @@ public class CustomerWelcomeActivity extends AppCompatActivity implements Branch
                             branchList.add(info.getValue(BranchProfile.class));
                         }
 
-//                        bAdapter.updateData(branchList);
-//                        bAdapter.notifyDataSetChanged();
-
-//                        BranchAdapter branchAdapter = new BranchAdapter(branchList);
-//                        searchResultRV.setAdapter(branchAdapter);
                     }
                 }
                 @Override
