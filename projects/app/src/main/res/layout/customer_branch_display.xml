@@ -142,6 +142,13 @@
                     android:backgroundTint="#669871"
                     android:text="VIEW ACCEPTED SERVICE REQUESTS" />
 
+                <Button
+                    android:id="@+id/viewrejectedServiceRequests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#669871"
+                    android:text="VIEW REJECTED SERVICE REQUESTS" />
+
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="30sp" />

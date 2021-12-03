@@ -38,6 +38,7 @@ public class BranchDisplay extends AppCompatActivity {
     Button backButton;
     Button logout;
     Button acceptedServices;
+    Button viewRejectedServices;
     ListView branchServiceListView;
 
     List<NewService> branchServiceList; // stores list of global services associated with branch (branch associated with a user)
@@ -82,6 +83,7 @@ public class BranchDisplay extends AppCompatActivity {
         username = getIntent().getStringExtra("username");
         logout = findViewById(R.id.custLogoutButton2);
         acceptedServices = findViewById(R.id.acceptedServices);
+        viewRejectedServices = findViewById(R.id.viewrejectedServiceRequests);
 
         TextView addressEBanner = (TextView) findViewById(R.id.branchAddress);
         TextView phoneNumberEBanner = (TextView) findViewById(R.id.branchPhoneNumber);
@@ -94,6 +96,17 @@ public class BranchDisplay extends AppCompatActivity {
 
         branchServiceListView = findViewById(R.id.branchServiceList);
         branchServiceList = new ArrayList<>();
+
+        viewRejectedServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BranchDisplay.this, CustomerRejectedRequests.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
+        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

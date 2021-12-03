@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomerRejectedRequests">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#50835F"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/rejectedBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#82AF84"
+            android:textColor="@color/white"
+            android:paddingVertical="20dp"
+            android:gravity="center"
+            android:text="REJECTED SERVICE REQUESTS"
+            android:textSize="40sp" />
+
+        <Button
+            android:id="@+id/custRejectedServicesBackBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#557556"
+            android:text="back" />
+
+        <ListView
+            android:id="@+id/customerRejectedRequests"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </LinearLayout>
+</RelativeLayout>
