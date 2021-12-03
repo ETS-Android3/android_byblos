@@ -2,6 +2,7 @@ package com.example.segproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -172,7 +173,6 @@ public class BranchDisplay extends AppCompatActivity {
             }
         });
 
-
         branchServiceListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -190,14 +190,14 @@ public class BranchDisplay extends AppCompatActivity {
                     Feedback fb = info.getValue(Feedback.class);
                     if (fb != null) {
                        if(fb.getUserID().equals(userid) && fb.getBranchID().equals(branchID)){ // match user with branch
-                               customerRating.setText("" + fb.getRating());
-                               customerComment.setText(fb.getComment());
-
-                           if (fb.getBranchID().equals(serviceID)){
-                               rate = rate + (double)fb.getRating();
-                               counter++;
-                           }
-                       };
+                           customerRating.setVisibility(View.VISIBLE);
+                           customerRating.setText("" + fb.getRating());
+                           customerComment.setText(fb.getComment());
+                       }
+                        if (fb.getBranchID().equals(branchID)){ //
+                            rate = rate + (double) fb.getRating();
+                            counter++;
+                        }
                     }
                 }
                 NewServiceList branchAdapter = new NewServiceList(BranchDisplay.this, branchServiceList);
@@ -207,10 +207,11 @@ public class BranchDisplay extends AppCompatActivity {
 
                 if(Double.isNaN(rate)){
                     avgRate.setText("No ratings");
-                    TextView ratingBanner = findViewById(R.id.yourRatingBanner);
-                    ratingBanner.setVisibility(View.GONE);
-                    customerRating.setVisibility(View.GONE);
+//                    TextView ratingBanner = findViewById(R.id.yourRatingBanner);
+//                    ratingBanner.setVisibility(View.GONE);
+//                    customerRating.setVisibility(View.GONE);
                 }else{
+                    avgRate.setVisibility(View.VISIBLE);
                     avgRate.setText("Average rating: " + new DecimalFormat("##.#").format(rate));
                 }
             }

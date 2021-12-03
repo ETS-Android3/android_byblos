@@ -20,10 +20,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#82AF84"
-            android:textColor="@color/white"
-            android:paddingVertical="20dp"
             android:gravity="center"
-            android:text="ACCEPTED SERVICE REQUESTS"
+            android:paddingVertical="20dp"
+            android:text="SERVICE REQUESTS"
+            android:textColor="@color/white"
             android:textSize="40sp" />
 
         <Button

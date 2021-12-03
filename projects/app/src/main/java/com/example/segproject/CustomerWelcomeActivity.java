@@ -86,7 +86,6 @@ public class CustomerWelcomeActivity extends AppCompatActivity implements Branch
                         for(DataSnapshot info : snapshot.getChildren()){
                             branchList.add(info.getValue(BranchProfile.class));
                         }
-
                     }
                 }
                 @Override

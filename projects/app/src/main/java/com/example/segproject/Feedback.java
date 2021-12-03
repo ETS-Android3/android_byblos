@@ -4,16 +4,18 @@ public class Feedback {
 
     String userID;
     String branchID;
+    String feedbackID;
     String comment;
     float rating;
     public Feedback() {
     }
 
-    public Feedback(String userID, String branchID, String comment, float rating) {
+    public Feedback(String userID, String branchID, String comment, float rating, String feedbackID) {
         this.userID = userID;
         this.branchID = branchID;
         this.comment = comment;
         this.rating = rating;
+        this.feedbackID = feedbackID;
     }
 
     public String getUserID() {
@@ -30,5 +32,9 @@ public class Feedback {
 
     public float getRating() {
         return rating;
+    }
+
+    public String getFeedbackID() {
+        return feedbackID;
     }
 }

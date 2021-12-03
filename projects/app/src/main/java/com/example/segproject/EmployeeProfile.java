@@ -227,7 +227,6 @@ public class EmployeeProfile extends AppCompatActivity {
             }
         });
 
-
         dbFeedback.addValueEventListener(new ValueEventListener() { // outputs the services offered at the branch in listview.
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

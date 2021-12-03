@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,10 @@ public class EditAccounts extends AppCompatActivity {
     ListView listviewEmployees;
 
     DatabaseReference dbUsers;
+    DatabaseReference dbBranches;
+    DatabaseReference dbHours;
+    DatabaseReference dbFeedback;
+    DatabaseReference dbServiceReq;
 
     EditText editTextUsername;
     EditText editTextEmail;
@@ -135,7 +140,7 @@ public class EditAccounts extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteUser(id);
+                deleteUser(id, branchID);
                 b.dismiss();
             }
         });
@@ -172,10 +177,96 @@ public class EditAccounts extends AppCompatActivity {
         });
     }
 
-    public void deleteUser(String id){ //this does not delete user from authenticated database. but does delete from realtime.
+    public void deleteUser(String id, String branchid){ //this does not delete user from authenticated database. but does delete from realtime.
         dbUsers.child(id).removeValue();
-        Toast.makeText(getApplicationContext(), "User deleted", Toast.LENGTH_LONG).show();
+        dbHours = FirebaseDatabase.getInstance().getReference("hours");
+        dbBranches = FirebaseDatabase.getInstance().getReference("branch");
+        dbFeedback = FirebaseDatabase.getInstance().getReference("feedback");
+        dbServiceReq = FirebaseDatabase.getInstance().getReference("ServiceRequests");
 
+        if (branchid.equals("")){ // if user to delete is a customer. delete feedback and service requests.
+            dbFeedback.addValueEventListener(new ValueEventListener() { // delete customer feedback
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot info : snapshot.getChildren()){
+                        if (info.child("userID").getValue(String.class).equals(id)){
+                            String tempfeedbackID = info.child("feedbackID").getValue(String.class);
+                            if (tempfeedbackID != null)
+                                dbFeedback.child(tempfeedbackID).removeValue();
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+
+            dbServiceReq.addValueEventListener(new ValueEventListener() { //delete customer service requests.
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot info : snapshot.getChildren()){
+                        if (info.child("userID").getValue(String.class).equals(id)){
+                            String tempservreqID = info.child("requestID").getValue(String.class);
+                            if (tempservreqID != null)
+                                dbServiceReq.child(tempservreqID).removeValue();
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
+        else {// if user to delete is an employee.
+            dbHours.addValueEventListener(new ValueEventListener() { // delete employee hours
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot info : snapshot.getChildren()){
+                        if (info.child("branchID").getValue(String.class).equals(branchid)){
+                            String temphoursid = info.child("hoursID").getValue(String.class);
+                            if (temphoursid != null)
+                            dbHours.child(temphoursid).removeValue();
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+            dbFeedback.addValueEventListener(new ValueEventListener() { // delete any feedback associated with branch.
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot info : snapshot.getChildren()){
+                        if (info.child("branchID").getValue(String.class).equals(branchid)){
+                            String tempfeedbackid = info.child("feedbackID").getValue(String.class);
+                            if (tempfeedbackid != null)
+                                dbHours.child(tempfeedbackid).removeValue();
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+            dbServiceReq.addValueEventListener(new ValueEventListener() { //delete branch service requests.
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot info : snapshot.getChildren()){
+                        if (info.child("branchID").getValue(String.class).equals(branchid)){
+                            String tempservreqID = info.child("requestID").getValue(String.class);
+                            if (tempservreqID != null)
+                                dbServiceReq.child(tempservreqID).removeValue();
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+            dbBranches.child(branchid).removeValue(); //delete employee branch
+        }
+
+        Toast.makeText(getApplicationContext(), "User deleted", Toast.LENGTH_LONG).show();
     }
 
     public void updateUser(String id, String username, String email, String password, String role, String branchID){

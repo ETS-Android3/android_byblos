@@ -94,14 +94,12 @@ public class FeedbackPage extends AppCompatActivity {
                 submitFeedback();
             }
         });
-
-
     }
 
     private void submitFeedback(){
         feedbackID = dbFeedback.push().getKey(); // get unique service request id.
 
-        Feedback fb = new Feedback(userID, branchID, comment,rateValueTemp);
+        Feedback fb = new Feedback(userID, branchID, comment,rateValueTemp,feedbackID);
 
         dbFeedback.child(feedbackID).setValue(fb);
 
