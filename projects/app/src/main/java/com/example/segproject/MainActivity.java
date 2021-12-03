@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-                eTUsername.setError("Usernmane or Password Incorrect");
+                eTUsername.setError("Username or Password Incorrect");
                 eTUsername.requestFocus();
 //                Toast.makeText(getApplicationContext(), "Incorrect Credentials", Toast.LENGTH_SHORT).show(); // reached end of db and did not find user
                 return;

@@ -59,6 +59,7 @@ public class EmployeeProfile extends AppCompatActivity {
 
     Button serviceRequests;
     Button acceptedRequests;
+    Button rejectedRequests;
 
 
     String userid;
@@ -109,6 +110,7 @@ public class EmployeeProfile extends AppCompatActivity {
         viewHours = findViewById(R.id.empHoursBTN);
         serviceRequests = findViewById(R.id.serviceRequests);
         acceptedRequests = findViewById(R.id.acceptedRequests);
+        rejectedRequests = findViewById(R.id.rejectedRequests);
         viewServices = findViewById(R.id.viewServices);
         addService = findViewById(R.id.add);
         branchServiceListView = findViewById(R.id.branchServiceListView);
@@ -145,6 +147,17 @@ public class EmployeeProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EmployeeProfile.this,AcceptedServiceRequests.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("hoursid", hoursID);
+                startActivity(intent);
+            }
+        });
+
+       rejectedRequests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmployeeProfile.this,RejectedServiceRequests.class);
                 intent.putExtra("branchID",branchID);
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);

@@ -111,11 +111,11 @@ public class EmployeeActivity extends AppCompatActivity {
                     eTZip.requestFocus();
                     valid = false;
                 }
-                if (eTZip.getText().toString().replaceAll("//s", "").length() == 6){ // canadian zip
-                    String temp = eTZip.getText().toString();
-                    if (!( Character.isLetter(temp.charAt(0)) && Character.isDigit(temp.charAt(1)) && Character.isLetter(temp.charAt(2)) && Character.isDigit(temp.charAt(3)) && Character.isLetter(temp.charAt(4)) && Character.isDigit(temp.charAt(0)) ))
-                        valid = false;
-                }
+//                if (eTZip.getText().toString().replaceAll("//s", "").length() == 6){ // canadian zip
+//                    String temp = eTZip.getText().toString();
+//                    if (!( Character.isLetter(temp.charAt(0)) && Character.isDigit(temp.charAt(1)) && Character.isLetter(temp.charAt(2)) && Character.isDigit(temp.charAt(3)) && Character.isLetter(temp.charAt(4)) && Character.isDigit(temp.charAt(0)) ))
+//                        valid = false;
+//                }
 
                 if (valid){
                     completeEmployeeProfile();
@@ -153,9 +153,10 @@ public class EmployeeActivity extends AppCompatActivity {
         hoursString = makeHours(mon,tue,wed,thurs,fri);
         String requests = "";
         String acceptedRequests = "";
+        String rejectedRequests = "";
 
 
-        BranchProfile pi = new BranchProfile(num,street,phoneNum,branchid,city, state, country, zip,services, servicesNames, hoursString, requests, acceptedRequests);
+        BranchProfile pi = new BranchProfile(num,street,phoneNum,branchid,city, state, country, zip,services, servicesNames, hoursString, requests, acceptedRequests, rejectedRequests);
         dbBranch.child(branchid).setValue(pi); // store
 
         WorkingHours hours = new WorkingHours(userID, branchid, hoursID, mon,tue,wed,thurs,fri);

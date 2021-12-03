@@ -19,6 +19,9 @@
             android:name=".AcceptedServiceRequests"
             android:exported="true" />
         <activity
+            android:name=".RejectedServiceRequests"
+            android:exported="true" />
+        <activity
             android:name=".BranchRequests"
             android:exported="true" />
         <activity
