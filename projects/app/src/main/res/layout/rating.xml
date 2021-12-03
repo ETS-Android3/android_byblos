@@ -96,11 +96,11 @@
             android:text="Submit" />
 
         <Button
-            android:id="@+id/logout"
+            android:id="@+id/custRatingBackBTN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#AECAB4"
-            android:text="LogOut" />
+            android:text="BACK" />
 
     </LinearLayout>
 </RelativeLayout>

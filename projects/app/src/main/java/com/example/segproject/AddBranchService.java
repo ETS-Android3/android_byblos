@@ -37,6 +37,7 @@ public class AddBranchService extends AppCompatActivity {
     String phoneNum;
     String employeeID;
     String services;
+    String hoursid;
     String id;
     Button backButton;
     String servicesName;
@@ -50,6 +51,7 @@ public class AddBranchService extends AppCompatActivity {
         dbBranch = FirebaseDatabase.getInstance().getReference("branch");
         uid = getIntent().getStringExtra("branchID");
         id = getIntent().getStringExtra("id");
+        hoursid = getIntent().getStringExtra("hoursid");
         //Toast.makeText(getApplicationContext(), "welcome ." + uid , Toast.LENGTH_SHORT).show();
 
         branchServiceListView = findViewById(R.id.addServiceOptionsListView);
@@ -63,6 +65,7 @@ public class AddBranchService extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), EmployeeProfile.class);
                 intent.putExtra("branchID",uid);
                 intent.putExtra("id",id);
+                intent.putExtra("hoursid", hoursid);
                 startActivity(intent);
             }
         });

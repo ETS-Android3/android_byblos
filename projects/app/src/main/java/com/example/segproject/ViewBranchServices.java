@@ -29,12 +29,14 @@ public class ViewBranchServices extends AppCompatActivity {
     DatabaseReference dbRequests;
     DatabaseReference dbFeedback;
     String branchID;
+    String hoursID;
     String userid;
     String[] branchServices;
     String services;
     ListView branchServiceListView;
     List<NewService> branchServiceList;
     ArrayList<String> branchServicesNamesList;
+    Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +52,25 @@ public class ViewBranchServices extends AppCompatActivity {
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id.
+        hoursID = getIntent().getStringExtra("hoursid");
+
+        backButton = findViewById(R.id.branchServicesOfferedBackBTN);
 
         branchServiceListView = findViewById(R.id.branchServiceListView);
         branchServiceList = new ArrayList<>();
         branchServicesNamesList = new ArrayList<>();
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewBranchServices.this,EmployeeProfile.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("hoursid", hoursID);
+                startActivity(intent);
+            }
+        });
 
         branchServiceListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { //listen for long press to see if you want to delete a service.
             @Override

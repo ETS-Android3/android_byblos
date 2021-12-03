@@ -26,6 +26,13 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/serviceRequestBackBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#84B591"
+                android:text="back" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="25dp" />

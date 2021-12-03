@@ -106,6 +106,16 @@ public class EmployeeActivity extends AppCompatActivity {
                     eTZip.requestFocus();
                     valid = false;
                 }
+                if (eTZip.getText().toString().replaceAll("//s", "").length() != 6){
+                    eTZip.setError("Please enter a valid postal code!");
+                    eTZip.requestFocus();
+                    valid = false;
+                }
+                if (eTZip.getText().toString().replaceAll("//s", "").length() == 6){ // canadian zip
+                    String temp = eTZip.getText().toString();
+                    if (!( Character.isLetter(temp.charAt(0)) && Character.isDigit(temp.charAt(1)) && Character.isLetter(temp.charAt(2)) && Character.isDigit(temp.charAt(3)) && Character.isLetter(temp.charAt(4)) && Character.isDigit(temp.charAt(0)) ))
+                        valid = false;
+                }
 
                 if (valid){
                     completeEmployeeProfile();

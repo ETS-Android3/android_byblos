@@ -3,7 +3,10 @@ package com.example.segproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +21,7 @@ public class EmpWorkingHours extends AppCompatActivity {
     String userid;
     String hoursID;
     TextView mon, tue, wed, thu, fri;
+    Button backButton;
 
     DatabaseReference dbWorkingHours;
 
@@ -32,11 +36,24 @@ public class EmpWorkingHours extends AppCompatActivity {
         userid = getIntent().getStringExtra("id"); // user id.
         hoursID = getIntent().getStringExtra("hoursid");
 
+        backButton = findViewById(R.id.empWorkingHoursBackBTN);
+
         mon = findViewById(R.id.monTV);
         tue = findViewById(R.id.tuesTV);
         wed = findViewById(R.id.wedTV);
         thu = findViewById(R.id.thuTV);
         fri = findViewById(R.id.friTV);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EmpWorkingHours.this,EmployeeProfile.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("hoursid", hoursID);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

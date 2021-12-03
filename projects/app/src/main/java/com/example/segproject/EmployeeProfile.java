@@ -84,8 +84,6 @@ public class EmployeeProfile extends AppCompatActivity {
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id.
-
-
         hoursID = getIntent().getStringExtra("hoursid");
         if (hoursID == null){ // if hours id is not passed through activities then get it manually.
             dbWorkinghours = FirebaseDatabase.getInstance().getReference("hours");
@@ -120,15 +118,6 @@ public class EmployeeProfile extends AppCompatActivity {
 
         // feedback
         avgRate = findViewById(R.id.avgRating);
-
-        // requests
-
-//        branchRequestsListView = findViewById(R.id.branchRequestsListView);
-//        branchRequestsServiceList = new ArrayList<>();
-
-        // accepted requests
-//        branchAcceptedRequestsListView = findViewById(R.id.branchAcceptedRequestsListView);
-//        branchAcceptedRequestsServiceList= new ArrayList<>();
 
         viewServices.setOnClickListener(new View.OnClickListener() {
             @Override

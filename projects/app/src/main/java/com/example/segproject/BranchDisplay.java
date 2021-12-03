@@ -35,6 +35,7 @@ public class BranchDisplay extends AppCompatActivity {
     String zip;
     String hours;
     Button rateUs;
+    Button backButton;
     Button logout;
     Button acceptedServices;
     ListView branchServiceListView;
@@ -51,6 +52,7 @@ public class BranchDisplay extends AppCompatActivity {
     String[] acceptedRequestsList;
 
     String userid;
+    String username;
     String hoursID;
     String temp = "";
 
@@ -77,7 +79,7 @@ public class BranchDisplay extends AppCompatActivity {
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
-
+        username = getIntent().getStringExtra("username");
         logout = findViewById(R.id.custLogoutButton2);
         acceptedServices = findViewById(R.id.acceptedServices);
 
@@ -85,12 +87,24 @@ public class BranchDisplay extends AppCompatActivity {
         TextView phoneNumberEBanner = (TextView) findViewById(R.id.branchPhoneNumber);
         TextView hoursEBanner = (TextView) findViewById(R.id.branchHours);
         rateUs = findViewById(R.id.rateButton);
+        backButton = findViewById(R.id.custBranchDisplayBackBTN);
         TextView customerRating = findViewById(R.id.customerRating);
         TextView customerComment = findViewById(R.id.customerComment);
         avgRate = findViewById(R.id.avgRatingDisplay);
 
         branchServiceListView = findViewById(R.id.branchServiceList);
         branchServiceList = new ArrayList<>();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BranchDisplay.this, CustomerWelcomeActivity.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() { // logout button listener.
             @Override
@@ -106,6 +120,7 @@ public class BranchDisplay extends AppCompatActivity {
                 Intent intent = new Intent(getBaseContext(), CustomerAcceptedRequests.class);
                 intent.putExtra("branchID",branchID);
                 intent.putExtra("id",userid);
+                intent.putExtra("username", username);
                 startActivity(intent);
                 Toast.makeText(BranchDisplay.this, "Redirecting to accepted requests", Toast.LENGTH_LONG).show();
             }
@@ -117,6 +132,7 @@ public class BranchDisplay extends AppCompatActivity {
                 Intent intent = new Intent(getBaseContext(), FeedbackPage.class);
                 intent.putExtra("branchID",branchID);
                 intent.putExtra("id",userid);
+                intent.putExtra("username", username);
                 startActivity(intent);
                 Toast.makeText(BranchDisplay.this, "Redirecting to feedback form", Toast.LENGTH_LONG).show();
             }
@@ -213,9 +229,18 @@ public class BranchDisplay extends AppCompatActivity {
 
         final Button sendButton = (Button) dialogView.findViewById(R.id.sendRequestButton);
 
+        Button DialogBackButton = dialogView.findViewById(R.id.custSendServiceRequestBackBTN);
+
         dialogBuilder.setTitle(name);
         final AlertDialog b = dialogBuilder.create();
         b.show();
+
+        DialogBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                b.dismiss();
+            }
+        });
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,6 +256,7 @@ public class BranchDisplay extends AppCompatActivity {
         Intent intent = new Intent(this,ServiceRequestForm.class);
         intent.putExtra("serviceID", serviceID);
         intent.putExtra("branchID",branchID);
+        intent.putExtra("username", username);
         intent.putExtra("id",userid);
         startActivity(intent);
         Toast.makeText(BranchDisplay.this, "Redirecting to form", Toast.LENGTH_LONG).show();

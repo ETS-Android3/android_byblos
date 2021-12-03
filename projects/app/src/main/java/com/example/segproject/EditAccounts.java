@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class EditAccounts extends AppCompatActivity {
     EditText editTextUsername;
     EditText editTextEmail;
     EditText editTextPassword;
+    Button backButton;
 
     RadioButton radioNewRoleCustomer;
     RadioButton radioNewRoleEmployee;
@@ -51,11 +53,21 @@ public class EditAccounts extends AppCompatActivity {
         listViewCustomers = (ListView) findViewById(R.id.CustomerListView);
         listviewEmployees = (ListView) findViewById(R.id.EmployeeListView);
 
+        backButton = findViewById(R.id.adminEditAccountBackBTN);
+
         customers = new ArrayList<>();
         employees = new ArrayList<>();
 
         dbUsers = FirebaseDatabase.getInstance().getReference("users");
 
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditAccounts.this, AdminActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //listen for customer long press.
         listViewCustomers.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

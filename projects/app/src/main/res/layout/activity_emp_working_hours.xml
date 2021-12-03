@@ -27,6 +27,13 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/empWorkingHoursBackBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#8DA593"
+            android:text="back" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp"
@@ -37,7 +44,7 @@
             android:id="@+id/monTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#6FAE7F"
+            android:background="#BAD6C1"
             android:gravity="center"
             android:text="TextView"
             android:textSize="30sp" />

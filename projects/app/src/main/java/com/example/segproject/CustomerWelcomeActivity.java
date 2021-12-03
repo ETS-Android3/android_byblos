@@ -165,6 +165,7 @@ public class CustomerWelcomeActivity extends AppCompatActivity implements Branch
             Intent intent = new Intent(CustomerWelcomeActivity.this, BranchDisplay.class);
             intent.putExtra("branchID", bID);
             intent.putExtra("id", userid);
+            intent.putExtra("username", username);
             startActivity(intent);
         }
 

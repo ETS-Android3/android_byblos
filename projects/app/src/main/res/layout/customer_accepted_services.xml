@@ -26,6 +26,13 @@
             android:text="ACCEPTED SERVICE REQUESTS"
             android:textSize="40sp" />
 
+        <Button
+            android:id="@+id/custAcceptedServicesBackBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#557556"
+            android:text="back" />
+
         <ListView
             android:id="@+id/customerAcceptedRequests"
             android:layout_width="match_parent"

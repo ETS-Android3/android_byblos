@@ -23,6 +23,20 @@
             android:text="Byblos Branch"
             android:textSize="40sp" />
 
+        <Button
+            android:id="@+id/custBranchDisplayBackBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#588A63"
+            android:text="back" />
+
+        <Button
+            android:id="@+id/custLogoutButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#7EA186"
+            android:text="@string/logout_button" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -154,13 +168,6 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="30dp" />
-
-                <Button
-                    android:id="@+id/custLogoutButton2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#7EA186"
-                    android:text="@string/logout_button" />
 
             </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.example.segproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,10 +31,11 @@ public class BranchRequests extends AppCompatActivity {
     DatabaseReference dbRequests;
     String branchID;
     String userid;
+    String hoursID;
     ListView branchRequestsListView;
     List<ServiceRequest> branchRequestsServiceList;
     String acceptedRequests;
-
+    Button backButton;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +46,25 @@ public class BranchRequests extends AppCompatActivity {
         dbBranchRef = FirebaseDatabase.getInstance().getReference("branch"); // get reference to branches
         dbRequests = FirebaseDatabase.getInstance().getReference("ServiceRequests");
 
+        backButton = findViewById(R.id.branchRequestsBackBTN);
+
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
+        hoursID = getIntent().getStringExtra("hoursid");
 
         branchRequestsListView = findViewById(R.id.branchRequestList);
         branchRequestsServiceList = new ArrayList<>();
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BranchRequests.this,EmployeeProfile.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("hoursid", hoursID);
+                startActivity(intent);
+            }
+        });
         // request long click
         branchRequestsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { //listen for long press to see if you want to delete a service.
             @Override

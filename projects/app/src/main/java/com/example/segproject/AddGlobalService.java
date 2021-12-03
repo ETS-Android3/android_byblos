@@ -100,7 +100,7 @@ public class AddGlobalService extends AppCompatActivity {
                     etname.requestFocus();
                     valid = false;
                 }
-                if (!etrate.getText().toString().trim().matches("^[0-9]*$")){
+                if ( !etrate.getText().toString().trim().matches("^[0-9]*$") && !etrate.getText().toString().trim().contains(".")){
                     etrate.setError("Rate must be a number!");
                     etrate.requestFocus();
                     valid = false;

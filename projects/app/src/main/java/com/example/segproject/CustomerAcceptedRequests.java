@@ -1,6 +1,9 @@
 package com.example.segproject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,8 +27,11 @@ public class CustomerAcceptedRequests extends AppCompatActivity {
     DatabaseReference dbRequests;
     String branchID;
     String userid;
+    String username;
     ListView branchAcceptedRequestsListView;
     List<ServiceRequest> branchAcceptedRequestsServiceList;
+    Button backButton;
+    String serviceid;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +43,21 @@ public class CustomerAcceptedRequests extends AppCompatActivity {
         dbRequests = FirebaseDatabase.getInstance().getReference("ServiceRequests");
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
+        username = getIntent().getStringExtra("username");
+        backButton = findViewById(R.id.custAcceptedServicesBackBTN);
         branchAcceptedRequestsListView = findViewById(R.id.customerAcceptedRequests);
         branchAcceptedRequestsServiceList = new ArrayList<>();
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustomerAcceptedRequests.this, BranchDisplay.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
+        });
     }
 
     protected void onStart() {//have list of all services
@@ -79,7 +97,6 @@ public class CustomerAcceptedRequests extends AppCompatActivity {
                                 }
                             }
                         }
-
                     }
                 }
 

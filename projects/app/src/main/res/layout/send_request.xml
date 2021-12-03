@@ -9,6 +9,13 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/custSendServiceRequestBackBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#5B8364"
+            android:text="back" />
+
+        <Button
             android:id="@+id/sendRequestButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

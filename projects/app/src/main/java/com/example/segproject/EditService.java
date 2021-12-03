@@ -32,6 +32,7 @@ public class EditService extends AppCompatActivity {
 
     DatabaseReference dbRef;
     Button addservice;
+    Button backButton;
     ListView listView;
     List<NewService> arrayList;
 
@@ -78,8 +79,16 @@ public class EditService extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.newServiceListView);
         arrayList = new ArrayList<>();
 
-
+        backButton = findViewById(R.id.adminServicesBackBTN);
         addservice = (Button) findViewById(R.id.addServiceBTN);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditService.this, AdminActivity.class);
+                startActivity(intent);
+            }
+        });
+
         addservice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -189,6 +198,9 @@ public class EditService extends AppCompatActivity {
                 cbkmdriven.setChecked(false);
                 cbnumberofmovers.setChecked(false);
                 cbnumberofboxes.setChecked(false);
+
+
+
 
                 for(DataSnapshot info : snapshot.getChildren()){
                     NewService serv = info.getValue(NewService.class);

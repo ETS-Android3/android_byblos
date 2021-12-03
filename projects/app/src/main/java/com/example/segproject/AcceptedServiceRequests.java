@@ -1,8 +1,10 @@
 package com.example.segproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ public class AcceptedServiceRequests extends AppCompatActivity {
     DatabaseReference dbRequests;
     String branchID;
     String userid;
+    String hoursid;
+    Button backButton;
 
     ListView branchAcceptedRequestsListView;
     List<ServiceRequest> branchAcceptedRequestsServiceList;
@@ -42,10 +46,22 @@ public class AcceptedServiceRequests extends AppCompatActivity {
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
+        hoursid = getIntent().getStringExtra("hoursid");;
 
+        backButton = findViewById(R.id.EmpAcceptedRequests);
         branchAcceptedRequestsListView = findViewById(R.id.branchAcceptedRequestsListView);
         branchAcceptedRequestsServiceList= new ArrayList<>();
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AcceptedServiceRequests.this,EmployeeProfile.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("hoursid", hoursid);
+                startActivity(intent);
+            }
+        });
 
         branchAcceptedRequestsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { //listen for long press to see if you want to delete a service.
             @Override

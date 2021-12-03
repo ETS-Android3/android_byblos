@@ -15,14 +15,21 @@
             android:id="@+id/deleteAccountTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#84B58F"
             android:gravity="center"
+            android:paddingVertical="20dp"
             android:text="EDIT OR DELETE ACCOUNT"
             android:textAlignment="center"
-            android:background="#84B58F"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:paddingVertical="20dp" />
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/adminEditAccountBackBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4F7E59"
+            android:text="Back" />
 
         <Space
             android:layout_width="match_parent"

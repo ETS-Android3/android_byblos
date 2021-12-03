@@ -31,6 +31,7 @@ public class ServiceRequestForm extends AppCompatActivity {
     DatabaseReference dbUser;
 
     Button submitRequest;
+    Button backButton;
 
     TextView tgeneralInfo, tlicenseType, tcarType, tpickupreturn, tmovinginfo, tmiscellaneous;
 
@@ -66,13 +67,14 @@ public class ServiceRequestForm extends AppCompatActivity {
     String numberofboxes;
     String username;
     String serviceName;
-
     String serviceRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.service_request_form);
+
+        backButton = findViewById(R.id.serviceRequestBackBTN);
 
         tgeneralInfo = findViewById(R.id.tgeneralInfo);
         tlicenseType = findViewById(R.id.tlicenseType);
@@ -106,6 +108,7 @@ public class ServiceRequestForm extends AppCompatActivity {
 
         // get service id from previous page
         serviceID = getIntent().getStringExtra("serviceID");
+        username = getIntent().getStringExtra("username");
         // get branch id from previous page
         branchID = getIntent().getStringExtra("branchID");
         userID = getIntent().getStringExtra("id");
@@ -115,19 +118,29 @@ public class ServiceRequestForm extends AppCompatActivity {
         dbBranch = FirebaseDatabase.getInstance().getReference("branch");
         dbUser = FirebaseDatabase.getInstance().getReference("users");
 
-        // get userName
-        dbUser.child(userID).addValueEventListener(new ValueEventListener() { // grabs services offered at branch
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User up = snapshot.getValue(User.class);
-                if (up != null) {
-                    username = up.getUsername();
-                }
-            }
+//        // get userName
+//        dbUser.child(userID).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                User up = snapshot.getValue(User.class);
+//                if (up != null) {
+//                    username = up.getUsername();
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(ServiceRequestForm.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+//            }
+//        });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ServiceRequestForm.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(ServiceRequestForm.this,BranchDisplay.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("username", username);
+                intent.putExtra("id",userID);
+                startActivity(intent);
             }
         });
 

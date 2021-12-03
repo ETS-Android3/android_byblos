@@ -20,7 +20,7 @@ public class FeedbackPage extends AppCompatActivity {
     TextView showRating;
     EditText review;
     Button submit;
-    Button logout;
+
     RatingBar ratingBar;
     float rateValue;
     String temp;
@@ -30,6 +30,8 @@ public class FeedbackPage extends AppCompatActivity {
     String feedbackID;
     float rateValueTemp;
     String comment;
+    Button backButton;
+    String username;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +42,26 @@ public class FeedbackPage extends AppCompatActivity {
         ratingBar.setNumStars(5);
         submit = findViewById(R.id.submitReview);
         review = findViewById(R.id.comment);
-        logout = findViewById(R.id.logout);
+        backButton = findViewById(R.id.custRatingBackBTN);
+
         rateCount = findViewById(R.id.rateCount);
 
         dbFeedback = FirebaseDatabase.getInstance().getReference("feedback");
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userID = getIntent().getStringExtra("id");
+        username = getIntent().getStringExtra("username");
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FeedbackPage.this, BranchDisplay.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userID);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
+        });
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
