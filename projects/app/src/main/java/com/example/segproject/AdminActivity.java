@@ -102,6 +102,7 @@ public class AdminActivity extends AppCompatActivity {
 
     public void editServicesOnClick(View view){
         startActivity(new Intent(AdminActivity.this, EditService.class));
+        Toast.makeText(AdminActivity.this, "Edit Services", Toast.LENGTH_LONG).show();
     }
 }
 

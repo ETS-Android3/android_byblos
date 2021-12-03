@@ -60,6 +60,7 @@ public class FeedbackPage extends AppCompatActivity {
                 intent.putExtra("id",userID);
                 intent.putExtra("username", username);
                 startActivity(intent);
+                Toast.makeText(FeedbackPage.this, "Back to branch profile", Toast.LENGTH_LONG).show();
             }
         });
 

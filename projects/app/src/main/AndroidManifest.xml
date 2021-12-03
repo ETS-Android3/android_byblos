@@ -16,7 +16,13 @@
             android:name=".ViewBranchServices"
             android:exported="true" />
         <activity
+            android:name=".CustomerRejectedRequests"
+            android:exported="true" />
+        <activity
             android:name=".AcceptedServiceRequests"
+            android:exported="true" />
+        <activity
+            android:name=".RejectedServiceRequests"
             android:exported="true" />
         <activity
             android:name=".BranchRequests"

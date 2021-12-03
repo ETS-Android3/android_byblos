@@ -24,6 +24,7 @@ public class BranchProfile { // branch info
     public String servicesNames;
     public String requests;
     public String acceptedRequests;
+    public String rejectedRequests;
 
 
     public BranchProfile() {
@@ -31,7 +32,7 @@ public class BranchProfile { // branch info
 
     public BranchProfile(int num, String street, String phoneNum, String id, String city,
                          String state, String country, String zip, String services, String servicesNames, String hours,
-                         String requests, String acceptedRequests){
+                         String requests, String acceptedRequests, String rejectedRequests){
         this.streetNum = num;
         this.streetName = street;
         this.phoneNum = phoneNum;
@@ -45,6 +46,11 @@ public class BranchProfile { // branch info
         this.servicesNames = servicesNames;
         this.requests = requests;
         this.acceptedRequests = acceptedRequests;
+        this.rejectedRequests = rejectedRequests;
+    }
+
+    public String getRejectedRequests() {
+        return rejectedRequests;
     }
 
     public String getRequests() {

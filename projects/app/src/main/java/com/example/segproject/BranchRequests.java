@@ -35,7 +35,8 @@ public class BranchRequests extends AppCompatActivity {
     ListView branchRequestsListView;
     List<ServiceRequest> branchRequestsServiceList;
     String acceptedRequests;
-    Button backButton;
+    String rejectedRequests;
+    Button branchRequestsBackButton;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class BranchRequests extends AppCompatActivity {
         dbBranchRef = FirebaseDatabase.getInstance().getReference("branch"); // get reference to branches
         dbRequests = FirebaseDatabase.getInstance().getReference("ServiceRequests");
 
-        backButton = findViewById(R.id.branchRequestsBackBTN);
+        branchRequestsBackButton = findViewById(R.id.branchRequestsBackBTN);
 
         branchID = getIntent().getStringExtra("branchID"); //branch id
         userid = getIntent().getStringExtra("id"); // user id
@@ -55,7 +56,7 @@ public class BranchRequests extends AppCompatActivity {
         branchRequestsListView = findViewById(R.id.branchRequestList);
         branchRequestsServiceList = new ArrayList<>();
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+        branchRequestsBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BranchRequests.this,EmployeeProfile.class);
@@ -63,6 +64,7 @@ public class BranchRequests extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(BranchRequests.this, "Back to branch profile", Toast.LENGTH_LONG).show();
             }
         });
         // request long click
@@ -83,6 +85,7 @@ public class BranchRequests extends AppCompatActivity {
                 if (profile != null) {
                     requests = profile.getRequests();
                     acceptedRequests = profile.getAcceptedRequests();
+                    rejectedRequests = profile.getRejectedRequests();
                     branchRequests = requests.split(", ");
                 }
             }
@@ -140,6 +143,7 @@ public class BranchRequests extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final Button buttonAcceptRequest = (Button) dialogView.findViewById(R.id.acceptButton);
+        final Button buttonRejectRequest = (Button) dialogView.findViewById(R.id.rejectButton);
         TextView custName = dialogView.findViewById(R.id.acceptName);
         TextView DOB = dialogView.findViewById(R.id.acceptDOBTV);
         TextView addy = dialogView.findViewById(R.id.acceptAddyTV);
@@ -248,7 +252,7 @@ public class BranchRequests extends AppCompatActivity {
             }
         });
 
-        dialogBuilder.setTitle("Accept " + serviceName + " service request?");
+        dialogBuilder.setTitle("Accept or reject" + serviceName + " service request?");
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
@@ -260,6 +264,16 @@ public class BranchRequests extends AppCompatActivity {
                 b.dismiss();
             }
         });
+
+        buttonRejectRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rejectRequest(requestID, position);
+                b.dismiss();
+            }
+        });
+
+
     }
 
     private void acceptRequest(String requestID, int position){ // delete service by position.
@@ -276,10 +290,29 @@ public class BranchRequests extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Request added", Toast.LENGTH_LONG).show();
     }
 
+    private void rejectRequest(String requestID, int position){ // delete service by position.
+        branchRequestsServiceList.remove(position);
+        String request = "";
+        for (ServiceRequest r: branchRequestsServiceList) {
+            request = request + ", " + r.getRequestID();
+        }
+
+
+        dbBranchRef.child(branchID).child("requests").setValue(request);// send services to db.
+        addRejectedBranchRequestMethod(requestID);
+        onStart();
+        Toast.makeText(getApplicationContext(), "Request added", Toast.LENGTH_LONG).show();
+    }
+
 
     public void addAcceptedBranchRequestMethod(String serviceRequestID){
         acceptedRequests = acceptedRequests + serviceRequestID + ", ";
         dbBranchRef.child(branchID).child("acceptedRequests").setValue(acceptedRequests);
+
+    }
+    public void addRejectedBranchRequestMethod(String serviceRequestID){
+        rejectedRequests = rejectedRequests + serviceRequestID + ", ";
+        dbBranchRef.child(branchID).child("rejectedRequests").setValue(rejectedRequests);
 
     }
 }

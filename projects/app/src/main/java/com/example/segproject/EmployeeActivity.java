@@ -112,10 +112,15 @@ public class EmployeeActivity extends AppCompatActivity {
                     valid = false;
                 }
 //                if (eTZip.getText().toString().replaceAll("//s", "").length() == 6){ // canadian zip
+<<<<<<< HEAD
 //                    String temp = eTZip.getText().toString().replaceAll("//s", "");
 //                    if (!( Character.isLetter(temp.charAt(0)) && Character.isDigit(temp.charAt(1)) && Character.isLetter(temp.charAt(2)) && Character.isDigit(temp.charAt(3)) && Character.isLetter(temp.charAt(4)) && Character.isDigit(temp.charAt(5)) ))
 //                        eTZip.setError("Please enter a valid postal code!");
 //                        eTZip.requestFocus();
+=======
+//                    String temp = eTZip.getText().toString();
+//                    if (!( Character.isLetter(temp.charAt(0)) && Character.isDigit(temp.charAt(1)) && Character.isLetter(temp.charAt(2)) && Character.isDigit(temp.charAt(3)) && Character.isLetter(temp.charAt(4)) && Character.isDigit(temp.charAt(0)) ))
+>>>>>>> 4100343390b716fcb428ccd69550d5a4173e3d55
 //                        valid = false;
 //                }
 
@@ -155,9 +160,10 @@ public class EmployeeActivity extends AppCompatActivity {
         hoursString = makeHours(mon,tue,wed,thurs,fri);
         String requests = "";
         String acceptedRequests = "";
+        String rejectedRequests = "";
 
 
-        BranchProfile pi = new BranchProfile(num,street,phoneNum,branchid,city, state, country, zip,services, servicesNames, hoursString, requests, acceptedRequests);
+        BranchProfile pi = new BranchProfile(num,street,phoneNum,branchid,city, state, country, zip,services, servicesNames, hoursString, requests, acceptedRequests, rejectedRequests);
         dbBranch.child(branchid).setValue(pi); // store
 
         WorkingHours hours = new WorkingHours(userID, branchid, hoursID, mon,tue,wed,thurs,fri);

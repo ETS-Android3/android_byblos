@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AcceptedServiceRequests">
+    tools:context=".RejectedServiceRequests">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,26 +11,26 @@
         android:backgroundTint="#50835F"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/branchAcceptedRequests"
+            android:id="@+id/branchRejectedRequests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#82AF84"
             android:gravity="center"
-            android:text="ACCEPTED REQUESTS"
+            android:text="REJECTED REQUESTS"
             android:textColor="@color/white"
             android:textSize="40sp"
             tools:ignore="TextContrastCheck"
             android:paddingVertical="20dp" />
 
         <Button
-            android:id="@+id/EmpAcceptedRequests"
+            android:id="@+id/EmpRejectedRequests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#5F8061"
             android:text="back" />
 
         <ListView
-            android:id="@+id/branchAcceptedRequestsListView"
+            android:id="@+id/branchRejectedRequestsListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

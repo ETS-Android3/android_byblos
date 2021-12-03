@@ -20,25 +20,24 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AcceptedServiceRequests extends AppCompatActivity {
-    String requests;
-    String[] branchRequests;
+public class RejectedServiceRequests extends AppCompatActivity {
+
     DatabaseReference dbBranchRef;
     DatabaseReference dbRequests;
     String branchID;
     String userid;
     String hoursid;
-    Button backButton;
+    Button backBtn;
 
-    ListView branchAcceptedRequestsListView;
-    List<ServiceRequest> branchAcceptedRequestsServiceList;
-    String[] branchAcceptedRequests;
-    String acceptedRequests;
+    ListView branchRejectedRequestsListView;
+    List<ServiceRequest> branchRejectedRequestsServiceList;
+    String[] branchRejectedRequests;
+    String rejectedRequests;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.accepted_requests);
+        setContentView(R.layout.rejected_requests);
 
         //rename db refs
         dbBranchRef = FirebaseDatabase.getInstance().getReference("branch"); // get reference to branches
@@ -48,26 +47,26 @@ public class AcceptedServiceRequests extends AppCompatActivity {
         userid = getIntent().getStringExtra("id"); // user id
         hoursid = getIntent().getStringExtra("hoursid");;
 
-        backButton = findViewById(R.id.EmpAcceptedRequests);
-        branchAcceptedRequestsListView = findViewById(R.id.branchAcceptedRequestsListView);
-        branchAcceptedRequestsServiceList= new ArrayList<>();
+        backBtn = findViewById(R.id.EmpRejectedRequests);
+        branchRejectedRequestsListView = findViewById(R.id.branchRejectedRequestsListView);
+        branchRejectedRequestsServiceList= new ArrayList<>();
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AcceptedServiceRequests.this,EmployeeProfile.class);
+                Intent intent = new Intent(RejectedServiceRequests.this,EmployeeProfile.class);
                 intent.putExtra("branchID",branchID);
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursid);
                 startActivity(intent);
-                Toast.makeText(AcceptedServiceRequests.this, "Back to branch profile", Toast.LENGTH_LONG).show();
+                Toast.makeText(RejectedServiceRequests.this, "Back to branch profile", Toast.LENGTH_LONG).show();
             }
         });
 
-        branchAcceptedRequestsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { //listen for long press to see if you want to delete a service.
+        branchRejectedRequestsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { //listen for long press to see if you want to delete a service.
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                ServiceRequest request = branchAcceptedRequestsServiceList.get(position);
+                ServiceRequest request = branchRejectedRequestsServiceList.get(position);
 
                 // acceptRequestDialog(request.getServiceName(), request.getRequestID(),position);
                 return true;
@@ -83,14 +82,14 @@ public class AcceptedServiceRequests extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 BranchProfile profile = snapshot.getValue(BranchProfile.class);
                 if (profile != null) {
-                    acceptedRequests = profile.getAcceptedRequests();
-                    branchAcceptedRequests = acceptedRequests.split(", ");
+                    rejectedRequests = profile.getRejectedRequests();
+                    branchRejectedRequests = rejectedRequests.split(", ");
 
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(AcceptedServiceRequests.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+                Toast.makeText(RejectedServiceRequests.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -98,22 +97,22 @@ public class AcceptedServiceRequests extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //branchRequestsServiceList.clear();
-                branchAcceptedRequestsServiceList.clear();
+                branchRejectedRequestsServiceList.clear();
 
                 for (DataSnapshot info : snapshot.getChildren()) { // iterate through all global services and check if
                     ServiceRequest sr = info.getValue(ServiceRequest.class);
 
                     if (sr != null) {
-                        if(branchAcceptedRequests !=null){ // look here
+                        if(branchRejectedRequests !=null){ // look here
 //                            for (String s : branchRequests) {
 //                                if (s.equals(sr.getRequestID())) {
 //                                    branchRequestsServiceList.add(sr);
 //                                }
 //                            }
 
-                            for (String s : branchAcceptedRequests) {
+                            for (String s : branchRejectedRequests) {
                                 if (s.equals(sr.getRequestID())) {
-                                    branchAcceptedRequestsServiceList.add(sr);
+                                    branchRejectedRequestsServiceList.add(sr);
                                 }
                             }
                         }
@@ -123,13 +122,13 @@ public class AcceptedServiceRequests extends AppCompatActivity {
 //                ServiceRequestList branchRequestAdapter = new ServiceRequestList(EmployeeProfile.this, branchRequestsServiceList);
 //                branchRequestsListView.setAdapter(branchRequestAdapter);
 
-                ServiceRequestList branchAcceptedRequestAdapter = new ServiceRequestList(AcceptedServiceRequests.this, branchAcceptedRequestsServiceList);
-                branchAcceptedRequestsListView.setAdapter(branchAcceptedRequestAdapter);
+                ServiceRequestList branchAcceptedRequestAdapter = new ServiceRequestList(RejectedServiceRequests.this, branchRejectedRequestsServiceList);
+                branchRejectedRequestsListView.setAdapter(branchAcceptedRequestAdapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(AcceptedServiceRequests.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+                Toast.makeText(RejectedServiceRequests.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
 

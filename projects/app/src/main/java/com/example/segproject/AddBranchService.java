@@ -67,6 +67,7 @@ public class AddBranchService extends AppCompatActivity {
                 intent.putExtra("id",id);
                 intent.putExtra("hoursid", hoursid);
                 startActivity(intent);
+                Toast.makeText(AddBranchService.this, "Back to branch profile", Toast.LENGTH_LONG).show();
             }
         });
 

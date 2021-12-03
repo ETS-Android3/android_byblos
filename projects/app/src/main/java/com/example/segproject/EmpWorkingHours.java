@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -52,6 +53,7 @@ public class EmpWorkingHours extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(EmpWorkingHours.this, "Back to branch profile", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -59,6 +61,7 @@ public class EmpWorkingHours extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
 
         dbWorkingHours.child(hoursID).addValueEventListener(new ValueEventListener() {
             @Override

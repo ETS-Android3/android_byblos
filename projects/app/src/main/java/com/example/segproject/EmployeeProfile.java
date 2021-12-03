@@ -59,6 +59,7 @@ public class EmployeeProfile extends AppCompatActivity {
 
     Button serviceRequests;
     Button acceptedRequests;
+    Button rejectedRequests;
 
 
     String userid;
@@ -109,6 +110,7 @@ public class EmployeeProfile extends AppCompatActivity {
         viewHours = findViewById(R.id.empHoursBTN);
         serviceRequests = findViewById(R.id.serviceRequests);
         acceptedRequests = findViewById(R.id.acceptedRequests);
+        rejectedRequests = findViewById(R.id.rejectedRequests);
         viewServices = findViewById(R.id.viewServices);
         addService = findViewById(R.id.add);
         branchServiceListView = findViewById(R.id.branchServiceListView);
@@ -127,6 +129,7 @@ public class EmployeeProfile extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(EmployeeProfile.this, "Viewing services", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -138,6 +141,7 @@ public class EmployeeProfile extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(EmployeeProfile.this, "Viewing service requests", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -149,6 +153,19 @@ public class EmployeeProfile extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
+                Toast.makeText(EmployeeProfile.this, "Viewing accepted service requests", Toast.LENGTH_LONG).show();
+            }
+        });
+
+       rejectedRequests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmployeeProfile.this,RejectedServiceRequests.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("hoursid", hoursID);
+                startActivity(intent);
+                Toast.makeText(EmployeeProfile.this, "Viewing rejected service requests", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -160,6 +177,7 @@ public class EmployeeProfile extends AppCompatActivity {
                 intent.putExtra("id",userid);
                 intent.putExtra("hoursid",hoursID);
                 startActivity(intent);
+                Toast.makeText(EmployeeProfile.this, "Viewing hours", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -177,6 +195,7 @@ public class EmployeeProfile extends AppCompatActivity {
             public void onClick(View view) {
                 openAddBranchService();
             }
+
         });
 
 
@@ -261,6 +280,7 @@ public class EmployeeProfile extends AppCompatActivity {
         intent.putExtra("id",userid);
         intent.putExtra("hoursid", hoursID);
         startActivity(intent);
+        Toast.makeText(EmployeeProfile.this, "Adding branch service", Toast.LENGTH_LONG).show();
     }
 
 }
