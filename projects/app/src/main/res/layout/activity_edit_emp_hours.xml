@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    tools:context=".EditEmpHours">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/EditHoursBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#84B58F"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Edit Working Hours"
+            android:textColor="@color/white"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/EditWorkingHoursBackBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#58886F"
+            android:text="back " />
+
+        <CheckBox
+            android:id="@+id/editMoncheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Monday 9am-5pm" />
+
+        <CheckBox
+            android:id="@+id/editTuescheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tuesday 9am-5pm" />
+
+        <CheckBox
+            android:id="@+id/editWedcheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wednesday 9am-5pm" />
+
+        <CheckBox
+            android:id="@+id/editThucheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thursday 9am-5pm" />
+
+        <CheckBox
+            android:id="@+id/editFricheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Friday 9am-5pm" />
+
+        <Button
+            android:id="@+id/UpdateEmpHoursBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#517C66"
+            android:text="Update" />
+    </LinearLayout>
+</RelativeLayout>

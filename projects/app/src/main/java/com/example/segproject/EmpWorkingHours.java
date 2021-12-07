@@ -23,6 +23,7 @@ public class EmpWorkingHours extends AppCompatActivity {
     String hoursID;
     TextView mon, tue, wed, thu, fri;
     Button backButton;
+    Button editHoursButton;
 
     DatabaseReference dbWorkingHours;
 
@@ -38,6 +39,8 @@ public class EmpWorkingHours extends AppCompatActivity {
         hoursID = getIntent().getStringExtra("hoursid");
 
         backButton = findViewById(R.id.empWorkingHoursBackBTN);
+        editHoursButton = findViewById(R.id.empEditHoursBTN);
+
 
         mon = findViewById(R.id.monTV);
         tue = findViewById(R.id.tuesTV);
@@ -54,6 +57,17 @@ public class EmpWorkingHours extends AppCompatActivity {
                 intent.putExtra("hoursid", hoursID);
                 startActivity(intent);
                 Toast.makeText(EmpWorkingHours.this, "Back to branch profile", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        editHoursButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EmpWorkingHours.this,EditEmpHours.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("id",userid);
+                intent.putExtra("hoursid", hoursID);
+                startActivity(intent);
             }
         });
     }

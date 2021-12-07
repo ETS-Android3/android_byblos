@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SEGProject">
         <activity
+            android:name=".EditEmpHours"
+            android:exported="true" />
+        <activity
             android:name=".CustomerWelcomeActivity"
             android:exported="true" />
         <activity

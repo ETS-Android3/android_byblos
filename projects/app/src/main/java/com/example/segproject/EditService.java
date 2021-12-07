@@ -201,8 +201,6 @@ public class EditService extends AppCompatActivity {
                 cbnumberofboxes.setChecked(false);
 
 
-
-
                 for(DataSnapshot info : snapshot.getChildren()){
                     NewService serv = info.getValue(NewService.class);
                     if (serv.isOffered()){
@@ -314,95 +312,28 @@ public class EditService extends AppCompatActivity {
 
     public void updateService(String servID){
 
-        if (cbisoffered.isChecked()){
-            isOffered = true;
-        }else{
-            isOffered = false;
-        }if (cbfirstName.isChecked()){
-            firstName = true;
-        }else{
-            firstName = false;
-        }if (cblastName.isChecked()){
-            lastName = true;
-        }else{
-            lastName = false;
-        }if (cbdob.isChecked()){
-            dob = true;
-        }else{
-            dob = false;
-        }if (cbaddress.isChecked()){
-            address = true;
-        }else{
-            address = false;
-        }if (cbemail.isChecked()){
-            email = true;
-        }else{
-            email = false;
-        }if (cbG1.isChecked()){
-            G1 = true;
-        }else{
-            G1 = false;
-        }if (cbG2.isChecked()){
-            G2 = true;
-        }else{
-            G2 = false;
-        }if (cbG3.isChecked()){
-            G3 = true;
-        }else{
-            G3 = false;
-        }if (cbcompact.isChecked()){
-            compact = true;
-        }else{
-            compact = false;
-        }if (cbintermediate.isChecked()){
-            intermediate = true;
-        }else{
-            intermediate = false;
-        }if (cbSUV.isChecked()){
-            SUV = true;
-        }else{
-            SUV = false;
-        }if (cbpickupdate.isChecked()){
-            pickupdate = true;
-        }else{
-            pickupdate = false;
-        }if (cbpickuptime.isChecked()){
-            pickuptime = true;
-        }else{
-            pickuptime = false;
-        }if (cbreturndate.isChecked()){
-            returndate = true;
-        }else{
-            returndate = false;
-        }if (cbreturntime.isChecked()){
-            returntime = true;
-        }else{
-            returntime = false;
-        }if (cbmovingstartlocation.isChecked()){
-            movingstartlocation = true;
-        }else{
-            movingstartlocation = false;
-        }if (cbmovingendlocation.isChecked()){
-            movingendlocation = true;
-        }else{
-            movingendlocation = false;
-        }if (cbarea.isChecked()){
-            area = true;
-        }else{
-            area = false;
-        }if (cbkmdriven.isChecked()){
-            kmdriven = true;
-        }else{
-            kmdriven = false;
-        }if (cbnumberofmovers.isChecked()){
-            numberofmovers = true;
-        }else{
-            numberofmovers = false;
-        }if (cbnumberofboxes.isChecked()){
-            numberofboxes = true;
-        }else {
-            numberofboxes = false;
-        }
+        isOffered = cbisoffered.isChecked();
+        firstName = cbfirstName.isChecked();
+        lastName = cblastName.isChecked();
+        dob = cbdob.isChecked();
+        address = cbaddress.isChecked();
+        email = cbemail.isChecked();
+        G1 = cbG1.isChecked();
+        G2 = cbG2.isChecked();
+        G3 = cbG3.isChecked();
+        compact = cbcompact.isChecked();
+        intermediate = cbintermediate.isChecked();
+        SUV = cbSUV.isChecked();
+        pickupdate = cbpickupdate.isChecked();
+        pickuptime = cbpickuptime.isChecked();
+        returndate = cbreturndate.isChecked();
+        returntime = cbreturntime.isChecked();
+        movingstartlocation = cbmovingstartlocation.isChecked();
+        movingendlocation = cbmovingendlocation.isChecked();
+        area = cbarea.isChecked();
+        kmdriven = cbkmdriven.isChecked();
+        numberofmovers = cbnumberofmovers.isChecked();
+        numberofboxes = cbnumberofboxes.isChecked();
 
         newRate = Double.parseDouble(editTextRate.getText().toString().trim());
         newName = editTextName.getText().toString().trim();
