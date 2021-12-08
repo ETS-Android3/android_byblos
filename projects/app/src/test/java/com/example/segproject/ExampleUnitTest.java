@@ -10,8 +10,19 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+    String validString = "test";
+
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
+    }
+    @Test
+    public void custWelcTest (){
+        CustomerWelcomeActivity myObjectUnderTest = new CustomerWelcomeActivity();
+        boolean validResult;
+
+        validResult = myObjectUnderTest.match("address", "services", "hours" ,validString);
+        assertEquals(validResult, true);
+
     }
 }

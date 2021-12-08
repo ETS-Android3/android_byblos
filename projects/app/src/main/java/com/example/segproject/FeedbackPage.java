@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Locale;
+
 public class FeedbackPage extends AppCompatActivity {
 
     TextView rateCount;
@@ -90,11 +92,27 @@ public class FeedbackPage extends AppCompatActivity {
                 temp = rateCount.getText().toString();
                 showRating.setText("Your Rating: \n" + temp + "\n" + review.getText());
                 comment = review.getText().toString();
-                review.setText("");
-                rateCount.setText("");
-                submitFeedback();
+                if (validComment(comment.toLowerCase())){
+                    review.setText("");
+                    rateCount.setText("");
+                    submitFeedback();
+                }else {
+                    review.requestFocus();
+                    review.setError("Invalid comment");
+                }
             }
         });
+    }
+
+    static public boolean validComment(String comment){
+        if (comment.isEmpty() || comment.equals(""))
+            return false;
+
+        if (comment.contains("fuck") || comment.contains("shit") || comment.contains("bitch") || comment.contains("ass"))
+            return false;
+
+
+        return true;
     }
 
     private void submitFeedback(){

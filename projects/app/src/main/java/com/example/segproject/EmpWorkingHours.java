@@ -76,7 +76,6 @@ public class EmpWorkingHours extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
         dbWorkingHours.child(hoursID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

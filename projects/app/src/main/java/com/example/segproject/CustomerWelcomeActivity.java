@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -118,6 +119,7 @@ public class CustomerWelcomeActivity extends AppCompatActivity implements Branch
         });
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -126,7 +128,7 @@ public class CustomerWelcomeActivity extends AppCompatActivity implements Branch
     private void search(String str) {
         branchListSearch.clear();
         for (BranchProfile obj : branchList){
-            if (match(obj, str)){
+            if (match (obj.getWholeAddress(), obj.getServicesNames(), obj.getHours(), str)){
                 branchListSearch.add(obj);
             }
         }
@@ -137,14 +139,14 @@ public class CustomerWelcomeActivity extends AppCompatActivity implements Branch
 //        searchResultRV.setAdapter(branchAdapter);
     }
 
-    private boolean match(BranchProfile bp, String str){ //checks if search query matches address, services or working hours.
+    static public boolean match(String address, String serviceNames, String hours, String str){ //checks if search query matches address, services or working hours.
         boolean containsAddress;
         boolean containsServices;
         boolean containsHours ;
 
-        containsAddress = bp.getWholeAddress().toLowerCase().contains(str.toLowerCase());
-        containsServices = bp.getServicesNames().toLowerCase().contains(str.toLowerCase());
-        containsHours = bp.getHours().toLowerCase().contains(str.toLowerCase());
+        containsAddress = address.toLowerCase().contains(str.toLowerCase());
+        containsServices = serviceNames.toLowerCase().contains(str.toLowerCase());
+        containsHours = hours.toLowerCase().contains(str.toLowerCase());
 
         return containsAddress || containsServices || containsHours;
     }

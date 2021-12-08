@@ -293,7 +293,11 @@ public class ServiceRequestForm extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //submitNewRequest();
-                validate();
+//                validate();
+                if (validate()){
+                    //Log.d("request","VALID");
+                    submitNewRequest();
+                }
                 Toast.makeText(getApplicationContext(), "Request submitted", Toast.LENGTH_SHORT).show();
             }
         });
@@ -354,7 +358,7 @@ public class ServiceRequestForm extends AppCompatActivity {
 
 
     // validation method
-    private void validate(){
+    private boolean validate(){
 
         firstName = tfirstName.getText().toString();
         lastName = tlastName.getText().toString();
@@ -497,11 +501,9 @@ public class ServiceRequestForm extends AppCompatActivity {
                 valid = false;
             }
         }
+        return valid;
         // all fields are valid and request can be submitted
-        if (valid){
-            //Log.d("request","VALID");
-            submitNewRequest();
-        }
+
     }
 
 
